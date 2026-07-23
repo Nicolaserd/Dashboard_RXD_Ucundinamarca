@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(pnpm:*)",
+      "Bash(corepack:*)"
+    ],
+    "ask": [
+      "Edit(CLAUDE.md)",
+      "Write(CLAUDE.md)"
+    ],
+    "deny": [
+      "Edit(.claude/reglas/**)",
+      "Write(.claude/reglas/**)",
+      "Bash(npm:*)",
+      "Bash(yarn:*)",
+      "Bash(npx:*)"
+    ]
+  }
+}
