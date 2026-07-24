@@ -7,7 +7,7 @@ export default function PortadaPage() {
   return (
     <>
       <header className="topbar">
-        <LogoUcundinamarca variant="horizontal" tono="negro" height={56} />
+        <LogoUcundinamarca variant="horizontal" tono="negro" height={80} />
         <div className="spacer" />
         <div className="top-actions">
           <button className="icon-btn" type="button" aria-label="Ayuda">
@@ -51,7 +51,7 @@ export default function PortadaPage() {
       </div>
 
       <footer className="portada-foot">
-        <LogoUcundinamarca variant="horizontal" tono="negro" height={56} />
+        <LogoUcundinamarca variant="horizontal" tono="negro" height={80} />
         <span>Oficina de Planeación · Datos con fines demostrativos</span>
       </footer>
     </>
