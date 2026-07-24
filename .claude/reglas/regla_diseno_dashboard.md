@@ -1,5 +1,7 @@
 # Regla de diseño para vistas de dashboard
 
+> **OBLIGATORIO:** este documento debe leerse completo antes de crear o modificar cualquier gráfica en el proyecto (componente de gráfica, `ChartCard`, o vista que integre una). No es opcional ni queda cubierto por haberlo leído en una sesión anterior si hay dudas sobre un criterio — se relee la sección relevante. Ninguna gráfica se implementa "por intuición" ignorando §1–12.
+
 ## Objetivo
 
 Definir los criterios mínimos de diseño, interacción y visualización para las vistas tipo dashboard, garantizando que las gráficas sean comprensibles, interactivas y consistentes dentro del layout general.

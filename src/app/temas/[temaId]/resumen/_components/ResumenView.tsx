@@ -1,55 +1,77 @@
 "use client";
 
+import { useMemo, useState } from "react";
 import { getDashboardData } from "@/features/dashboard/dashboardData";
 import { DashboardShell } from "@/components/dashboard/DashboardShell";
-import { FILTRO_PERIODO } from "@/components/dashboard/filtros";
+import { construirFiltro } from "@/components/dashboard/filtros";
+import { ChartCard } from "@/components/charts/ChartCard";
+import { TrendLineChart } from "@/components/charts/TrendLineChart";
+import { DonutChart } from "@/components/charts/DonutChart";
 
 export function ResumenView({ temaId }: { temaId: string }) {
   const data = getDashboardData(temaId);
+  const [periodoActivo, setPeriodoActivo] = useState("");
+  const [categoriaSeleccionada, setCategoriaSeleccionada] = useState<string | null>(null);
+
+  // Orden cronológico ascendente: dashboardData guarda los períodos del más
+  // reciente al más antiguo (ver DatosView, que usa el mismo orden para su tabla).
+  // Memoizado: una referencia estable evita que Recharts reinicie la animación
+  // de entrada de la gráfica cada vez que cambia la selección del donut.
+  const tendencia = useMemo(
+    () => [...data.datos].reverse().map((d) => ({ periodo: d.periodo, valor: d.porcentaje })),
+    [data.datos],
+  );
+
+  // El filtro de período recorta la serie hasta el período elegido (inclusive):
+  // filtra realmente la gráfica en lugar de solo resaltar un punto.
+  const filtroPeriodo = construirFiltro("periodo", "Período", tendencia.map((t) => t.periodo));
+  const idxHasta = periodoActivo ? tendencia.findIndex((t) => t.periodo === periodoActivo) : -1;
+  const tendenciaFiltrada = idxHasta >= 0 ? tendencia.slice(0, idxHasta + 1) : tendencia;
 
   return (
-    <DashboardShell kpis={data.kpis} filtros={[FILTRO_PERIODO]}>
+    <DashboardShell
+      kpis={data.kpis}
+      filtros={[filtroPeriodo]}
+      onFilterChange={(id, value) => {
+        if (id === "periodo") setPeriodoActivo(value);
+      }}
+    >
       <div className="grid-2a">
-        <div className="card">
-          <div className="card-head">
-            <h3>Tendencia temporal</h3>
-          </div>
-          <svg className="chart" viewBox="0 0 600 300" role="img" aria-label="Tendencia temporal del periodo">
-            <line x1="40" y1="250" x2="580" y2="250" className="baseline" />
-            <line x1="40" y1="50" x2="40" y2="250" className="baseline" />
-            <polyline
-              points="40,200 120,180 200,150 280,170 360,130 440,100 520,120"
-              stroke="var(--uc-green)"
-              fill="none"
-              strokeWidth="2"
-            />
-            <text x="40" y="280" className="axis-text">
-              {data.chart.xLabels[0]}
-            </text>
-            <text x="520" y="280" className="axis-text">
-              {data.chart.xLabels[1]}
-            </text>
-          </svg>
-        </div>
+        <ChartCard
+          title="Tendencia temporal"
+          sub={
+            periodoActivo
+              ? `Serie histórica · hasta ${periodoActivo}`
+              : `Serie histórica · ${tendencia[0]?.periodo} – ${tendencia[tendencia.length - 1]?.periodo}`
+          }
+          filtrada={!!periodoActivo}
+        >
+          <TrendLineChart data={tendenciaFiltrada} destacado={periodoActivo} />
+        </ChartCard>
 
-        <div className="card">
-          <div className="card-head">
-            <h3>Distribución por categoría</h3>
-          </div>
-          <div className="card-body">
-            {data.categories.map((cat) => (
-              <div key={cat.name} className="bar-row">
-                <div className="bar-row-head">
-                  <span>{cat.name}</span>
-                  <b>{cat.value}%</b>
+        <ChartCard
+          title="Distribución por categoría"
+          sub="Clic en un segmento para resaltarlo"
+          filtrada={!!categoriaSeleccionada}
+        >
+          <DonutChart
+            data={data.categories}
+            seleccionado={categoriaSeleccionada}
+            onSelect={setCategoriaSeleccionada}
+          />
+          {categoriaSeleccionada && (
+            <div className="filters" style={{ marginTop: 4 }}>
+              <div className="filterbar">
+                <div className="filter-chip">
+                  Categoría: <b>{categoriaSeleccionada}</b>
                 </div>
-                <div className="bar-track">
-                  <div className="bar-fill" style={{ width: `${cat.value}%` }} />
-                </div>
+                <button type="button" className="filter-clear" onClick={() => setCategoriaSeleccionada(null)}>
+                  Limpiar selección
+                </button>
               </div>
-            ))}
-          </div>
-        </div>
+            </div>
+          )}
+        </ChartCard>
       </div>
 
       <div className="grid-2b">

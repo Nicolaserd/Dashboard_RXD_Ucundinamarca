@@ -35,7 +35,9 @@ export function FilterBar({ filters, onFilterChange, onClearAll }: FilterBarProp
   };
 
   const handleClear = () => {
-    setSelectedFilters(valoresIniciales(filters));
+    const defaults = valoresIniciales(filters);
+    setSelectedFilters(defaults);
+    filters.forEach((f) => onFilterChange?.(f.id, defaults[f.id] ?? ""));
     onClearAll?.();
   };
 

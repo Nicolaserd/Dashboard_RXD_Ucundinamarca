@@ -145,6 +145,8 @@ src/
 
 ### 5.3 Gráficas (Regla dashboard §10 — obligatoria)
 
+> **Lectura obligatoria antes de crear o modificar cualquier gráfica:** [`regla_diseno_dashboard.md`](.claude/reglas/regla_diseno_dashboard.md) completa. No se escribe ni un componente de gráfica sin haberla leído; el checklist de §9 de este archivo no reemplaza esa lectura.
+
 Toda gráfica se envuelve en un **`ChartCard`** que garantiza, de forma reutilizable: título descriptivo, etiquetas/ejes/tooltip, leyenda cuando hay varias series, comportamiento responsivo, estados **Cargando / Sin datos / Error / Filtrada / Seleccionada**, e **interacción como filtro** sincronizada con los filtros generales del dashboard. Ninguna gráfica se integra si no cumple ese contrato.
 
 - La librería de gráficas debe soportar tooltips, click-para-filtrar, teclado y estados. Recomendado: **Recharts** (React-first) o **ECharts** (`echarts-for-react`) para casos complejos. La selección **no** puede depender solo del color (Regla dashboard §8–9): añadir borde/ícono/opacidad/texto.

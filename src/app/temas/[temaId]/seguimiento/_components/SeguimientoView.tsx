@@ -1,7 +1,9 @@
 "use client";
 
+import { useState } from "react";
 import { getDashboardData } from "@/features/dashboard/dashboardData";
 import { DashboardShell } from "@/components/dashboard/DashboardShell";
+import { EstadoVacio } from "@/components/dashboard/EstadoVacio";
 import type { FilterConfig } from "@/components/dashboard/FilterBar";
 
 /** Filtro propio de esta vista: no se comparte, por eso vive aquí. */
@@ -24,39 +26,52 @@ const ESTADO_META = {
 
 export function SeguimientoView({ temaId }: { temaId: string }) {
   const data = getDashboardData(temaId);
+  const [estadoSel, setEstadoSel] = useState("");
+
+  const hitos = estadoSel ? data.seguimiento.filter((h) => h.estado === estadoSel) : data.seguimiento;
 
   return (
-    <DashboardShell kpis={data.kpis} filtros={[FILTRO_ESTADO]}>
+    <DashboardShell
+      kpis={data.kpis}
+      filtros={[FILTRO_ESTADO]}
+      onFilterChange={(id, value) => {
+        if (id === "estado") setEstadoSel(value);
+      }}
+    >
       <div className="card">
         <div className="card-head">
           <h3>Plan de seguimiento 2026-I</h3>
         </div>
         <div className="card-body-lg">
-          {data.seguimiento.map((item) => {
-            const meta = ESTADO_META[item.estado];
-            return (
-              <div key={item.fase} className="hito">
-                <div className="hito-head">
-                  <div className={`hito-ic ${item.estado}`} aria-hidden="true">
-                    {meta.icono}
-                  </div>
-                  <div className="hito-txt">
-                    <div className="h-fase">{item.fase}</div>
-                    <div className="h-fecha">{item.fecha}</div>
-                  </div>
-                  <div className={`hito-tag ${item.estado}`}>{meta.texto}</div>
-                </div>
-                {item.progreso !== undefined && (
-                  <div className="hito-prog">
-                    <div className="p-label">{item.progreso}% completado</div>
-                    <div className="p-track">
-                      <div className="p-fill" style={{ width: `${item.progreso}%` }} />
+          {hitos.length === 0 ? (
+            <EstadoVacio mensaje="No hay fases con el estado seleccionado." />
+          ) : (
+            hitos.map((item) => {
+              const meta = ESTADO_META[item.estado];
+              return (
+                <div key={item.fase} className="hito">
+                  <div className="hito-head">
+                    <div className={`hito-ic ${item.estado}`} aria-hidden="true">
+                      {meta.icono}
                     </div>
+                    <div className="hito-txt">
+                      <div className="h-fase">{item.fase}</div>
+                      <div className="h-fecha">{item.fecha}</div>
+                    </div>
+                    <div className={`hito-tag ${item.estado}`}>{meta.texto}</div>
                   </div>
-                )}
-              </div>
-            );
-          })}
+                  {item.progreso !== undefined && (
+                    <div className="hito-prog">
+                      <div className="p-label">{item.progreso}% completado</div>
+                      <div className="p-track">
+                        <div className="p-fill" style={{ width: `${item.progreso}%` }} />
+                      </div>
+                    </div>
+                  )}
+                </div>
+              );
+            })
+          )}
         </div>
       </div>
     </DashboardShell>

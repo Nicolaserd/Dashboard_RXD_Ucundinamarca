@@ -8,6 +8,8 @@ interface DashboardShellProps {
   kpis: DashboardData["kpis"];
   /** Filtros de la vista. Opcionales: no todo dashboard los necesita (§6). */
   filtros?: FilterConfig[];
+  /** Sincroniza un cambio de filtro con el estado de la vista (regla dashboard §4, §6). */
+  onFilterChange?: (filterId: string, value: string) => void;
   /** Contenido propio de la vista: gráficas, tablas, listados. */
   children: ReactNode;
 }
@@ -24,11 +26,13 @@ interface DashboardShellProps {
  *   <div className="grid-2b">…</div>
  * </DashboardShell>
  */
-export function DashboardShell({ kpis, filtros, children }: DashboardShellProps) {
+export function DashboardShell({ kpis, filtros, onFilterChange, children }: DashboardShellProps) {
   return (
     <>
       <KPIRow kpis={kpis} />
-      {filtros && filtros.length > 0 && <FilterBar filters={filtros} />}
+      {filtros && filtros.length > 0 && (
+        <FilterBar filters={filtros} onFilterChange={onFilterChange} />
+      )}
       {children}
     </>
   );
