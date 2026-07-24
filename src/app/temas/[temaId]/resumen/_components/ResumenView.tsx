@@ -1,24 +1,29 @@
 "use client";
 
 import { getDashboardData } from "@/features/dashboard/dashboardData";
+import { KPIRow } from "@/components/dashboard/KPIRow";
+import { FilterBar, type FilterConfig } from "@/components/dashboard/FilterBar";
 
 export function ResumenView({ temaId }: { temaId: string }) {
   const data = getDashboardData(temaId);
 
+  const filterConfig: FilterConfig[] = [
+    {
+      id: "periodo",
+      label: "Período",
+      options: [
+        { value: "2026-I", label: "2026-I" },
+        { value: "2025-IV", label: "2025-IV" },
+        { value: "2025-III", label: "2025-III" },
+      ],
+      defaultValue: "2026-I",
+    },
+  ];
+
   return (
     <>
-      {/* KPI Row */}
-      <div className="kpi-row">
-        {data.kpis.map((kpi, idx) => (
-          <div key={idx} className="kpi">
-            <div className="k-label">{kpi.label}</div>
-            <div className="k-val">{kpi.value}</div>
-            <div className={`k-delta ${kpi.delta.type}`}>
-              <span className="muted">{kpi.delta.label}</span>
-            </div>
-          </div>
-        ))}
-      </div>
+      <KPIRow kpis={data.kpis} />
+      <FilterBar filters={filterConfig} />
 
       {/* Gráficas principales */}
       <div className="grid-2a">
