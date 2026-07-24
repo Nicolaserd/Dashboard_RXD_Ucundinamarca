@@ -15,5 +15,9 @@
       "Bash(yarn:*)",
       "Bash(npx:*)"
     ]
+  },
+  "attribution": {
+    "commit": "",
+    "pr": ""
   }
 }
