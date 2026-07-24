@@ -1,12 +1,40 @@
 "use client";
 
 import { getDashboardData } from "@/features/dashboard/dashboardData";
+import { KPIRow } from "@/components/dashboard/KPIRow";
+import { FilterBar, type FilterConfig } from "@/components/dashboard/FilterBar";
 
 export function IndicadoresView({ temaId }: { temaId: string }) {
   const data = getDashboardData(temaId);
 
+  const filterConfig: FilterConfig[] = [
+    {
+      id: "periodo",
+      label: "Período",
+      options: [
+        { value: "2026-I", label: "2026-I" },
+        { value: "2025-IV", label: "2025-IV" },
+        { value: "2025-III", label: "2025-III" },
+      ],
+      defaultValue: "2026-I",
+    },
+    {
+      id: "sede",
+      label: "Sede",
+      options: [
+        { value: "bogota-centro", label: "Bogotá Centro" },
+        { value: "bogota-sur", label: "Bogotá Sur" },
+        { value: "facatativa", label: "Facatativá" },
+        { value: "zipaquira", label: "Zipaquirá" },
+      ],
+    },
+  ];
+
   return (
-    <div className="grid-2b">
+    <>
+      <KPIRow kpis={data.kpis} />
+      <FilterBar filters={filterConfig} />
+      <div className="grid-2b">
       {data.indicadores.map((ind, idx) => (
         <div key={idx} className="card">
           <div className="card-head">
@@ -47,6 +75,7 @@ export function IndicadoresView({ temaId }: { temaId: string }) {
           </div>
         </div>
       ))}
-    </div>
+      </div>
+    </>
   );
 }

@@ -1,12 +1,29 @@
 "use client";
 
 import { getDashboardData } from "@/features/dashboard/dashboardData";
+import { KPIRow } from "@/components/dashboard/KPIRow";
+import { FilterBar, type FilterConfig } from "@/components/dashboard/FilterBar";
 
 export function ReportesView({ temaId }: { temaId: string }) {
   const data = getDashboardData(temaId);
 
+  const filterConfig: FilterConfig[] = [
+    {
+      id: "tipo",
+      label: "Tipo",
+      options: [
+        { value: "analisis", label: "Análisis" },
+        { value: "datos", label: "Datos" },
+        { value: "ejecutivo", label: "Ejecutivo" },
+      ],
+    },
+  ];
+
   return (
-    <div className="grid-2b">
+    <>
+      <KPIRow kpis={data.kpis} />
+      <FilterBar filters={filterConfig} />
+      <div className="grid-2b">
       {data.reportes.map((rep, idx) => (
         <div key={idx} className="card">
           <div className="card-head">
@@ -42,6 +59,7 @@ export function ReportesView({ temaId }: { temaId: string }) {
           </div>
         </div>
       ))}
-    </div>
+      </div>
+    </>
   );
 }

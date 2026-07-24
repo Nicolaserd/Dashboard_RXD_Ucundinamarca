@@ -65,18 +65,50 @@ Ejemplo:
 No existen datos para los filtros seleccionados.
 ```
 
-## 5. Layout del dashboard
+## 5. Indicadores clave (KPIs) — recomendados
+
+Cada dashboard debe mostrar **indicadores clave** que resuman el estado general:
+
+- **Ubicación:** parte superior, antes de las gráficas de detalle.
+- **Formato:** tarjetas o cajas que muestren:
+  - Nombre del indicador.
+  - Valor actual (números grandes y legibles).
+  - Variación o delta respecto a periodo anterior (↑/↓ con color).
+  - Meta o objetivo (opcional, si aplica).
+- **Cantidad:** 3–6 KPIs por dashboard (más causa sobrecarga visual).
+- **Interactividad:** opcionales, pueden filtrase con los filtros generales del dashboard.
+- **Responsividad:** en desktop 4 columnas, tableta 2, móvil 1.
+
+Los KPIs permiten la toma rápida de decisiones sin necesidad de explorar gráficas.
+
+## 6. Filtros — recomendados pero opcionales
+
+Los dashboards deben incluir **filtros de contexto** para segmentar datos:
+
+- **Ubicación:** barra superior, debajo del título, antes de gráficas/KPIs.
+- **Tipos recomendados:**
+  - Filtro por periodo/fecha.
+  - Filtro por sede, región o ubicación.
+  - Filtro por categoría relevante al contexto.
+- **Comportamiento:**
+  - Los filtros afectan a KPIs, gráficas y tablas simultáneamente.
+  - Debe existir un botón **"Limpiar filtros"** visible.
+  - Los filtros activos deben mostrarse claramente (chips, badges).
+  - Cambiar un filtro actualiza las visualizaciones sin recarga.
+- **Flexibilidad:** no todos los dashboards necesitan filtros; agregar solo si aportan valor.
+
+## 7. Layout del dashboard
 
 - Las gráficas deben organizarse dentro de una cuadrícula consistente.
 - El layout debe adaptarse correctamente a diferentes tamaños de pantalla.
 - Ninguna gráfica debe quedar cortada, desbordada o superpuesta.
 - Las gráficas deben conservar una altura mínima que permita interpretar títulos, etiquetas, ejes y leyendas.
 - Las gráficas relacionadas deben ubicarse próximas entre sí.
-- Los indicadores generales deben aparecer antes de las visualizaciones de detalle.
+- Los **KPIs deben aparecer al inicio**, seguidos de filtros (si existen), luego gráficas de detalle.
 - Debe mantenerse una separación uniforme entre componentes.
 - El dashboard no debe depender del desplazamiento horizontal para visualizar información principal.
 
-## 6. Visualización responsiva
+## 8. Visualización responsiva
 
 ### Escritorio
 
@@ -98,7 +130,7 @@ No existen datos para los filtros seleccionados.
 - Las etiquetas extensas deben ajustarse, abreviarse o mostrarse mediante tooltip.
 - Las interacciones deben funcionar mediante toque y no depender exclusivamente del cursor.
 
-## 7. Estados de las gráficas
+## 9. Estados de las gráficas
 
 Toda gráfica debe contemplar los siguientes estados:
 
@@ -122,7 +154,7 @@ Debe visualizarse claramente que la gráfica está mostrando información filtra
 
 El elemento seleccionado debe resaltarse de forma evidente y accesible.
 
-## 8. Consistencia visual
+## 10. Consistencia visual
 
 - Las gráficas deben utilizar colores consistentes para representar una misma categoría en todo el dashboard.
 - No se debe asignar un color diferente a una categoría entre distintas gráficas.
@@ -130,7 +162,7 @@ El elemento seleccionado debe resaltarse de forma evidente y accesible.
 - El color no debe ser el único recurso para indicar una selección o estado.
 - Las gráficas deben mantener tipografías, tamaños, bordes, espaciados y estilos uniformes.
 
-## 9. Accesibilidad
+## 11. Accesibilidad
 
 - Las gráficas deben ser comprensibles mediante colores, etiquetas y valores.
 - Los elementos interactivos deben ser accesibles mediante teclado.
@@ -143,7 +175,7 @@ El elemento seleccionado debe resaltarse de forma evidente y accesible.
 - Los tooltips deben tener contraste suficiente.
 - Los títulos y etiquetas deben mantener un tamaño legible.
 
-## 10. Regla general obligatoria
+## 12. Regla general obligatoria
 
 Ninguna gráfica podrá incorporarse al dashboard si no cumple como mínimo con los siguientes elementos:
 

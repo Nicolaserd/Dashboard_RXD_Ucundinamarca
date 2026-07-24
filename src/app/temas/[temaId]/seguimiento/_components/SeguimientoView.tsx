@@ -1,12 +1,29 @@
 "use client";
 
 import { getDashboardData } from "@/features/dashboard/dashboardData";
+import { KPIRow } from "@/components/dashboard/KPIRow";
+import { FilterBar, type FilterConfig } from "@/components/dashboard/FilterBar";
 
 export function SeguimientoView({ temaId }: { temaId: string }) {
   const data = getDashboardData(temaId);
 
+  const filterConfig: FilterConfig[] = [
+    {
+      id: "estado",
+      label: "Estado",
+      options: [
+        { value: "completado", label: "Completado" },
+        { value: "en-progreso", label: "En progreso" },
+        { value: "pendiente", label: "Pendiente" },
+      ],
+    },
+  ];
+
   return (
-    <div className="card">
+    <>
+      <KPIRow kpis={data.kpis} />
+      <FilterBar filters={filterConfig} />
+      <div className="card">
       <div className="card-head">
         <h3>Plan de seguimiento 2026-I</h3>
       </div>
@@ -81,6 +98,7 @@ export function SeguimientoView({ temaId }: { temaId: string }) {
           </div>
         ))}
       </div>
-    </div>
+      </div>
+    </>
   );
 }
