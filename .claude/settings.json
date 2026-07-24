@@ -6,11 +6,11 @@
     ],
     "ask": [
       "Edit(CLAUDE.md)",
-      "Write(CLAUDE.md)"
+      "Write(CLAUDE.md)",
+      "Edit(.claude/reglas/**)",
+      "Write(.claude/reglas/**)"
     ],
     "deny": [
-      "Edit(.claude/reglas/**)",
-      "Write(.claude/reglas/**)",
       "Bash(npm:*)",
       "Bash(yarn:*)",
       "Bash(npx:*)"
