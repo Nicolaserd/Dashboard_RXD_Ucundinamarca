@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import { getTema } from "@/features/temas/temas";
 import { ViewHeader } from "@/components/layout/ViewHeader";
-import { ReportesView } from "@/features/dashboard/OtrasVistas";
+import { ReportesView } from "./_components/ReportesView";
 
 export default async function ReportesPage({
   params,

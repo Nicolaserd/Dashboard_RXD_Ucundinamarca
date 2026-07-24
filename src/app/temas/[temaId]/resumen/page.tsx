@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import { getTema } from "@/features/temas/temas";
 import { ViewHeader } from "@/components/layout/ViewHeader";
-import { ResumenView } from "@/features/dashboard/ResumenView";
+import { ResumenView } from "./_components/ResumenView";
 
 export default async function ResumenPage({
   params,

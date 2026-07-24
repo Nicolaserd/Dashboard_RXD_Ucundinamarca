@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import { getTema } from "@/features/temas/temas";
 import { ViewHeader } from "@/components/layout/ViewHeader";
-import { DatosView } from "@/features/dashboard/OtrasVistas";
+import { DatosView } from "./_components/DatosView";
 
 export default async function DatosPage({
   params,

@@ -27,13 +27,16 @@ Esta regla es **general y flexible**: aplica a cualquier tema, módulo o vista, 
 
 ### 3.1 Componentes generales (compartidos)
 
-Van en `src/components/` (u hooks/utilidades en `src/hooks/`, `src/lib/`, `src/types/`). Son generales cuando cumplen **al menos una** de estas condiciones:
+Van en `src/components/`, `src/features/`, `src/lib/`, `src/hooks/`, `src/types/`. Son generales **SOLO cuando cumplen AL MENOS UNA** de estas condiciones:
 
-- Se usan (o se usarán con certeza) en **dos o más vistas**.
-- Son **primitivos de UI** (botón, tarjeta, input, skeleton, estado vacío).
-- Son de **identidad/marca** (`LogoUcundinamarca`).
-- Son de **estructura de layout** (menú lateral fijo, encabezado, layouts de portada/interno).
-- Son **bases reutilizables** transversales (p. ej. `ChartCard` de la regla de dashboard).
+- Se usan **en DOS O MÁS vistas** (regla: a la segunda vez que se necesita, se promueve).
+- Son **primitivos de UI** (Button, Card, Input, Skeleton, EmptyState, Badge).
+- Son de **identidad/marca** (LogoUcundinamarca, paleta de colores).
+- Son de **estructura de layout** (Sidebar, ViewHeader, layouts de portada/interno).
+- Son **bases reutilizables transversales** (ChartCard de la regla de dashboard).
+- Son **datos o servicios compartidos** (dashboardData.ts que alimenta múltiples vistas).
+
+**PROHIBICIÓN:** NO generalizar "por si acaso". Un componente que se usa en UNA SOLA vista, aunque sea complejo, debe estar colocado en esa vista (`_components/`), NUNCA en `features/` general.
 
 ```
 src/components/
@@ -43,13 +46,29 @@ src/components/
 └── charts/    # bases de gráficas reutilizables
 ```
 
-### 3.2 Componentes específicos de vista
+### 3.2 Componentes específicos de vista (OBLIGATORIO)
 
-Se **colocan dentro de la vista** cuando:
+Se **colocan OBLIGATORIAMENTE dentro de la vista** (en su carpeta `_components/`) cuando:
 
 - Solo tienen sentido en esa vista.
 - Dependen de la lógica o los datos particulares de esa vista.
-- No se prevé reutilizarlos fuera de ella.
+- **Se usan EN UNA SOLA vista** (aunque sea complejo o grande).
+
+**PROHIBICIÓN CRÍTICA:** Un componente que se usa en UNA SOLA vista **NUNCA debe estar en `features/` o `src/components/`**, aunque parezca reutilizable. Vive en la vista, punto. Si luego se necesita en una segunda vista, ahí sí se **promueve** a general.
+
+Ejemplo incorrecto:
+```
+src/features/dashboard/
+├── ResumenView.tsx          ❌ MALO: solo se usa en /resumen, debe estar en resumen/_components/
+```
+
+Ejemplo correcto:
+```
+src/app/temas/[temaId]/resumen/
+├── page.tsx
+└── _components/
+    └── ResumenView.tsx      ✅ CORRECTO: específico de esta vista
+```
 
 ---
 
@@ -120,11 +139,12 @@ Al crear un componente, preguntar en orden:
 
 ---
 
-## 7. Prohibiciones
+## 7. Prohibiciones (críticas)
 
-- **No** importar componentes privados (`_components`) de una vista desde otra vista. Si se necesita en dos, **promover**.
-- **No** copiar/pegar el mismo componente entre vistas (rompe DRY): promover.
-- **No** colocar en `components/` general algo que usa una sola vista "por si acaso".
+- **No** colocar en `features/`, `components/` o `src/` general un componente que se usa en **UNA SOLA vista**. Debe estar en `_components/` de esa vista, siempre.
+- **No** importar componentes privados (`_components/`) de una vista desde otra vista. Si se necesita en dos, **MOVER** (nunca copiar) a `src/components/` o `src/features/`.
+- **No** copiar/pegar el mismo componente entre vistas (rompe DRY): mover a general si se usa en 2+.
+- **No** generalizar "por si acaso": un componente nace colocado en la vista; se promueve solo cuando una **segunda vista real** lo necesita.
 - **No** duplicar la lógica de layout o identidad dentro de una vista; usar los componentes generales existentes.
 - **No** crear estructuras de carpeta distintas para cada vista sin justificación (mantener el patrón).
 - **No** exponer como ruta las carpetas de componentes: usar el prefijo `_` en el App Router.

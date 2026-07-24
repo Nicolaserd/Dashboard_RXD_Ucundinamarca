@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import { getTema } from "@/features/temas/temas";
 import { ViewHeader } from "@/components/layout/ViewHeader";
-import { IndicadoresView } from "@/features/dashboard/IndicadoresView";
+import { IndicadoresView } from "./_components/IndicadoresView";
 
 export default async function IndicadoresPage({
   params,

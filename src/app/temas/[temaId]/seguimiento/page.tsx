@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import { getTema } from "@/features/temas/temas";
 import { ViewHeader } from "@/components/layout/ViewHeader";
-import { SeguimientoView } from "@/features/dashboard/OtrasVistas";
+import { SeguimientoView } from "./_components/SeguimientoView";
 
 export default async function SeguimientoPage({
   params,
