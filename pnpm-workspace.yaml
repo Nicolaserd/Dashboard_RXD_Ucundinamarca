@@ -1,8 +1,6 @@
-# Decisión explícita sobre scripts de build de dependencias (pnpm).
-# false = no ejecutar sus scripts nativos. No se usan:
-#   - sharp: solo lo requiere la optimización de next/image (no se usa; el
-#     logo se sirve con <img> según la regla visual §2.6).
-#   - unrs-resolver: binding nativo opcional del resolutor de ESLint.
 allowBuilds:
-  sharp: false
-  unrs-resolver: false
+  sharp: set this to true or false
+  unrs-resolver: set this to true or false
+ignoredBuiltDependencies:
+  - sharp
+  - unrs-resolver

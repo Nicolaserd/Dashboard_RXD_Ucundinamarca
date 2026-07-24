@@ -1,19 +1,12 @@
 {
-  "name": "tableros-ucundinamarca",
+  "name": "diseno-tableros",
   "version": "0.1.0",
   "private": true,
-  "packageManager": "pnpm@11.1.2",
-  "engines": {
-    "node": ">=20",
-    "pnpm": ">=9"
-  },
   "scripts": {
-    "preinstall": "pnpm dlx only-allow pnpm",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint",
-    "typecheck": "tsc --noEmit"
+    "lint": "eslint"
   },
   "dependencies": {
     "next": "16.2.11",

@@ -1,70 +1,36 @@
-# Tableros institucionales — Universidad de Cundinamarca
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-Aplicación web de tableros de gestión e indicadores de la Universidad de Cundinamarca.
-Construida aplicando las reglas de diseño del proyecto (identidad visual, layouts,
-gráficas de dashboard, documentación y organización por vistas).
+## Getting Started
 
-> Guía maestra para el desarrollo: [CLAUDE.md](CLAUDE.md). Reglas: [.claude/reglas/](.claude/reglas/).
-
-## Stack
-
-- **Next.js 16** (App Router) · **React 19** · **TypeScript** (strict)
-- **Tailwind CSS 4** + tokens institucionales (`src/app/globals.css`)
-- Tipografía **Montserrat** (`next/font`)
-- Gestor de paquetes: **pnpm** (único, sin excepción)
-
-## Requisitos
-
-- **Node.js** 20 o superior
-- **pnpm** 9 o superior (recomendado vía `corepack enable`)
-
-## Arranque
+First, run the development server:
 
 ```bash
-corepack enable        # habilita pnpm
-pnpm install           # instala dependencias
-pnpm dev               # http://localhost:3000
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
 ```
 
-> Solo **pnpm**. `npm` y `yarn` están bloqueados por un guard `preinstall` (only-allow pnpm).
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-## Scripts
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-| Comando | Descripción |
-|---|---|
-| `pnpm dev` | Servidor de desarrollo |
-| `pnpm build` | Build de producción |
-| `pnpm start` | Sirve el build |
-| `pnpm lint` | ESLint |
-| `pnpm typecheck` | Verificación de tipos (`tsc --noEmit`) |
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-## Estructura
+## Learn More
 
-```
-src/
-├── app/                       # Rutas y layouts (App Router)
-│   ├── temas/                 # Portada de temas (Layout 1)
-│   └── temas/[temaId]/        # Layout interno (Layout 2)
-│       ├── _components/       # Componentes COLOCADOS de la vista
-│       └── _data.ts           # Datos de demostración de la vista
-├── components/                # Componentes GENERALES reutilizables
-│   ├── brand/                 # LogoUcundinamarca
-│   ├── layout/                # Sidebar, ViewHeader
-│   ├── charts/                # ChartCard, BarChart, LineChart, DonutChart…
-│   └── ui/                    # Icon
-├── features/                  # temas (registry), dashboard (estado/filtro)
-├── lib/                       # utilidades (format)
-└── types/                     # contratos compartidos
+To learn more about Next.js, take a look at the following resources:
 
-public/brand/                  # logos oficiales (copiados desde .claude/lmagenes)
-```
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-## Rutas
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-- `/temas` — portada con las tarjetas de temas.
-- `/temas/:temaId` — tablero del tema (vista Resumen).
+## Deploy on Vercel
 
-## Nota
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Los datos son de demostración. La interacción-como-filtro (clic en una barra de
-"Estudiantes por sede") ilustra el patrón exigido por la regla de dashboard.
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
