@@ -45,7 +45,7 @@ export function TarjetaTema({ tema }: { tema: Tema }) {
   }
 
   return (
-    <Link href={`/temas/${tema.id}`} className="theme-card">
+    <Link href={`/temas/${tema.id}/resumen`} className="theme-card">
       {contenido}
     </Link>
   );

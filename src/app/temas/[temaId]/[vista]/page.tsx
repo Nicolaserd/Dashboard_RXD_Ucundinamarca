@@ -3,9 +3,7 @@ import { getTema } from "@/features/temas/temas";
 import { ViewHeader } from "@/components/layout/ViewHeader";
 import { ResumenView } from "@/features/dashboard/ResumenView";
 import { IndicadoresView } from "@/features/dashboard/IndicadoresView";
-import { ReportesView } from "@/features/dashboard/ReportesView";
-import { DatosView } from "@/features/dashboard/DatosView";
-import { SeguimientoView } from "@/features/dashboard/SeguimientoView";
+import { ReportesView, DatosView, SeguimientoView } from "@/features/dashboard/OtrasVistas";
 
 const VISTAS_VALIDAS = ["resumen", "indicadores", "reportes", "datos", "seguimiento"];
 
