@@ -95,13 +95,26 @@ src/app/
 ├── temas/
 │   ├── page.tsx                   # Layout 1 — Portada de temas  (ruta /temas)
 │   └── [temaId]/
-│       ├── layout.tsx             # Layout 2 — MenuLateralFijo + EncabezadoSuperior + LogoUniversidad
-│       └── [vista]/
-│           ├── page.tsx           # Vista activa: dashboard, tablas, indicadores…  (/temas/:temaId/:vista)
-│           └── _components/       # Componentes SOLO de esta vista (colocación — ver §8)
+│       ├── page.tsx               # Redirige a /temas/:temaId/resumen
+│       ├── layout.tsx             # Layout 2 — MenuLateralFijo + EncabezadoSuperior
+│       ├── resumen/
+│       │   └── page.tsx           # Vista Resumen (/temas/:temaId/resumen)
+│       ├── indicadores/
+│       │   └── page.tsx           # Vista Indicadores (/temas/:temaId/indicadores)
+│       ├── reportes/
+│       │   └── page.tsx           # Vista Reportes (/temas/:temaId/reportes)
+│       ├── datos/
+│       │   └── page.tsx           # Vista Datos (/temas/:temaId/datos)
+│       └── seguimiento/
+│           └── page.tsx           # Vista Seguimiento (/temas/:temaId/seguimiento)
 ```
 
-- El `layout.tsx` de `[temaId]` es **fijo y reutilizable**: contiene el menú lateral no colapsable, el encabezado y el logo. El contenido central (`{children}`) cambia sin alterar la estructura (Regla layouts §6, §11).
+**Principios de esta estructura:**
+
+- **Cada vista es una carpeta independiente** en el App Router. No usar parámetros dinámicos `[vista]` que resuelvan múltiples vistas con condicionales.
+- El `layout.tsx` de `[temaId]` es **fijo y reutilizable**: contiene el menú lateral no colapsable, el encabezado y el logo (Regla layouts §6–8, §10).
+- El contenido de cada vista (`children`) se carga sin alterar la estructura general (Regla layouts §11).
+- Componentes específicos de una vista se colocan en `_components/` dentro de esa vista (ver regla de scaffolding §4).
 - La selección de tema viaja por la **ruta** (`temaId`), no por estado global efímero (Regla layouts §13).
 
 ### 5.2 Estructura de carpetas (por capas + features)
@@ -123,7 +136,12 @@ src/
 └── types/              # Contratos/tipos compartidos
 ```
 
-**Colocación (organización por vista).** Regla clave: un componente vive lo más cerca posible de donde se usa. Si es **específico de una vista**, se coloca dentro de esa vista (`app/temas/[temaId]/[vista]/_components/`); si es **general/reutilizable**, va a `components/` (ui, brand, layout, charts). Cuando un componente colocado se necesita en una **segunda** vista, se **mueve** a general (nunca se copia). Detalle completo en la [regla de scaffolding](.claude/reglas/REGLA_SCAFFOLDING_ORGANIZACION_POR_VISTAS.md).
+**Colocación (organización por vista — obligatoria).** Regla clave: un componente vive lo más cerca posible de donde se usa. 
+
+- Si es **específico de una vista**, se coloca dentro de esa vista (`app/temas/[temaId]/<vista>/_components/`, p. ej. `app/temas/[temaId]/resumen/_components/ResumenKPIs.tsx`).
+- Si es **general/reutilizable** (se usa en 2+ vistas o es un primitivo), va a `components/` (ui, brand, layout, charts).
+- **Promoción:** cuando un componente colocado se necesita en una **segunda** vista, se **mueve** a general (nunca se copia).
+- Detalle completo en la [regla de scaffolding](.claude/reglas/REGLA_SCAFFOLDING_ORGANIZACION_POR_VISTAS.md) — especialmente §4, que requiere una carpeta física independiente por vista, no un parámetro dinámico.
 
 ### 5.3 Gráficas (Regla dashboard §10 — obligatoria)
 
