@@ -25,6 +25,9 @@
   --uc-white: #ffffff; --uc-background: #f7f7f5; --uc-surface: #ffffff; --uc-border: #d9ddd9;
   --uc-text: #2b2b2b; --uc-text-secondary: #666666;
 
+  /* Degradado oficial #1: Verde oscuro → Lima → Turquesa */
+  --uc-gradient-primary: linear-gradient(135deg, #00482b 0%, #79c000 50%, #00a99d 100%);
+
   /* Chrome minimalista: divisores suaves con leve sesgo hacia el verde (no HEX crudos en UI) */
   --uc-hairline: rgba(0, 72, 43, 0.09);
   --uc-hairline-strong: rgba(0, 72, 43, 0.14);
@@ -66,8 +69,8 @@ h1, h2, h3, h4, p { margin: 0; }
 
 /* ============ PORTADA ============ */
 .hero { max-width: 1160px; margin: 0 auto; padding: 72px 32px 34px; }
-.eyebrow { text-transform: uppercase; letter-spacing: 0.18em; font-size: 11.5px; font-weight: 600; color: var(--uc-green); margin-bottom: 18px; }
-.hero h1 { font-size: 40px; line-height: 1.1; font-weight: 700; letter-spacing: -0.02em; color: var(--uc-green-dark); max-width: 16ch; text-wrap: balance; }
+.eyebrow { text-transform: uppercase; letter-spacing: 0.18em; font-size: 11.5px; font-weight: 600; background: var(--uc-gradient-primary); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 18px; }
+.hero h1 { font-size: 40px; line-height: 1.1; font-weight: 700; letter-spacing: -0.02em; background: var(--uc-gradient-primary); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; max-width: 16ch; text-wrap: balance; }
 .hero p { margin-top: 20px; max-width: 58ch; color: var(--uc-text-secondary); font-size: 16.5px; line-height: 1.6; }
 .hero-meta { display: flex; gap: 40px; margin-top: 34px; flex-wrap: wrap; }
 .hero-meta .m { display: flex; flex-direction: column; gap: 2px; }
@@ -82,7 +85,7 @@ h1, h2, h3, h4, p { margin: 0; }
 .theme-card { text-align: left; background: var(--uc-surface); border: 1px solid var(--uc-hairline); border-radius: var(--r); padding: 24px; display: flex; flex-direction: column; gap: 16px; transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease; color: inherit; text-decoration: none; }
 .theme-card:not(.disabled):hover { transform: translateY(-3px); box-shadow: var(--shadow-hover); border-color: transparent; }
 .theme-card .tc-top { display: flex; align-items: center; justify-content: space-between; }
-.tc-icon { width: 44px; height: 44px; border-radius: 12px; display: grid; place-items: center; background: var(--uc-tint); color: var(--uc-green); }
+.tc-icon { width: 44px; height: 44px; border-radius: 12px; display: grid; place-items: center; background: var(--uc-gradient-primary); color: #fff; }
 .tc-icon svg { width: 22px; height: 22px; }
 .badge { font-size: 11px; font-weight: 600; letter-spacing: 0.02em; padding: 4px 10px; border-radius: 999px; display: inline-flex; align-items: center; gap: 6px; }
 .badge.ok { background: var(--uc-tint); color: var(--uc-green-dark); }
@@ -102,7 +105,7 @@ h1, h2, h3, h4, p { margin: 0; }
 /* ============ LAYOUT INTERNO ============ */
 .interno { display: grid; grid-template-columns: 250px 1fr; min-height: 100vh; }
 
-.sidebar { background: var(--uc-green-dark); color: #eafbf1; display: flex; flex-direction: column; padding: 22px 16px; gap: 3px; position: sticky; top: 0; height: 100vh; }
+.sidebar { background: var(--uc-gradient-primary); color: #eafbf1; display: flex; flex-direction: column; padding: 22px 16px; gap: 3px; position: sticky; top: 0; height: 100vh; }
 /* Logo institucional en la parte superior del menú lateral (versión blanca sobre verde) */
 .side-brand { padding: 2px 8px 16px; }
 .side-brand .logo-img { height: 32px; max-width: 100%; }
@@ -139,7 +142,7 @@ h1, h2, h3, h4, p { margin: 0; }
 
 /* KPI */
 .kpi-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
-.kpi { background: var(--uc-surface); border: 1px solid var(--uc-hairline); border-radius: var(--r); padding: 20px; display: flex; flex-direction: column; gap: 7px; }
+.kpi { background: var(--uc-surface); border: 1px solid var(--uc-hairline); border-top: 3px solid; border-image: var(--uc-gradient-primary) 1; border-radius: var(--r); padding: 20px; display: flex; flex-direction: column; gap: 7px; }
 .kpi .k-label { font-size: 12.5px; color: var(--uc-text-secondary); font-weight: 500; }
 .kpi .k-val { font-size: 30px; font-weight: 700; color: var(--uc-green-dark); letter-spacing: -0.02em; font-variant-numeric: tabular-nums; line-height: 1.05; }
 .kpi .k-delta { font-size: 12px; font-weight: 600; display: inline-flex; align-items: center; gap: 5px; }
