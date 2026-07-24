@@ -63,11 +63,13 @@ test.describe("Dashboard UCundinamarca", () => {
   test("datos muestra tabla histórica", async ({ page }) => {
     await page.goto("/temas/desercion-permanencia/datos");
 
-    // Verificar que hay una tabla
-    const tabla = page.locator("table");
-    await expect(tabla).toBeVisible();
+    // Verificar que hay al menos una tabla (hay 2: histórica y por sede)
+    const tablas = page.locator("table");
+    const tablasCount = await tablas.count();
+    expect(tablasCount).toBeGreaterThan(0);
 
-    // Verificar que tiene filas
+    // Verificar que la primera tabla tiene filas
+    const tabla = tablas.first();
     const filas = tabla.locator("tbody tr");
     const filasCount = await filas.count();
     expect(filasCount).toBeGreaterThan(0);
