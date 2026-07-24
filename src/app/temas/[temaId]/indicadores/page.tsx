@@ -1,24 +1,12 @@
-import { notFound } from "next/navigation";
-import { getTema } from "@/features/temas/temas";
-import { ViewHeader } from "@/components/layout/ViewHeader";
+import { VistaShell, type VistaPageProps } from "@/components/layout/VistaShell";
 import { IndicadoresView } from "./_components/IndicadoresView";
 
-export default async function IndicadoresPage({
-  params,
-}: {
-  params: Promise<{ temaId: string }>;
-}) {
+export default async function IndicadoresPage({ params }: VistaPageProps) {
   const { temaId } = await params;
-  const tema = getTema(temaId);
-
-  if (!tema || tema.estado !== "disponible") notFound();
 
   return (
-    <div className="main">
-      <ViewHeader temaName={tema.name} title="Indicadores" vista="Indicadores" />
-      <div className="canvas">
-        <IndicadoresView temaId={temaId} />
-      </div>
-    </div>
+    <VistaShell temaId={temaId} titulo="Indicadores">
+      <IndicadoresView temaId={temaId} />
+    </VistaShell>
   );
 }

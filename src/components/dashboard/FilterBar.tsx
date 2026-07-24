@@ -15,14 +15,19 @@ interface FilterBarProps {
   onClearAll?: () => void;
 }
 
+/** Estado inicial: cada filtro en su valor por defecto (o «Todos»). */
+function valoresIniciales(filters: FilterConfig[]): Record<string, string> {
+  return Object.fromEntries(filters.map((f) => [f.id, f.defaultValue ?? ""]));
+}
+
 /**
- * Barra de filtros reutilizable para dashboards.
- * Permite filtrar por período, sede, categoría, etc.
+ * Barra de filtros reutilizable para dashboards (regla dashboard §6).
+ *
+ * Muestra un selector por filtro, los filtros activos como chips y la acción
+ * «Limpiar filtros». Los filtros compartidos entre vistas viven en `filtros.ts`.
  */
 export function FilterBar({ filters, onFilterChange, onClearAll }: FilterBarProps) {
-  const [selectedFilters, setSelectedFilters] = useState<Record<string, string>>(
-    Object.fromEntries(filters.map((f) => [f.id, f.defaultValue || ""]))
-  );
+  const [selectedFilters, setSelectedFilters] = useState(() => valoresIniciales(filters));
 
   const handleChange = (filterId: string, value: string) => {
     setSelectedFilters((prev) => ({ ...prev, [filterId]: value }));
@@ -30,33 +35,23 @@ export function FilterBar({ filters, onFilterChange, onClearAll }: FilterBarProp
   };
 
   const handleClear = () => {
-    const cleared = Object.fromEntries(filters.map((f) => [f.id, f.defaultValue || ""]));
-    setSelectedFilters(cleared);
+    setSelectedFilters(valoresIniciales(filters));
     onClearAll?.();
   };
 
-  const activeFilters = Object.entries(selectedFilters).filter(([_, v]) => v);
+  const activeFilters = filters.filter((f) => selectedFilters[f.id]);
 
   return (
-    <>
-      {/* Barra de filtros */}
-      <div style={{ display: "flex", gap: "12px", marginBottom: "16px", flexWrap: "wrap", alignItems: "center" }}>
+    <div className="filters">
+      <div className="filter-controls">
         {filters.map((filter) => (
-          <div key={filter.id} style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-            <label style={{ fontSize: "13px", fontWeight: 500, color: "#666", minWidth: "80px" }}>
-              {filter.label}
-            </label>
+          <div key={filter.id} className="filter-field">
+            <label htmlFor={`filtro-${filter.id}`}>{filter.label}</label>
             <select
-              value={selectedFilters[filter.id] || ""}
+              id={`filtro-${filter.id}`}
+              className="filter-select"
+              value={selectedFilters[filter.id] ?? ""}
               onChange={(e) => handleChange(filter.id, e.target.value)}
-              style={{
-                padding: "8px 12px",
-                borderRadius: "6px",
-                border: "1px solid #d9ddd9",
-                fontSize: "13px",
-                backgroundColor: "#fff",
-                cursor: "pointer",
-              }}
             >
               <option value="">Todos</option>
               {filter.options.map((opt) => (
@@ -69,41 +64,28 @@ export function FilterBar({ filters, onFilterChange, onClearAll }: FilterBarProp
         ))}
 
         {activeFilters.length > 0 && (
-          <button
-            onClick={handleClear}
-            style={{
-              padding: "8px 14px",
-              borderRadius: "6px",
-              border: "1px solid #d9ddd9",
-              background: "#f7f7f5",
-              color: "#666",
-              fontSize: "13px",
-              fontWeight: 500,
-              cursor: "pointer",
-            }}
-          >
+          <button type="button" className="filter-clear" onClick={handleClear}>
             Limpiar filtros
           </button>
         )}
       </div>
 
-      {/* Mostrar filtros activos */}
       {activeFilters.length > 0 && (
-        <div style={{ marginBottom: "16px" }}>
-          <div style={{ fontSize: "12px", color: "#666", marginBottom: "6px" }}>Filtros activos:</div>
+        <div>
+          <div className="filter-active-label">Filtros activos:</div>
           <div className="filterbar">
-            {activeFilters.map(([filterId, value]) => {
-              const filter = filters.find((f) => f.id === filterId);
-              const label = filter?.options.find((o) => o.value === value)?.label || value;
+            {activeFilters.map((filter) => {
+              const value = selectedFilters[filter.id];
+              const label = filter.options.find((o) => o.value === value)?.label ?? value;
               return (
-                <div key={filterId} className="filter-chip">
-                  {filter?.label}: <b>{label}</b>
+                <div key={filter.id} className="filter-chip">
+                  {filter.label}: <b>{label}</b>
                 </div>
               );
             })}
           </div>
         </div>
       )}
-    </>
+    </div>
   );
 }

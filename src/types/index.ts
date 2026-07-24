@@ -18,31 +18,3 @@ export interface Tema {
   estado: EstadoTema;
   upd: string;
 }
-
-/** Categoría con nombre y valor numérico (barras, líneas). */
-export interface CategoriaValor {
-  name: string;
-  value: number;
-}
-
-/** Punto de serie temporal. */
-export interface PuntoSerie {
-  label: string;
-  value: number;
-}
-
-/** Segmento de composición (donut) — el color viene de un token institucional. */
-export interface Segmento {
-  label: string;
-  value: number;
-  color: string;
-}
-
-/** Indicador resumen (KPI). */
-export interface Kpi {
-  label: string;
-  value: string;
-  delta: string;
-  tono: "up" | "down-good" | "caution";
-  spark: number[];
-}

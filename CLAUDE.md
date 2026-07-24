@@ -73,7 +73,7 @@ pnpm dev              # servidor de desarrollo
 pnpm build            # build de producción
 pnpm start            # servir el build
 pnpm lint             # ESLint
-pnpm typecheck        # tsc --noEmit  (agregar este script)
+pnpm typecheck        # tsc --noEmit
 pnpm test             # tests (cuando se configuren)
 pnpm audit            # auditoría de seguridad
 pnpm outdated         # dependencias desactualizadas

@@ -1,24 +1,12 @@
-import { notFound } from "next/navigation";
-import { getTema } from "@/features/temas/temas";
-import { ViewHeader } from "@/components/layout/ViewHeader";
+import { VistaShell, type VistaPageProps } from "@/components/layout/VistaShell";
 import { SeguimientoView } from "./_components/SeguimientoView";
 
-export default async function SeguimientoPage({
-  params,
-}: {
-  params: Promise<{ temaId: string }>;
-}) {
+export default async function SeguimientoPage({ params }: VistaPageProps) {
   const { temaId } = await params;
-  const tema = getTema(temaId);
-
-  if (!tema || tema.estado !== "disponible") notFound();
 
   return (
-    <div className="main">
-      <ViewHeader temaName={tema.name} title="Seguimiento" vista="Seguimiento" />
-      <div className="canvas">
-        <SeguimientoView temaId={temaId} />
-      </div>
-    </div>
+    <VistaShell temaId={temaId} titulo="Seguimiento">
+      <SeguimientoView temaId={temaId} />
+    </VistaShell>
   );
 }

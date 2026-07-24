@@ -2,7 +2,8 @@ export interface DashboardData {
   kpis: Array<{
     label: string;
     value: string;
-    delta: { label: string; type: "up" | "down-good" | "caution" };
+    /** `neutral` para deltas informativos que no implican mejora ni alerta. */
+    delta: { label: string; type: "up" | "down-good" | "caution" | "neutral" };
   }>;
   chart: {
     xLabels: [string, string];
@@ -83,7 +84,7 @@ const TEMAS_DATA: Record<string, DashboardData> = {
   "bienestar-satisfaccion": {
     kpis: [
       { label: "Satisfacción general", value: "4.2/5", delta: { label: "+0.3 vs 2025-IV", type: "up" } },
-      { label: "Encuestas respondidas", value: "1,247", delta: { label: "30% de cobertura", type: "ok" } },
+      { label: "Encuestas respondidas", value: "1,247", delta: { label: "30% de cobertura", type: "neutral" } },
       { label: "Servicios de bienestar", value: "14", delta: { label: "+2 vs año anterior", type: "up" } },
       { label: "Estudiantes atendidos", value: "892", delta: { label: "+154 este periodo", type: "up" } },
     ],
