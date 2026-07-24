@@ -106,11 +106,6 @@ h1, h2, h3, h4, p { margin: 0; }
 /* Logo institucional en la parte superior del menú lateral (versión blanca sobre verde) */
 .side-brand { padding: 2px 8px 16px; }
 .side-brand .logo-img { height: 32px; max-width: 100%; }
-.side-theme { display: flex; align-items: center; gap: 12px; padding: 16px 8px 20px; margin-bottom: 12px; border-top: 1px solid rgba(255, 255, 255, 0.10); border-bottom: 1px solid rgba(255, 255, 255, 0.10); }
-.side-theme .st-icon { width: 40px; height: 40px; border-radius: 11px; background: rgba(255, 255, 255, 0.10); display: grid; place-items: center; color: var(--uc-yellow); flex: none; }
-.side-theme .st-icon svg { width: 21px; height: 21px; }
-.side-theme small { display: block; color: rgba(255, 255, 255, 0.55); font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 2px; }
-.side-theme b { font-size: 14px; font-weight: 600; color: #fff; line-height: 1.3; }
 .nav-label { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255, 255, 255, 0.4); padding: 10px 12px 6px; }
 .nav-item { display: flex; align-items: center; gap: 12px; width: 100%; text-align: left; border: 0; background: transparent; color: rgba(255, 255, 255, 0.82); padding: 11px 12px; border-radius: var(--r-sm); font-size: 14px; font-weight: 500; position: relative; transition: 0.16s; text-decoration: none; cursor: pointer; }
 .nav-item svg { width: 18px; height: 18px; flex: none; opacity: 0.8; }
@@ -198,7 +193,7 @@ svg.chart { width: 100%; height: auto; display: block; }
 @media (max-width: 720px) {
   .interno { grid-template-columns: 1fr; }
   .sidebar { position: fixed; bottom: 0; left: 0; right: 0; top: auto; height: auto; flex-direction: row; padding: 6px; gap: 2px; z-index: 20; overflow-x: auto; }
-  .side-brand, .side-theme, .nav-label, .nav-spacer, .nav-item.back, .nav-item.muted { display: none; }
+  .side-brand, .nav-label, .nav-spacer, .nav-item.back, .nav-item.muted { display: none; }
   .nav-item { flex-direction: column; gap: 4px; font-size: 10.5px; padding: 8px 10px; white-space: nowrap; }
   .nav-item.active::before { left: 8px; right: 8px; top: auto; bottom: -6px; width: auto; height: 3px; border-radius: 3px; }
   .main { padding-bottom: 64px; }
