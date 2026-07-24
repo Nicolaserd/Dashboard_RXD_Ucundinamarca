@@ -11,7 +11,7 @@ export function Sidebar() {
   return (
     <aside className="sidebar">
       <div className="side-brand">
-        <LogoUcundinamarca variant="horizontal" tono="blanco" height={32} />
+        <LogoUcundinamarca variant="horizontal" tono="blanco" height={80} />
       </div>
 
       <div className="nav-label">Vistas</div>
