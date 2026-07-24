@@ -1,5 +1,4 @@
 import { Icon } from "@/components/ui/Icon";
-import { LogoUcundinamarca } from "@/components/brand/LogoUcundinamarca";
 
 /**
  * Encabezado superior del layout interno (regla layouts §9).
@@ -28,7 +27,6 @@ export function ViewHeader({
         <Icon name="calendar" />
         Periodo 2026-I
       </span>
-      <LogoUcundinamarca variant="horizontal" tono="negro" height={38} className="vh-logo" />
     </header>
   );
 }

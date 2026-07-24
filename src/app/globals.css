@@ -126,8 +126,6 @@ h1, h2, h3, h4, p { margin: 0; }
 .vh-spacer { flex: 1; }
 .periodo { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 500; color: var(--uc-text); background: var(--uc-background); border-radius: 999px; padding: 8px 14px; }
 .periodo svg { width: 15px; height: 15px; color: var(--uc-green); }
-/* Logo institucional — esquina superior derecha del layout interno (regla layouts §10) */
-.vh-logo { height: 38px; margin-left: 6px; }
 
 .canvas { padding: 26px 30px 48px; display: flex; flex-direction: column; gap: 20px; }
 
@@ -200,5 +198,4 @@ svg.chart { width: 100%; height: auto; display: block; }
   .kpi-row { grid-template-columns: 1fr; }
   .hero { padding: 48px 22px 28px; }
   .hero h1 { font-size: 32px; }
-  .vh-logo { display: none; }
 }
