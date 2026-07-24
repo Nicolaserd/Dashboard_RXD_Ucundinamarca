@@ -20,7 +20,7 @@ export default async function TemaLayout({
 
   return (
     <div className="interno">
-      <Sidebar />
+      <Sidebar temaId={temaId} />
       <main className="main">{children}</main>
     </div>
   );

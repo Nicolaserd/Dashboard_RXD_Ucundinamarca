@@ -53,22 +53,46 @@ Se **colocan dentro de la vista** cuando:
 
 ---
 
-## 4. Estructura de una vista
+## 4. Estructura de una vista (obligatoria)
 
-En el App Router de Next.js, las subcarpetas privadas usan el prefijo **`_`** para no crear rutas. Estructura recomendada de una vista:
+En el App Router de Next.js, **cada vista debe tener su propia carpeta física e independiente**. Las subcarpetas privadas usan el prefijo **`_`** para no crear rutas. Estructura **recomendada y obligatoria**:
 
 ```
-app/temas/[temaId]/[vista]/
-├── page.tsx           # ensambla la vista (composición)
-├── _components/       # componentes SOLO de esta vista
-│   ├── PanelResumen.tsx
-│   └── TablaDetalle.tsx
-├── _hooks/            # hooks solo de esta vista (opcional)
-└── _lib/              # utilidades/tipos solo de esta vista (opcional)
+app/temas/[temaId]/
+├── resumen/
+│   ├── page.tsx           # página de la vista Resumen
+│   └── _components/       # componentes SOLO de Resumen
+│       ├── ResumenKPIs.tsx
+│       ├── ResumenChart.tsx
+│       └── ResumenUpdates.tsx
+├── indicadores/
+│   ├── page.tsx           # página de la vista Indicadores
+│   └── _components/       # componentes SOLO de Indicadores
+│       ├── IndicadorGrid.tsx
+│       └── IndicadorCard.tsx
+├── reportes/
+│   ├── page.tsx           # página de la vista Reportes
+│   └── _components/       # componentes SOLO de Reportes
+│       └── ReportCard.tsx
+├── datos/
+│   ├── page.tsx           # página de la vista Datos
+│   └── _components/       # componentes SOLO de Datos
+│       └── TablaDatos.tsx
+└── seguimiento/
+    ├── page.tsx           # página de la vista Seguimiento
+    └── _components/       # componentes SOLO de Seguimiento
+        └── FaseTimeline.tsx
 ```
 
-- Si la vista es simple, basta con `page.tsx` y quizá un `_components/`.
-- Alternativa equivalente: agrupar la vista en `src/features/<vista>/` con la misma lógica de colocación. Lo importante no es la carpeta exacta, sino **el principio de colocación + promoción**.
+Cada vista contiene:
+- **`page.tsx`:** archivo raíz que renderiza **únicamente** el contenido de esa vista (sin condicionales de otras vistas).
+- **`_components/`:** componentes específicos de esa vista, usando el prefijo `_` para que no generen rutas adicionales.
+- **`_hooks/`** (opcional): hooks solo usados en esa vista.
+- **`_lib/`** (opcional): utilidades/tipos solo usados en esa vista.
+
+**Prohibido:** usar un parámetro dinámico `[vista]` que resuelva condicionalmente múltiples vistas en un único `page.tsx`. Cada vista es **una ruta independiente con su propia carpeta**.
+
+> **Razón:** Esto asegura que cada vista sea **modulable, escalable e independiente** del resto. Cambios en una vista no afectan a otras. Los componentes de cada vista están aislados físicamente en el árbol de carpetas, reflejando la arquitectura lógica.
 
 ---
 
@@ -129,14 +153,17 @@ No se permite:
 
 ## 9. Instrucción de ejecución para Claude
 
-Al crear o modificar una vista:
+Al crear o modificar vistas:
 
-1. Colocar los componentes específicos dentro de la vista (`_components/`).
-2. Usar los componentes **generales** existentes para UI, identidad, layout y gráficas; no reimplementarlos.
-3. Si un componente colocado se necesita en una segunda vista, **moverlo** a general y actualizar las importaciones.
-4. Nunca importar componentes privados de otra vista ni copiar/pegar entre vistas.
-5. Ante la duda, colocar; generalizar solo con una segunda necesidad real.
-6. Actualizar la documentación en el mismo cambio (regla de documentación).
+1. **Crear una carpeta física independiente para cada vista** (resumen/, indicadores/, reportes/, datos/, seguimiento/), no un parámetro dinámico `[vista]` que resuelva todas.
+2. Cada vista tiene su propio `page.tsx` (sin condicionales de otras vistas) y su carpeta `_components/`.
+3. Colocar los componentes específicos de cada vista dentro de su `_components/`.
+4. Usar los componentes **generales** existentes para UI, identidad, layout y gráficas; no reimplementarlos.
+5. Si un componente colocado se necesita en una segunda vista, **moverlo** a general (`src/components/`) y actualizar las importaciones de ambas vistas.
+6. Nunca importar componentes privados (`_components/`) de una vista desde otra vista; si hace falta, promover a general.
+7. Nunca copiar/pegar componentes entre vistas (rompe DRY); mover si es necesario.
+8. Ante la duda, colocar en `_components/` de la vista; generalizar solo con una segunda necesidad real.
+9. Actualizar la documentación en el mismo cambio (regla de documentación).
 
 ---
 
@@ -144,15 +171,18 @@ Al crear o modificar una vista:
 
 La implementación cumple esta regla cuando:
 
-- Cada vista contiene **solo** sus componentes específicos.
-- Los componentes reutilizados viven en la zona **general** y no están duplicados.
-- Ninguna vista importa componentes privados de otra vista.
+- **Cada vista tiene su propia carpeta independiente** en el App Router (resumen/, indicadores/, reportes/, datos/, seguimiento/).
+- **No existe un parámetro dinámico `[vista]`** que resuelva múltiples vistas con condicionales en un único `page.tsx`.
+- Cada vista contiene **solo** sus componentes específicos en su `_components/`.
+- Los componentes reutilizados viven en la zona **general** (`src/components/`) y no están duplicados.
+- Ninguna vista importa componentes privados (`_components/`) de otra vista.
 - El patrón de carpetas es consistente entre vistas.
-- Se pueden agregar nuevas vistas sin modificar las existentes.
+- Se pueden agregar nuevas vistas replicando el patrón sin modificar las existentes.
 - No hay componentes "generales" que en realidad use una sola vista.
+- La estructura refuerza que **cada vista es modular e independiente** de las demás.
 
 ---
 
 ## 11. Regla resumida
 
-> La arquitectura se organiza **por vista**. Cada componente vive lo más cerca posible de donde se usa: **específico de una vista → dentro de la vista**; **reutilizable o transversal → en componentes generales**. Un componente nace colocado y se **promueve** a general en cuanto una segunda vista lo necesita, moviéndolo (nunca copiándolo). La regla es general, flexible y admite agregar vistas nuevas sin alterar las existentes.
+> La arquitectura se organiza **por vista**. **Cada vista debe tener su propia carpeta independiente en el App Router** (resumen/, indicadores/, etc.), con su propio `page.tsx` y `_components/`. No usar parámetros dinámicos `[vista]` para resolver múltiples vistas. Cada componente vive lo más cerca posible de donde se usa: **específico de una vista → en su `_components/`**; **reutilizable o transversal → en `src/components/` general**. Un componente nace colocado en la vista y se **promueve** a general en cuanto una segunda vista lo necesita, moviéndolo (nunca copiándolo). Esto asegura que cada vista sea modular, escalable e independiente.
