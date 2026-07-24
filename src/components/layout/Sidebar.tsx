@@ -38,10 +38,6 @@ export function Sidebar() {
 
       <div className="nav-spacer" />
 
-      <span className="nav-item muted">
-        <Icon name="settings" />
-        Configuración
-      </span>
       <Link href="/temas" className="nav-item back">
         <Icon name="back" />
         Volver a temas
