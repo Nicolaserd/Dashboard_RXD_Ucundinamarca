@@ -159,33 +159,67 @@ El menú lateral debe ser:
 
 No debe utilizarse un botón de tipo hamburguesa para mostrar u ocultar el menú en pantallas de escritorio.
 
-### 8.2 Contenido del menú
+### 8.2 Especificaciones técnicas
+
+**Dimensiones y posición:**
+- Ancho: 250px fijo
+- Altura: 100vh (altura completa de la ventana)
+- Posición: sticky (en desktop, se mantiene visible al scrollear)
+- Alineación: columna de flex, alineado a la izquierda
+- Padding contenedor: 22px 16px
+
+**Estilo visual:**
+- Fondo: `linear-gradient(160deg, #00482b 0%, #005c37 100%)` (gradiente verde institucional)
+- Texto primario: `rgba(255, 255, 255, 0.82)` (blanco sutil, no puro, para contraste legible)
+- Icono (SVG): 18x18px con opacidad 0.8 en estado inactivo, 1 en activo
+- Padding items: 11px 12px
+- Gap entre items: 3px (separación compacta, agrupar visualmente)
+- Border-radius: 11px en items navegables
+
+**Logo institucional (cabecera del sidebar):**
+- Contenedor: padding 12px 0 32px, flex centrado
+- Altura: 90px fijo
+- Ancho: 90% del sidebar (relativo, no fijo)
+- Propiedad: `object-fit: contain` (preserva proporciones sin recorte)
+- Versión: **imagotipo-horizontal-blanco.png** (blanco para máximo contraste sobre verde)
+
+### 8.3 Contenido del menú
 
 El menú lateral puede incluir:
 
-- Nombre del tema seleccionado.
-- Icono del tema.
-- Enlace a la vista principal.
-- Enlaces a las diferentes vistas.
-- Enlace para regresar a la portada.
-- Acciones secundarias.
-- Configuración, cuando aplique.
+- **Logo institucional** (parte superior, versión blanca sobre fondo verde)
+- Nombre del tema seleccionado (opcional)
+- Icono del tema (opcional)
+- Etiqueta "Vistas" o similar (label de navegación)
+- Enlaces a las diferentes vistas (resumen, indicadores, reportes, datos, seguimiento)
+- Enlace para regresar a la portada ("Volver a temas")
+- Acciones secundarias (opcional)
+- Configuración, cuando aplique (opcional)
+
+**Contenido flexible:** la estructura interna del menú (orden de items, agrupación de secciones, etiquetas adicionales, acciones) puede adaptarse según las necesidades de cada tema, siempre respetando el comportamiento fijo y no colapsable. El logo es el único elemento obligatorio en la cabecera.
 
 Ejemplo conceptual:
 
-```text
-Tema seleccionado
+```
+┌──────────────────┐
+│   Logo 90px      │  (imagotipo-horizontal-blanco, 90% ancho)
+│  (centrado)      │
+└──────────────────┘
 
-- Resumen
-- Indicadores
-- Reportes
-- Datos
-- Seguimiento
-- Configuración
-- Volver a temas
+Vistas
+
+✓ Resumen         (activo: fondo claro + barra amarilla)
+  Indicadores
+  Reportes
+  Datos
+  Seguimiento
+
+─────────────────
+
+[Volver a temas]
 ```
 
-### 8.3 Estado de navegación
+### 8.4 Estado de navegación (indicadores visuales)
 
 El menú debe indicar claramente:
 
@@ -194,13 +228,23 @@ El menú debe indicar claramente:
 - Las vistas deshabilitadas, cuando existan.
 - La relación entre el tema y sus secciones.
 
-La opción activa debe diferenciarse mediante:
+**La opción activa debe diferenciarse mediante (no solo color):**
 
-- Fondo.
-- Borde.
-- Indicador lateral.
-- Cambio tipográfico.
-- Contraste visual.
+- **Fondo:** `rgba(255, 255, 255, 0.12)` (fondo translúcido, ligeramente más opaco)
+- **Indicador lateral izquierdo:** barra vertical de 3px alto contraste amarillo (#fbe122 / --uc-yellow)
+- **Tipografía:** font-weight 600 (bolder vs 500 en inactivo)
+- **Icono:** opacidad 1 (vs 0.8 en inactivo), más visible
+- **Texto:** blanco puro (#fff) en activo, vs blanco sutil `rgba(255, 255, 255, 0.82)` en inactivo
+
+**Vistas disponibles (no activas):**
+- Fondo: transparente en hover `rgba(255, 255, 255, 0.08)`
+- Texto: `rgba(255, 255, 255, 0.82)`
+- Interacción: cambio suave de fondo al pasar el cursor
+
+**Vistas deshabilitadas (muted):**
+- Texto: `rgba(255, 255, 255, 0.42)` (opacidad reducida, silenciada)
+- Cursor: `default` (no interactivo)
+- Sin hover state
 
 No se debe depender únicamente del color para indicar el estado activo.
 
@@ -226,20 +270,40 @@ El encabezado debe conservar una altura estable y no debe cambiar de forma brusc
 
 ## 10. Logo de la universidad
 
-El logo de la universidad debe ubicarse en la esquina superior derecha del segundo layout.
+El logo de la universidad debe ser visible y destacado en el layout interno. Puede colocarse en una de estas ubicaciones:
 
-Reglas:
+### 10.1 Ubicación del logo
+
+**Opción A (Implementación actual): Cabecera del menú lateral**
+- Posición: parte superior del sidebar, centrado
+- Altura: 90px
+- Ancho: 90% del sidebar (relativo)
+- Versión: imagotipo-horizontal-blanco (sobre fondo verde)
+- Espaciado: 12px arriba, 32px abajo
+- Propiedad: `object-fit: contain` (sin recorte, proporciones intactas)
+
+**Opción B (Alternativa): Esquina superior derecha del encabezado**
+- Posición: esquina superior derecha del header/encabezado
+- Altura: 40–50px (más compacto que en sidebar)
+- Versión: imagotipo-horizontal-blanco o color según fondo
+- Espaciado: 16–20px desde los bordes
+
+### 10.2 Reglas generales
+
+Independientemente de la ubicación elegida:
 
 - Debe permanecer visible en todas las vistas internas.
-- Debe respetar sus proporciones.
-- No debe deformarse.
-- No debe utilizarse como fondo.
-- No debe competir con el título principal.
-- Debe conservar un área de seguridad alrededor.
-- Debe utilizar una versión legible según el fondo.
-- No debe quedar dentro de elementos interactivos, salvo que se defina como enlace institucional.
+- Debe respetar sus proporciones exactas (no deformar, rotar ni comprimir).
+- No debe deformarse ni recortarse (usar `object-fit: contain`).
+- No debe utilizarse como fondo o elemento decorativo.
+- No debe competir visualmente con el título principal de la vista.
+- Debe conservar un área de seguridad (mínimo 8–12px) alrededor.
+- Debe utilizar una versión legible según el fondo (blanco sobre verde, o color sobre blanco).
+- No debe quedar dentro de elementos interactivos, salvo que se defina como enlace institucional a la portada.
 
-El logo forma parte del encabezado general y no del contenido específico de cada vista.
+**Componente:** Encapsular el logo en un único componente reutilizable (`LogoUcundinamarca`) que maneje variantes de tipo (horizontal/vertical) y tono (blanco/color/negro) para evitar duplicación.
+
+El logo forma parte de la identidad institucional persistente y no del contenido específico de cada vista.
 
 ---
 
