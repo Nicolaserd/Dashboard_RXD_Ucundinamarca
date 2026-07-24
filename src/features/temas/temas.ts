@@ -6,14 +6,6 @@ import type { Tema } from "@/types";
  */
 export const TEMAS: Tema[] = [
   {
-    id: "admisiones-matricula",
-    icon: "users",
-    name: "Admisiones y Matrícula",
-    desc: "Inscritos, admitidos y matriculados por sede, programa y periodo.",
-    estado: "disponible",
-    upd: "Actualizado hoy",
-  },
-  {
     id: "desercion-permanencia",
     icon: "heart",
     name: "Deserción y Permanencia",
