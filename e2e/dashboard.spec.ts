@@ -1,4 +1,5 @@
 import { test, expect, type Page } from "@playwright/test";
+import { readFileSync } from "node:fs";
 
 /**
  * Pruebas de extremo a extremo del tablero de seguimiento a Oportunidades de
@@ -8,12 +9,67 @@ import { test, expect, type Page } from "@playwright/test";
  *
  * `sgc` (Sistema de Gestión de Calidad) es el sistema con más registros, así
  * que se usa como caso de referencia.
+ *
+ * Las cifras esperadas se **derivan del propio dataset**, nunca se escriben a
+ * mano: así estas pruebas comprueban que la interfaz concuerda con los datos, y
+ * no se rompen cada vez que se reimportan los libros de `data/`.
  */
 
 const TEMA = "sgc";
 
-/** Combinación conocida sin resultados en `sgc` (ver `src/data/om-rxd.json`). */
-const COMBINACION_VACIA = { vigencia: "2022", estado: "sin-avance" };
+interface OM {
+  vigencia: string;
+  seguimientos: { clasificacion: number | null }[];
+}
+// Ruta relativa a la raíz del proyecto, que es el directorio desde el que
+// Playwright ejecuta (donde vive `playwright.config.ts`).
+const DATASET: { sistemas: { id: string; oms: OM[] }[] } = JSON.parse(
+  readFileSync("src/data/om-rxd.json", "utf8"),
+);
+
+const omsDe = (id: string) => DATASET.sistemas.find((s) => s.id === id)?.oms ?? [];
+const TOTAL_OM = DATASET.sistemas.reduce((n, s) => n + s.oms.length, 0);
+const OM_DEL_TEMA = omsDe(TEMA).length;
+const SISTEMAS_CON_DATOS = DATASET.sistemas.filter((s) => s.oms.length > 0).length;
+
+/** Estado vigente de una OM, con la misma regla que `src/lib/om/avance.ts`. */
+const estadoDe = (om: OM) => {
+  const ultima = [...om.seguimientos].reverse().find((s) => s.clasificacion !== null);
+  if (!ultima) return "sin-seguimiento";
+  return (
+    { 2: "cumplida", 1.5: "avance-significativo", 1: "avance-parcial", 0.5: "avance-minimo", 0: "sin-avance" }[
+      ultima.clasificacion as number
+    ] ?? "sin-avance"
+  );
+};
+
+/**
+ * Combinación vigencia + estado que no deja ningún registro en `sgc`, buscada
+ * en el dataset para que siga siendo válida aunque cambien los datos.
+ */
+const COMBINACION_VACIA = (() => {
+  const oms = omsDe(TEMA);
+  const vigencias = [...new Set(oms.map((o) => o.vigencia))].sort();
+  const estados = [...new Set(oms.map(estadoDe))];
+  for (const vigencia of vigencias) {
+    for (const estado of estados) {
+      if (!oms.some((o) => o.vigencia === vigencia && estadoDe(o) === estado)) {
+        return { vigencia, estado };
+      }
+    }
+  }
+  throw new Error("No hay ninguna combinación vacía en el dataset");
+})();
+
+/** Vigencia presente en el menor número de sistemas, para el filtro global. */
+const VIGENCIA_RARA = (() => {
+  const conteo = new Map<string, number>();
+  for (const s of DATASET.sistemas) {
+    for (const v of new Set(s.oms.map((o) => o.vigencia))) conteo.set(v, (conteo.get(v) ?? 0) + 1);
+  }
+  const [vigencia, sistemas] = [...conteo.entries()].sort((a, b) => a[1] - b[1])[0];
+  return { vigencia, sistemas };
+})();
 
 async function irA(page: Page, vista: string) {
   await page.goto(`/temas/${TEMA}/${vista}`);
@@ -28,10 +84,10 @@ test.describe("Portada de temas", () => {
     await expect(page.locator("img").first()).toBeVisible();
 
     // Un tema por sistema de gestión con libro de seguimiento cargado.
-    await expect(page.locator(".theme-card")).toHaveCount(5);
+    await expect(page.locator(".theme-card")).toHaveCount(SISTEMAS_CON_DATOS);
 
     // La cabecera declara el total de OM del portafolio completo.
-    await expect(page.locator(".hero-meta .m").first().locator("b")).toHaveText("148");
+    await expect(page.locator(".hero-meta .m").first().locator("b")).toHaveText(String(TOTAL_OM));
   });
 
   test("entrar a un sistema abre su vista Resumen", async ({ page }) => {
@@ -73,7 +129,7 @@ test.describe("Vista Resumen", () => {
     await expect(page.locator(".filter-chip")).toContainText("Vigencia: 2023");
     await expect(page.locator(".kpi .k-val").first()).not.toHaveText(totalInicial ?? "");
     // La base declarada del KPI cambia cuando hay filtros activos.
-    await expect(page.locator(".kpi").first()).toContainText("de 76 en el sistema");
+    await expect(page.locator(".kpi").first()).toContainText(`de ${OM_DEL_TEMA} en el sistema`);
   });
 
   test("la leyenda de estados filtra el tablero y se puede limpiar", async ({ page }) => {
@@ -180,13 +236,27 @@ test.describe("Vista Datos", () => {
     await irA(page, "datos");
 
     const cabecera = page.getByRole("button", { name: /Vigencia/ });
-    await cabecera.click();
+    const columna = page.locator(".tabla-om tbody tr td:first-child");
+    // Se comprueba el criterio de orden completo, no solo la primera celda:
+    // con muchas OM de la misma vigencia, esa celda puede repetirse en ambos
+    // sentidos y la comparación no diría nada.
+    const vigencias = async () => (await columna.allTextContents()).map((t) => t.trim());
 
-    const columnaVigencia = page.locator(".tabla-om tbody tr td:first-child");
-    const primera = await columnaVigencia.first().textContent();
+    // Se comprueba que la secuencia sea monótona, no que coincida con un array
+    // reordenado: el orden es estable, así que las filas que empatan en vigencia
+    // conservan su posición relativa en ambos sentidos.
+    const monotona = (valores: string[], sentido: "asc" | "desc") =>
+      valores.every((v, i) => i === 0 || (sentido === "asc" ? valores[i - 1] <= v : valores[i - 1] >= v));
 
     await cabecera.click();
-    await expect(columnaVigencia.first()).not.toHaveText(primera ?? "");
+    await expect(cabecera).toHaveText(/↑/);
+    const ascendente = await vigencias();
+    expect(ascendente.length).toBeGreaterThan(1);
+    expect(monotona(ascendente, "asc")).toBe(true);
+
+    await cabecera.click();
+    await expect(cabecera).toHaveText(/↓/);
+    expect(monotona(await vigencias(), "desc")).toBe(true);
   });
 });
 
@@ -210,10 +280,10 @@ test.describe("Vista consolidada", () => {
     await expect(page.locator("h1")).toContainText("Todos los sistemas de gestión");
     await expect(page.locator(".kpi")).toHaveCount(4);
     // Las cifras son las del portafolio completo, no las de un sistema.
-    await expect(page.locator(".kpi").first()).toContainText("148");
+    await expect(page.locator(".kpi").first()).toContainText(String(TOTAL_OM));
 
     // Una fila por sistema con datos.
-    await expect(page.locator(".celda-sistema")).toHaveCount(5);
+    await expect(page.locator(".celda-sistema")).toHaveCount(SISTEMAS_CON_DATOS);
     await expect(page.getByRole("heading", { name: /Avance promedio por sistema/ })).toBeVisible();
     await expect(page.getByRole("heading", { name: /Composición del portafolio/ })).toBeVisible();
   });
@@ -240,11 +310,11 @@ test.describe("Vista consolidada", () => {
     await page.goto("/consolidado");
     const total = await page.locator(".kpi .k-val").first().textContent();
 
-    await page.selectOption("#filtro-vigencia", "2022");
+    await page.selectOption("#filtro-vigencia", VIGENCIA_RARA.vigencia);
 
     await expect(page.locator(".kpi .k-val").first()).not.toHaveText(total ?? "");
     // 2022 solo existe en SGC y SGA.
-    await expect(page.locator(".celda-sistema")).toHaveCount(2);
+    await expect(page.locator(".celda-sistema")).toHaveCount(VIGENCIA_RARA.sistemas);
   });
 
   test("se llega desde la portada y desde el menú lateral", async ({ page }) => {

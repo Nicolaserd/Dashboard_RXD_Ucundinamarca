@@ -77,7 +77,7 @@ function leerCortes(encabezados) {
   return cortes;
 }
 
-function procesarHoja(hoja, sistema) {
+function procesarHoja(hoja, sistema, idsUsados, avisos) {
   const filas = hoja.filas.filter((f) => f && f.some((c) => c != null && c !== ""));
   if (filas.length < 2) return [];
 
@@ -110,8 +110,22 @@ function procesarHoja(hoja, sistema) {
 
     const oportunidad = limpiar(fila[COL.oportunidad]);
 
+    // El identificador tiene que ser único: React lo usa como `key` y una
+    // colisión hace que se rendericen filas fantasma. Un mismo `PM N°` puede
+    // amparar dos oportunidades distintas cuando la celda del número está
+    // combinada pero la del texto no, así que se desambigua por el texto.
+    const base = `${sistema.id}-${vigencia ?? "sv"}-${numero ?? sufijoEstable(oportunidad)}`;
+    let id = base;
+    if (idsUsados.has(base)) {
+      id = `${base}-${sufijoEstable(oportunidad)}`;
+      avisos.push(
+        `${sistema.sigla} «${hoja.nombre}»: PM ${numero} ampara mas de una oportunidad; se desambigua el identificador`,
+      );
+    }
+    idsUsados.add(id);
+
     return {
-      id: `${sistema.id}-${vigencia ?? "sv"}-${numero ?? sufijoEstable(oportunidad)}`,
+      id,
       vigencia,
       numero,
       fechaEntrega: fechaIso || null,
@@ -137,7 +151,10 @@ function main() {
       continue;
     }
 
-    const oms = leerLibro(join(ORIGEN, archivo)).flatMap((hoja) => procesarHoja(hoja, definicion));
+    const idsUsados = new Set();
+    const oms = leerLibro(join(ORIGEN, archivo)).flatMap((hoja) =>
+      procesarHoja(hoja, definicion, idsUsados, avisos),
+    );
 
     sistemas.push({
       id: definicion.id,

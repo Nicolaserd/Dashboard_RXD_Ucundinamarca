@@ -57,6 +57,23 @@ seguimiento a Oportunidades de Mejora (OM) de la Revisión por la Dirección.
   de la leyenda como filtro, persistencia de filtros entre vistas, estado vacío, orden y despliegue
   de la tabla, y cronología de cortes.
 
+### Corregido
+
+- **El lector de `.xlsx` descartaba en silencio parte de cada fila.** La expresión que delimitaba
+  una fila terminaba en el primer `/>`, que también cierra una celda vacía (`<c r="A5"/>`), de modo
+  que todo lo que viniera después se perdía. Afectaba a las 18 hojas: **551 de 3 398 celdas con
+  valor, el 16,2 %**. Tras corregirlo el dataset pasa de 148 a **149 OM** y de 794 a **930**
+  registros de seguimiento; las 9 OM de SGA que figuraban «sin seguimiento» resultan tener todas su
+  historial, y el avance promedio global pasa de 83,6 % a 84,2 %.
+- **Identificadores de OM duplicados.** Un mismo `PM N°` puede amparar dos oportunidades distintas
+  cuando la celda del número está combinada pero la del texto no (SGC 2022, PM 4). Ambas recibían el
+  mismo `id`, y al usarse como `key` de React la tabla renderizaba filas fantasma. Ahora se
+  desambiguan por el texto de la oportunidad y el importador lo avisa.
+- Las pruebas de extremo a extremo derivan sus cifras del propio dataset en lugar de llevarlas
+  escritas a mano, así que dejan de romperse al reimportar los libros. La prueba de ordenación
+  comprueba monotonía en vez de comparar contra un array reordenado, que fallaba por los empates de
+  un orden estable.
+
 ### Cambiado
 
 - **El ETL pasa a dos pasos con un artefacto intermedio auditable**:

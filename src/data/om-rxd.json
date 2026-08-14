@@ -111,6 +111,48 @@
        "funcionario": "DANIEL EDUARDO SOTO BERNAL",
        "observacion": "Se tiene el contrato F-OCS- 103, contrato se realizó para el segundo periodo académico de la vigencia en curso 2023. Ejecutado a corte de revisión con la AIAP CONSULTORES SAS.",
        "clasificacion": 2
+      },
+      {
+       "corte": "2024-04-23",
+       "corteTexto": "2024-04-23",
+       "funcionario": "DANIEL EDUARDO SOTO BERNAL",
+       "observacion": "",
+       "clasificacion": 2
+      },
+      {
+       "corte": "2024-07-24",
+       "corteTexto": "2024-07-24",
+       "funcionario": "DANIEL EDUARDO SOTO BERNAL",
+       "observacion": "",
+       "clasificacion": 2
+      },
+      {
+       "corte": "2024-10-18",
+       "corteTexto": "2024-10-18",
+       "funcionario": "DANIEL EDUARDO SOTO BERNAL",
+       "observacion": "ACTIVIDAD COMPLETADA",
+       "clasificacion": 2
+      },
+      {
+       "corte": "2025-04-30",
+       "corteTexto": "2025-04-30",
+       "funcionario": "DANIEL EDUARDO SOTO BERNAL",
+       "observacion": "ACTIVIDAD COMPLETADA",
+       "clasificacion": 2
+      },
+      {
+       "corte": "2025-06-30",
+       "corteTexto": "2025-06-30",
+       "funcionario": "DANIEL EDUARDO SOTO BERNAL",
+       "observacion": "ACTIVIDAD COMPLETADA",
+       "clasificacion": 2
+      },
+      {
+       "corte": "2025-09-30",
+       "corteTexto": "2025-09-30",
+       "funcionario": "Sin registrar",
+       "observacion": "ACTIVIDAD COMPLETADA",
+       "clasificacion": 2
       }
      ]
     },
@@ -259,6 +301,78 @@
      ]
     },
     {
+     "id": "sgc-2022-4-sn1u5ppt",
+     "vigencia": "2022",
+     "numero": 4,
+     "fechaEntrega": "2023-12-01",
+     "fechaEntregaTexto": "45261",
+     "responsable": "Dirección de Bienes y Servicios (Oficina de Compras) - Oficina de Calidad",
+     "areas": [
+      "Calidad",
+      "Bienes, Servicios y Compras"
+     ],
+     "oportunidad": "Mejora continua en la documentación del proceso de compras",
+     "entregable": "",
+     "seguimientos": [
+      {
+       "corte": "2023-07-26",
+       "corteTexto": "2023-07-26",
+       "funcionario": "DANIEL EDUARDO SOTO BERNAL",
+       "observacion": "Se encuentra en revisión por la Dirección de Bienes Y Servicios, antes de pasar a la Oficina de Compras.",
+       "clasificacion": 0
+      },
+      {
+       "corte": "2023-11-15",
+       "corteTexto": "2023-11-15",
+       "funcionario": "DANIEL EDUARDO SOTO BERNAL",
+       "observacion": "Esta pendiente seguir realizando la revisión de estas actividades que ahora presenta novedad en la tarea de: Verificar pertinencia de documentos del Proceso.",
+       "clasificacion": 1
+      },
+      {
+       "corte": "2024-04-23",
+       "corteTexto": "2024-04-23",
+       "funcionario": "DANIEL EDUARDO SOTO BERNAL",
+       "observacion": "Esta pendiente seguir realizando la revisión de estas actividades que ahora presenta novedad en la tarea de: Verificar pertinencia de documentos del Proceso.",
+       "clasificacion": 1
+      },
+      {
+       "corte": "2024-07-24",
+       "corteTexto": "2024-07-24",
+       "funcionario": "DANIEL EDUARDO SOTO BERNAL",
+       "observacion": "Se relacionan las actualizaciones documentales del proceso de gestión de Bienes y Servicios, los SAD de la vigencia 2024 con corte a la fecha son los siguientes: 1395 mes de febrero 1419 mes de abril 1434 mes de mayo 1443 mes de junio",
+       "clasificacion": 2
+      },
+      {
+       "corte": "2024-10-18",
+       "corteTexto": "2024-10-18",
+       "funcionario": "DANIEL EDUARDO SOTO BERNAL",
+       "observacion": "ACTIVIDAD COMPLETADA",
+       "clasificacion": 2
+      },
+      {
+       "corte": "2025-04-30",
+       "corteTexto": "2025-04-30",
+       "funcionario": "DANIEL EDUARDO SOTO BERNAL",
+       "observacion": "ACTIVIDAD COMPLETADA",
+       "clasificacion": 2
+      },
+      {
+       "corte": "2025-06-30",
+       "corteTexto": "2025-06-30",
+       "funcionario": "DANIEL EDUARDO SOTO BERNAL",
+       "observacion": "ACTIVIDAD COMPLETADA",
+       "clasificacion": 2
+      },
+      {
+       "corte": "2025-09-30",
+       "corteTexto": "2025-09-30",
+       "funcionario": "Sin registrar",
+       "observacion": "ACTIVIDAD COMPLETADA",
+       "clasificacion": 2
+      }
+     ]
+    },
+    {
      "id": "sgc-2022-5",
      "vigencia": "2022",
      "numero": 5,
@@ -284,6 +398,48 @@
        "corteTexto": "2023-11-15",
        "funcionario": "DANIEL EDUARDO SOTO BERNAL",
        "observacion": "En su versión 21 se cambio la metodología aumentando la rigurosidad de calificación del riesgo. Se incluye nota en el numeral 5 de requisitos y condiciones generales; adicional, se incorpora un control en la actividad 5. VIGENCIA: 2023-07-06 GESTIÓN DEL RIESGO Y LAS OPORTUNIDADES",
+       "clasificacion": 2
+      },
+      {
+       "corte": "2024-04-23",
+       "corteTexto": "2024-04-23",
+       "funcionario": "DANIEL EDUARDO SOTO BERNAL",
+       "observacion": "",
+       "clasificacion": 2
+      },
+      {
+       "corte": "2024-07-24",
+       "corteTexto": "2024-07-24",
+       "funcionario": "DANIEL EDUARDO SOTO BERNAL",
+       "observacion": "",
+       "clasificacion": 2
+      },
+      {
+       "corte": "2024-10-18",
+       "corteTexto": "2024-10-18",
+       "funcionario": "DANIEL EDUARDO SOTO BERNAL",
+       "observacion": "ACTIVIDAD COMPLETADA",
+       "clasificacion": 2
+      },
+      {
+       "corte": "2025-04-30",
+       "corteTexto": "2025-04-30",
+       "funcionario": "DANIEL EDUARDO SOTO BERNAL",
+       "observacion": "ACTIVIDAD COMPLETADA",
+       "clasificacion": 2
+      },
+      {
+       "corte": "2025-06-30",
+       "corteTexto": "2025-06-30",
+       "funcionario": "DANIEL EDUARDO SOTO BERNAL",
+       "observacion": "ACTIVIDAD COMPLETADA",
+       "clasificacion": 2
+      },
+      {
+       "corte": "2025-09-30",
+       "corteTexto": "2025-09-30",
+       "funcionario": "Sin registrar",
+       "observacion": "ACTIVIDAD COMPLETADA",
        "clasificacion": 2
       }
      ]
@@ -314,6 +470,48 @@
        "corteTexto": "2023-11-15",
        "funcionario": "DANIEL EDUARDO SOTO BERNAL",
        "observacion": "La oficina de Sistema de Gestión de Calidad SGC mediante su gestora Alejandra Panqueva recopila y analiza la información suministrada por la Dirección de Control Interno determinado los controles a las acciones reiterativas en los procesos, si ya se actualizaron, si se deben actualizar y que controles se den aplicar para mitigar estos impactos reiterativos. Se adjunta archivo de Excel.",
+       "clasificacion": 2
+      },
+      {
+       "corte": "2024-04-23",
+       "corteTexto": "2024-04-23",
+       "funcionario": "DANIEL EDUARDO SOTO BERNAL",
+       "observacion": "",
+       "clasificacion": 2
+      },
+      {
+       "corte": "2024-07-24",
+       "corteTexto": "2024-07-24",
+       "funcionario": "DANIEL EDUARDO SOTO BERNAL",
+       "observacion": "",
+       "clasificacion": 2
+      },
+      {
+       "corte": "2024-10-18",
+       "corteTexto": "2024-10-18",
+       "funcionario": "DANIEL EDUARDO SOTO BERNAL",
+       "observacion": "ACTIVIDAD COMPLETADA",
+       "clasificacion": 2
+      },
+      {
+       "corte": "2025-04-30",
+       "corteTexto": "2025-04-30",
+       "funcionario": "DANIEL EDUARDO SOTO BERNAL",
+       "observacion": "ACTIVIDAD COMPLETADA",
+       "clasificacion": 2
+      },
+      {
+       "corte": "2025-06-30",
+       "corteTexto": "2025-06-30",
+       "funcionario": "DANIEL EDUARDO SOTO BERNAL",
+       "observacion": "ACTIVIDAD COMPLETADA",
+       "clasificacion": 2
+      },
+      {
+       "corte": "2025-09-30",
+       "corteTexto": "2025-09-30",
+       "funcionario": "Sin registrar",
+       "observacion": "ACTIVIDAD COMPLETADA",
        "clasificacion": 2
       }
      ]
@@ -351,6 +549,41 @@
        "corteTexto": "2024-04-23",
        "funcionario": "DANIEL EDUARDO SOTO BERNAL",
        "observacion": "Se adjunta evidencia \"CRONOGRAMA RUTA CRITICA DE ACTUALIZACIÓN DOCUMENTAL\" para los procesos: Formación y Aprendizaje Admisiones y Registro Dirección Financiera",
+       "clasificacion": 2
+      },
+      {
+       "corte": "2024-07-24",
+       "corteTexto": "2024-07-24",
+       "funcionario": "DANIEL EDUARDO SOTO BERNAL",
+       "observacion": "",
+       "clasificacion": 2
+      },
+      {
+       "corte": "2024-10-18",
+       "corteTexto": "2024-10-18",
+       "funcionario": "DANIEL EDUARDO SOTO BERNAL",
+       "observacion": "ACTIVIDAD COMPLETADA",
+       "clasificacion": 2
+      },
+      {
+       "corte": "2025-04-30",
+       "corteTexto": "2025-04-30",
+       "funcionario": "DANIEL EDUARDO SOTO BERNAL",
+       "observacion": "ACTIVIDAD COMPLETADA",
+       "clasificacion": 2
+      },
+      {
+       "corte": "2025-06-30",
+       "corteTexto": "2025-06-30",
+       "funcionario": "DANIEL EDUARDO SOTO BERNAL",
+       "observacion": "ACTIVIDAD COMPLETADA",
+       "clasificacion": 2
+      },
+      {
+       "corte": "2025-09-30",
+       "corteTexto": "2025-09-30",
+       "funcionario": "Sin registrar",
+       "observacion": "ACTIVIDAD COMPLETADA",
        "clasificacion": 2
       }
      ]
@@ -1047,6 +1280,13 @@
        "funcionario": "JOAN IMAYINNE GALVIS MORENO",
        "observacion": "De acuerdo con la información suministrada por la Jefatura de Recursos Físicos, se identifica que se ha adelantado la elaboración del proyecto de resolución, en el cual ya se contemplan los vistos buenos por parte del área jurídica del acto administrativo. Sin embargo, falta la realización de una mesa de trabajo con la alta dirección, la cual es necesaria para culminar el trámite de aprobación y p…",
        "clasificacion": 1.5
+      },
+      {
+       "corte": "2026-06-30",
+       "corteTexto": "2026-06-30",
+       "funcionario": "JOAN IMAYINNE GALVIS MORENO",
+       "observacion": "",
+       "clasificacion": 1.5
       }
      ]
     },
@@ -1739,6 +1979,20 @@
        "funcionario": "JOAN IMAYINNE GALVIS MORENO",
        "observacion": "Actividad pendiente por cumplir, No soportan evidencia.",
        "clasificacion": 1.5
+      },
+      {
+       "corte": "2026-04-30",
+       "corteTexto": "2026-04-30",
+       "funcionario": "JOAN IMAYINNE GALVIS MORENO",
+       "observacion": "",
+       "clasificacion": 1.5
+      },
+      {
+       "corte": "2026-06-30",
+       "corteTexto": "2026-06-30",
+       "funcionario": "JOAN IMAYINNE GALVIS MORENO",
+       "observacion": "Se remite por parte de la oficina de Dialogando con el Mundo informe sobre el seguimiento de las actividades que realiza, sin embargo no se evidencia si estos cumplimientos son efectivos para la academia o como estan siento valorados.",
+       "clasificacion": 1.5
       }
      ]
     },
@@ -1802,6 +2056,20 @@
        "corteTexto": "2025-12-30",
        "funcionario": "JOAN IMAYINNE GALVIS MORENO",
        "observacion": "Actividad pendiente por cumplir, No soportan evidencia.",
+       "clasificacion": 1
+      },
+      {
+       "corte": "2026-04-30",
+       "corteTexto": "2026-04-30",
+       "funcionario": "JOAN IMAYINNE GALVIS MORENO",
+       "observacion": "",
+       "clasificacion": 1
+      },
+      {
+       "corte": "2026-06-30",
+       "corteTexto": "2026-06-30",
+       "funcionario": "JOAN IMAYINNE GALVIS MORENO",
+       "observacion": "",
        "clasificacion": 1
       }
      ]
@@ -1873,6 +2141,13 @@
        "corteTexto": "2026-04-30",
        "funcionario": "JOAN IMAYINNE GALVIS MORENO",
        "observacion": "Se encuentra en proceso de validación, con el fin de realizar su lanzamiento y puesta en funcionamiento.",
+       "clasificacion": 1.5
+      },
+      {
+       "corte": "2026-06-30",
+       "corteTexto": "2026-06-30",
+       "funcionario": "JOAN IMAYINNE GALVIS MORENO",
+       "observacion": "",
        "clasificacion": 1.5
       }
      ]
@@ -2023,6 +2298,13 @@
        "funcionario": "JOAN IMAYINNE GALVIS MORENO",
        "observacion": "Se adelanta el proceso de modificación de la Resolución 088, en el cual ya se realizaron los cambios pertinentes, encontrándose actualmente en la Dirección de Planeación para su respectiva revisión y trámite de aprobación.",
        "clasificacion": 1.5
+      },
+      {
+       "corte": "2026-06-30",
+       "corteTexto": "2026-06-30",
+       "funcionario": "JOAN IMAYINNE GALVIS MORENO",
+       "observacion": "",
+       "clasificacion": 1.5
       }
      ]
     },
@@ -2086,6 +2368,20 @@
        "corteTexto": "2025-12-30",
        "funcionario": "JOAN IMAYINNE GALVIS MORENO",
        "observacion": "Actividad pendiente por cumplir, No soportan evidencia.",
+       "clasificacion": 1
+      },
+      {
+       "corte": "2026-04-30",
+       "corteTexto": "2026-04-30",
+       "funcionario": "JOAN IMAYINNE GALVIS MORENO",
+       "observacion": "",
+       "clasificacion": 1
+      },
+      {
+       "corte": "2026-06-30",
+       "corteTexto": "2026-06-30",
+       "funcionario": "JOAN IMAYINNE GALVIS MORENO",
+       "observacion": "",
        "clasificacion": 1
       }
      ]
@@ -2314,6 +2610,13 @@
        "corteTexto": "2026-04-30",
        "funcionario": "JOAN IMAYINNE GALVIS MORENO",
        "observacion": "Dando cumplimiento a las actividades de la Revisión por la Dirección de vigencia 2023, la propuesta del Lineamiento de la Política del SGC con el Lineamiento de la Política de los SIG, se encuentra en proceso de firmas por parte de la Dirección Jurídica (Se adjunta PDF correo electrónico).",
+       "clasificacion": 1
+      },
+      {
+       "corte": "2026-06-30",
+       "corteTexto": "2026-06-30",
+       "funcionario": "JOAN IMAYINNE GALVIS MORENO",
+       "observacion": "",
        "clasificacion": 1
       }
      ]
@@ -2680,6 +2983,34 @@
        "funcionario": "DANIEL EDUARDO SOTO BERNAL",
        "observacion": "A la fecha esta en proceso de conformación del equipo Interdisciplinario. Actividad en curso.",
        "clasificacion": 1
+      },
+      {
+       "corte": "2025-09-30",
+       "corteTexto": "2025-09-30",
+       "funcionario": "JOAN IMAYINNE GALVIS MORENO",
+       "observacion": "",
+       "clasificacion": 1
+      },
+      {
+       "corte": "2025-12-30",
+       "corteTexto": "2025-12-30",
+       "funcionario": "JOAN IMAYINNE GALVIS MORENO",
+       "observacion": "Actividad pendiente por cumplir, No soportan evidencia.",
+       "clasificacion": 1
+      },
+      {
+       "corte": "2026-04-30",
+       "corteTexto": "2026-04-30",
+       "funcionario": "JOAN IMAYINNE GALVIS MORENO",
+       "observacion": "La tarea se cumple, toda vez que la Oficina de Calidad se tomó a cargo la elaboración de las matrices de riesgos fiscales, en donde se evidencia la contratación de una persona capacitada para el desarrollo de esta función.",
+       "clasificacion": 2
+      },
+      {
+       "corte": "2026-06-30",
+       "corteTexto": "2026-06-30",
+       "funcionario": "JOAN IMAYINNE GALVIS MORENO",
+       "observacion": "ACTIVIDAD COMPLETADA",
+       "clasificacion": 2
       }
      ]
     },
@@ -2810,6 +3141,34 @@
        "corteTexto": "2025-06-30",
        "funcionario": "DANIEL EDUARDO SOTO BERNAL",
        "observacion": "Desde la Oficina de Educación Virtual y a Distancia se hace la entrega oficial del curso de líneas de defensa a la Dirección de Control Interno la cual espera lanzar en las aulas virtuales requisito de inducción y reinducción para personal administrativo y así tener este curso aprobado para la contratación.",
+       "clasificacion": 1.5
+      },
+      {
+       "corte": "2025-09-30",
+       "corteTexto": "2025-09-30",
+       "funcionario": "JOAN IMAYINNE GALVIS MORENO",
+       "observacion": "",
+       "clasificacion": 1.5
+      },
+      {
+       "corte": "2025-12-30",
+       "corteTexto": "2025-12-30",
+       "funcionario": "JOAN IMAYINNE GALVIS MORENO",
+       "observacion": "Actividad pendiente por cumplir, No soportan evidencia.",
+       "clasificacion": 1.5
+      },
+      {
+       "corte": "2026-04-30",
+       "corteTexto": "2026-04-30",
+       "funcionario": "JOAN IMAYINNE GALVIS MORENO",
+       "observacion": "",
+       "clasificacion": 1.5
+      },
+      {
+       "corte": "2026-06-30",
+       "corteTexto": "2026-06-30",
+       "funcionario": "JOAN IMAYINNE GALVIS MORENO",
+       "observacion": "",
        "clasificacion": 1.5
       }
      ]
@@ -3347,6 +3706,20 @@
        "funcionario": "JOAN IMAYINNE GALVIS MORENO",
        "observacion": "Actividad pendiente por cumplir, No soportan evidencia.",
        "clasificacion": 1.5
+      },
+      {
+       "corte": "2026-04-30",
+       "corteTexto": "2026-04-30",
+       "funcionario": "JOAN IMAYINNE GALVIS MORENO",
+       "observacion": "",
+       "clasificacion": 1.5
+      },
+      {
+       "corte": "2026-06-30",
+       "corteTexto": "2026-06-30",
+       "funcionario": "JOAN IMAYINNE GALVIS MORENO",
+       "observacion": "",
+       "clasificacion": 1.5
       }
      ]
     },
@@ -3566,6 +3939,20 @@
        "corteTexto": "2025-12-30",
        "funcionario": "JOAN IMAYINNE GALVIS MORENO",
        "observacion": "Actividad pendiente por cumplir, No soportan evidencia.",
+       "clasificacion": 1.5
+      },
+      {
+       "corte": "2026-04-30",
+       "corteTexto": "2026-04-30",
+       "funcionario": "JOAN IMAYINNE GALVIS MORENO",
+       "observacion": "",
+       "clasificacion": 1.5
+      },
+      {
+       "corte": "2026-06-30",
+       "corteTexto": "2026-06-30",
+       "funcionario": "JOAN IMAYINNE GALVIS MORENO",
+       "observacion": "",
        "clasificacion": 1.5
       }
      ]
@@ -3878,6 +4265,27 @@
        "funcionario": "JOAN IMAYINNE GALVIS MORENO",
        "observacion": "En seguimiento a la etapa de ejecución y cierre de los procesos contractuales, la Dirección de Bienes y Servicios realizó la revisión y ajuste de los criterios de evaluación y reevaluación de proveedores, con el fin de fortalecer la gestión contractual y optimizar la relación con los contratistas. Los nuevos criterios buscan incentivar el cumplimiento eficiente de las obligaciones, mejorar los est…",
        "clasificacion": 1
+      },
+      {
+       "corte": "2025-12-30",
+       "corteTexto": "2025-12-30",
+       "funcionario": "JOAN IMAYINNE GALVIS MORENO",
+       "observacion": "",
+       "clasificacion": 1
+      },
+      {
+       "corte": "2026-04-30",
+       "corteTexto": "2026-04-30",
+       "funcionario": "JOAN IMAYINNE GALVIS MORENO",
+       "observacion": "Se realizaron ajustes en cuanto a la escala de calificaion, la redefinicion de la ponderacion de los criterios de evaluacion y el fortalecimiento del marco juridico frente a posibles incumplimientos contractuales, los cuales fueron incorporados formalmente al Procedimiento ABSP18.",
+       "clasificacion": 2
+      },
+      {
+       "corte": "2026-04-30",
+       "corteTexto": "2026-04-30",
+       "funcionario": "JOAN IMAYINNE GALVIS MORENO",
+       "observacion": "Se realizaron ajustes en cuanto a la escala de calificaion, la redefinicion de la ponderacion de los criterios de evaluacion y el fortalecimiento del marco juridico frente a posibles incumplimientos contractuales, los cuales fueron incorporados formalmente al Procedimiento ABSP18.",
+       "clasificacion": 2
       }
      ]
     },
@@ -3971,6 +4379,27 @@
        "funcionario": "JOAN IMAYINNE GALVIS MORENO",
        "observacion": "La Dirección de Sistemas y Tecnología avanza en el fortalecimiento de los procesos de analítica de datos con la actualización del ASIP35_V2 - Análisis de Datos y la creación del formato ASIF084 - Registro de Pruebas de Navegabilidad e Identificación de Fuentes de Datos para Dashboards, articulado con el proceso de Gobierno de Datos. Además, se trabaja en la actualización de dashboards, el cargue y…",
        "clasificacion": 1.5
+      },
+      {
+       "corte": "2025-12-30",
+       "corteTexto": "2025-12-30",
+       "funcionario": "JOAN IMAYINNE GALVIS MORENO",
+       "observacion": "",
+       "clasificacion": 1.5
+      },
+      {
+       "corte": "2026-04-30",
+       "corteTexto": "2026-04-30",
+       "funcionario": "JOAN IMAYINNE GALVIS MORENO",
+       "observacion": "Desde la Dirección de Sistemas y Tecnología se conformó el Área de Análisis de Datos, la cual es liderada por el Analista de Datos de la Dirección. Actualmente, el área cuenta con un procedimiento, dos manuales, un instructivo y tres formatos publicados en el Modelo de Operación Digital, los cuales soportan y regulan sus actividades y procesos. Adicionalmente, desde esta área se lidera un proyecto…",
+       "clasificacion": 1.5
+      },
+      {
+       "corte": "2026-04-30",
+       "corteTexto": "2026-04-30",
+       "funcionario": "JOAN IMAYINNE GALVIS MORENO",
+       "observacion": "Desde la Dirección de Sistemas y Tecnología se conformó el Área de Análisis de Datos, la cual es liderada por el Analista de Datos de la Dirección. Actualmente, el área cuenta con un procedimiento, dos manuales, un instructivo y tres formatos publicados en el Modelo de Operación Digital, los cuales soportan y regulan sus actividades y procesos. Adicionalmente, desde esta área se lidera un proyecto…",
+       "clasificacion": 1.5
       }
      ]
     },
@@ -4010,6 +4439,27 @@
        "funcionario": "JOAN IMAYINNE GALVIS MORENO",
        "observacion": "La norma NTC 6714:2023 establece un enfoque integral que abarca desde la sostenibilidad en edificaciones hasta principios de seguridad en escaleras mecánicas y andenes móviles, además de considerar aspectos de planificación y diseño de ambientes escolares. La elaboración de estos planes se organiza en cinco etapas: Etapa 1. Diagnostico identificación de necesidades Etapa 2. Formulación programació…",
        "clasificacion": 1
+      },
+      {
+       "corte": "2025-12-30",
+       "corteTexto": "2025-12-30",
+       "funcionario": "JOAN IMAYINNE GALVIS MORENO",
+       "observacion": "",
+       "clasificacion": 1
+      },
+      {
+       "corte": "2026-04-30",
+       "corteTexto": "2026-04-30",
+       "funcionario": "JOAN IMAYINNE GALVIS MORENO",
+       "observacion": "Se realizaron ajustes e incorporacion de controles en el aplicativo integradoc, en donde se inclueron las actividades 15 y 16 relacionadas co, solicitud formal de actuaciones contractuales y registro del tramite desde su solicitud hasta la notificacion final, ademas de integrar un seguimiento periodico a supervisores.",
+       "clasificacion": 1.5
+      },
+      {
+       "corte": "2026-04-30",
+       "corteTexto": "2026-04-30",
+       "funcionario": "JOAN IMAYINNE GALVIS MORENO",
+       "observacion": "Se realizaron ajustes e incorporacion de controles en el aplicativo integradoc, en donde se inclueron las actividades 15 y 16 relacionadas co, solicitud formal de actuaciones contractuales y registro del tramite desde su solicitud hasta la notificacion final, ademas de integrar un seguimiento periodico a supervisores.",
+       "clasificacion": 1.5
       }
      ]
     },
@@ -4222,6 +4672,27 @@
        "funcionario": "JOAN IMAYINNE GALVIS MORENO",
        "observacion": "Se presentan documentos borradores: - Política de Traslados - Proyecto de Evaluación Administrativos MEDIT - Evaluación Docente Pendiente de validación. EN SEGUIMIENTO. Se requiere definición de ruta para la aprobación.",
        "clasificacion": 1
+      },
+      {
+       "corte": "2025-12-30",
+       "corteTexto": "2025-12-30",
+       "funcionario": "JOAN IMAYINNE GALVIS MORENO",
+       "observacion": "",
+       "clasificacion": 1
+      },
+      {
+       "corte": "2026-04-30",
+       "corteTexto": "2026-04-30",
+       "funcionario": "JOAN IMAYINNE GALVIS MORENO",
+       "observacion": "",
+       "clasificacion": 1
+      },
+      {
+       "corte": "2026-04-30",
+       "corteTexto": "2026-04-30",
+       "funcionario": "JOAN IMAYINNE GALVIS MORENO",
+       "observacion": "",
+       "clasificacion": 1
       }
      ]
     },
@@ -4258,6 +4729,27 @@
        "corteTexto": "2025-09-30",
        "funcionario": "JOAN IMAYINNE GALVIS MORENO",
        "observacion": "Se presentan documentos borradores: - Política de Traslados - Proyecto de Evaluación Administrativos MEDIT - Evaluación Docente Pendiente de validación. EN SEGUIMIENTO. Se requiere definición de ruta para la aprobación.",
+       "clasificacion": 1
+      },
+      {
+       "corte": "2025-12-30",
+       "corteTexto": "2025-12-30",
+       "funcionario": "JOAN IMAYINNE GALVIS MORENO",
+       "observacion": "",
+       "clasificacion": 1
+      },
+      {
+       "corte": "2026-04-30",
+       "corteTexto": "2026-04-30",
+       "funcionario": "JOAN IMAYINNE GALVIS MORENO",
+       "observacion": "",
+       "clasificacion": 1
+      },
+      {
+       "corte": "2026-04-30",
+       "corteTexto": "2026-04-30",
+       "funcionario": "JOAN IMAYINNE GALVIS MORENO",
+       "observacion": "",
        "clasificacion": 1
       }
      ]
@@ -4432,6 +4924,13 @@
        "funcionario": "JOAN IMAYINNE GALVIS MORENO",
        "observacion": "Se identifica mediante informe en donde en la acogida a los estudiantes se realiza socializacion sobre las PQR, los medios por los cuales se realizan, utilizando medios visuales, se sugiere mostrar como se socializa este tema a los administrativos.",
        "clasificacion": 1.5
+      },
+      {
+       "corte": "2026-06-30",
+       "corteTexto": "2026-06-30",
+       "funcionario": "JOAN IMAYINNE GALVIS MORENO",
+       "observacion": "",
+       "clasificacion": 1.5
       }
      ]
     },
@@ -4460,6 +4959,13 @@
        "corteTexto": "2026-04-30",
        "funcionario": "JOAN IMAYINNE GALVIS MORENO",
        "observacion": "se encuentra en proceso de firmas por parte de la Dirección Jurídica (Se adjunta PDF correo electrónico).",
+       "clasificacion": 1
+      },
+      {
+       "corte": "2026-06-30",
+       "corteTexto": "2026-06-30",
+       "funcionario": "JOAN IMAYINNE GALVIS MORENO",
+       "observacion": "",
        "clasificacion": 1
       }
      ]
@@ -4491,6 +4997,13 @@
        "funcionario": "JOAN IMAYINNE GALVIS MORENO",
        "observacion": "Una vez se apruebe y el Lineamiento de los Sistemas de Gestión y poder realizar el cierre y resignificar los objetivos, para la toma de decisiones (Se adjunta PDF correo electrónico).",
        "clasificacion": 1
+      },
+      {
+       "corte": "2026-06-30",
+       "corteTexto": "2026-06-30",
+       "funcionario": "JOAN IMAYINNE GALVIS MORENO",
+       "observacion": "",
+       "clasificacion": 1
       }
      ]
     },
@@ -4519,6 +5032,13 @@
        "corteTexto": "2026-04-30",
        "funcionario": "JOAN IMAYINNE GALVIS MORENO",
        "observacion": "No se remite informacion",
+       "clasificacion": 0
+      },
+      {
+       "corte": "2026-06-30",
+       "corteTexto": "2026-06-30",
+       "funcionario": "JOAN IMAYINNE GALVIS MORENO",
+       "observacion": "",
        "clasificacion": 0
       }
      ]
@@ -4652,6 +5172,20 @@
        "funcionario": "JOAN IMAYINNE GALVIS MORENO",
        "observacion": "De acuerdo al informe suministrado por la Direccion de Sistemas y Tecnologia se identifica la creacion del tablero de control el cual contiene unformacion general: la que esta estructura según frentes estategicos, indicadores de tipo porcentual y numerico y por ultimo tiene un item del comportamiento de los objetivos del sistema.",
        "clasificacion": 2
+      },
+      {
+       "corte": "2026-04-30",
+       "corteTexto": "2026-04-30",
+       "funcionario": "JOAN IMAYINNE GALVIS MORENO",
+       "observacion": "",
+       "clasificacion": 2
+      },
+      {
+       "corte": "2026-06-30",
+       "corteTexto": "2026-06-30",
+       "funcionario": "JOAN IMAYINNE GALVIS MORENO",
+       "observacion": "",
+       "clasificacion": 2
       }
      ]
     },
@@ -4684,6 +5218,13 @@
        "corteTexto": "2026-04-30",
        "funcionario": "JOAN IMAYINNE GALVIS MORENO",
        "observacion": "No se remite informacion",
+       "clasificacion": 0
+      },
+      {
+       "corte": "2026-06-30",
+       "corteTexto": "2026-06-30",
+       "funcionario": "JOAN IMAYINNE GALVIS MORENO",
+       "observacion": "",
        "clasificacion": 0
       }
      ]
@@ -5386,7 +5927,43 @@
      ],
      "oportunidad": "Desarrollar un marco de acción climática que alinee las metas institucionales con las políticas nacionales e internacionales sobre cambio.",
      "entregable": "Diagnóstico de las políticas nacionales e internacionales actuales sobre cambio climático y sostenibilidad.",
-     "seguimientos": []
+     "seguimientos": [
+      {
+       "corte": "2025-04-30",
+       "corteTexto": "2025-04-30",
+       "funcionario": "DANIEL EDUARDO SOTO BERNAL",
+       "observacion": "",
+       "clasificacion": 0
+      },
+      {
+       "corte": "2025-06-30",
+       "corteTexto": "2025-06-30",
+       "funcionario": "DANIEL EDUARDO SOTO BERNAL",
+       "observacion": "El Sistema de Gestión Ambiental anexa documento PDF Diagnóstico de Políticas Nacionales e Internacionales sobre Cambio y Sostenibilidad Climática, relacionadas con la mitigación y adaptación al Cambio Climático. Anexo A9, se esperaba en modelo tipo informe dentro del Modelo de Operación Digital MOD.",
+       "clasificacion": 1.5
+      },
+      {
+       "corte": "2025-09-30",
+       "corteTexto": "2025-09-30",
+       "funcionario": "JOAN IMAYINNE GALVIS MORENO",
+       "observacion": "El Sistema de Gestión Ambiental anexa documento PDF Diagnóstico de Políticas Nacionales e Internacionales sobre Cambio y Sostenibilidad Climática, relacionadas con la mitigación y adaptación al Cambio Climático. Anexo A18, se esperaba en modelo tipo informe dentro del Modelo de Operación Digital MOD.",
+       "clasificacion": 1.5
+      },
+      {
+       "corte": "2025-12-30",
+       "corteTexto": "2025-12-30",
+       "funcionario": "JOAN IMAYINNE GALVIS MORENO",
+       "observacion": "",
+       "clasificacion": 1.5
+      },
+      {
+       "corte": "2026-06-30",
+       "corteTexto": "2026-06-30",
+       "funcionario": "JOAN IMAYINNE GALVIS MORENO",
+       "observacion": "El Sistema de Gestión Ambiental anexa documento PDF Diagnóstico de Políticas Nacionales e Internacionales sobre Cambio y Sostenibilidad Climática, relacionadas con la mitigación y adaptación al Cambio Climático.",
+       "clasificacion": 2
+      }
+     ]
     },
     {
      "id": "sga-2024-2",
@@ -5400,7 +5977,43 @@
      ],
      "oportunidad": "Revisar y actualizar los lineamientos internos para incluir consideraciones de sostenibilidad y resiliencia.",
      "entregable": "Informe Evaluación institucional. Identificar áreas clave para la integración de acciones climáticas.",
-     "seguimientos": []
+     "seguimientos": [
+      {
+       "corte": "2025-04-30",
+       "corteTexto": "2025-04-30",
+       "funcionario": "DANIEL EDUARDO SOTO BERNAL",
+       "observacion": "",
+       "clasificacion": 0
+      },
+      {
+       "corte": "2025-06-30",
+       "corteTexto": "2025-06-30",
+       "funcionario": "DANIEL EDUARDO SOTO BERNAL",
+       "observacion": "",
+       "clasificacion": 0
+      },
+      {
+       "corte": "2025-09-30",
+       "corteTexto": "2025-09-30",
+       "funcionario": "JOAN IMAYINNE GALVIS MORENO",
+       "observacion": "Se realiza entrega de Informe de Lienamientos realcionados con CC. Anexo 16, pero este no se encuentra en un formnato valido de la universidad de Cundinamarca, por esto se insta realizar el camio.",
+       "clasificacion": 1.5
+      },
+      {
+       "corte": "2025-12-30",
+       "corteTexto": "2025-12-30",
+       "funcionario": "JOAN IMAYINNE GALVIS MORENO",
+       "observacion": "Se remite por parte de la Coordinacion del Sistema Ambiental lineamientos relacionaldos con acciones climaticas en la cual se da una evaluacion institucional y se generan recomendaciones que se deben realizar s. Seria bueno demostrar como se ajusta en lineamientos.",
+       "clasificacion": 2
+      },
+      {
+       "corte": "2026-06-30",
+       "corteTexto": "2026-06-30",
+       "funcionario": "JOAN IMAYINNE GALVIS MORENO",
+       "observacion": "Actividad cumplida",
+       "clasificacion": 2
+      }
+     ]
     },
     {
      "id": "sga-2024-3",
@@ -5413,8 +6026,44 @@
       "Gestión Ambiental"
      ],
      "oportunidad": "Establecer acuerdos de colaboración con partes interesadas especializados en cambio climático.",
-     "entregable": "Actas/ evidencias de reunión.",
-     "seguimientos": []
+     "entregable": "Actas/ evidencias de reunión. Acuerdos interinstitucionales.",
+     "seguimientos": [
+      {
+       "corte": "2025-04-30",
+       "corteTexto": "2025-04-30",
+       "funcionario": "DANIEL EDUARDO SOTO BERNAL",
+       "observacion": "",
+       "clasificacion": 0
+      },
+      {
+       "corte": "2025-06-30",
+       "corteTexto": "2025-06-30",
+       "funcionario": "DANIEL EDUARDO SOTO BERNAL",
+       "observacion": "",
+       "clasificacion": 0
+      },
+      {
+       "corte": "2025-09-30",
+       "corteTexto": "2025-09-30",
+       "funcionario": "JOAN IMAYINNE GALVIS MORENO",
+       "observacion": "Se identifican correos en donde se invita a participar en las jonadas de sensibilizacion, pero no se detalla la participacion en las mismas en actas o evidencias de la reunion. Anexo 17 Se realiza participacion por parte del grupo del Sistema de Gestion Ambiental al voluntario Ambiental de la CAR, pero no se demuestra una actividad realizada en dicho voluntariado. Anexo 18",
+       "clasificacion": 1
+      },
+      {
+       "corte": "2025-12-30",
+       "corteTexto": "2025-12-30",
+       "funcionario": "JOAN IMAYINNE GALVIS MORENO",
+       "observacion": "Se realiza participacion en actividades de cambio climatica con la Gobernacion de Cundinamarca la cual tuvo tres sesiones diferentes, ademas se realiza voluntariado con la corporacion utonoma regional CAR.",
+       "clasificacion": 2
+      },
+      {
+       "corte": "2026-06-30",
+       "corteTexto": "2026-06-30",
+       "funcionario": "JOAN IMAYINNE GALVIS MORENO",
+       "observacion": "Actividad cumplida",
+       "clasificacion": 2
+      }
+     ]
     },
     {
      "id": "sga-2024-4",
@@ -5428,34 +6077,106 @@
      ],
      "oportunidad": "Establecer indicadores específicos para medir el progreso en la integración climática.",
      "entregable": "Matriz de indicadores.",
-     "seguimientos": []
+     "seguimientos": [
+      {
+       "corte": "2025-04-30",
+       "corteTexto": "2025-04-30",
+       "funcionario": "DANIEL EDUARDO SOTO BERNAL",
+       "observacion": "",
+       "clasificacion": 0
+      },
+      {
+       "corte": "2025-06-30",
+       "corteTexto": "2025-06-30",
+       "funcionario": "DANIEL EDUARDO SOTO BERNAL",
+       "observacion": "El Sistema de Gestión Ambiental anexa Matriz de indicadores relacionados con Cambio Climático. Anexo 10",
+       "clasificacion": 2
+      },
+      {
+       "corte": "2025-09-30",
+       "corteTexto": "2025-09-30",
+       "funcionario": "JOAN IMAYINNE GALVIS MORENO",
+       "observacion": "Actividad cumplida",
+       "clasificacion": 2
+      },
+      {
+       "corte": "2025-12-30",
+       "corteTexto": "2025-12-30",
+       "funcionario": "JOAN IMAYINNE GALVIS MORENO",
+       "observacion": "Actividad cumplida",
+       "clasificacion": 2
+      },
+      {
+       "corte": "2026-06-30",
+       "corteTexto": "2026-06-30",
+       "funcionario": "JOAN IMAYINNE GALVIS MORENO",
+       "observacion": "Actividad cumplida",
+       "clasificacion": 2
+      }
+     ]
     },
     {
      "id": "sga-2024-5",
      "vigencia": "2024",
      "numero": 5,
      "fechaEntrega": "2025-06-30",
-     "fechaEntregaTexto": "45838",
-     "responsable": "SGA-",
+     "fechaEntregaTexto": "45838 46021",
+     "responsable": "SGA- SGA Proveedor externo",
      "areas": [
       "Gestión Ambiental"
      ],
      "oportunidad": "Direccionar la medición de huella de carbono y su verificación al SGA.",
-     "entregable": "Inventario de emisiones 2024.",
-     "seguimientos": []
+     "entregable": "Inventario de emisiones 2024. Calculo de huella de CO2 2024. Resultados de verificación de la huella.",
+     "seguimientos": [
+      {
+       "corte": "2025-04-30",
+       "corteTexto": "2025-04-30",
+       "funcionario": "DANIEL EDUARDO SOTO BERNAL",
+       "observacion": "",
+       "clasificacion": 0
+      },
+      {
+       "corte": "2025-06-30",
+       "corteTexto": "2025-06-30",
+       "funcionario": "DANIEL EDUARDO SOTO BERNAL",
+       "observacion": "Se anexa diapositivas de medición de huella de Carbono 2023. Anexo 11. y Se realiza la solicitud del servicio a Fenalco Solidario par medición de vigencia 2024. El Sistema de Gestión Ambiental anexa solicitud del servicio de verificación de huella a ICONTEC. Anexo 12, presenta avance a esta actividad.",
+       "clasificacion": 1
+      },
+      {
+       "corte": "2025-09-30",
+       "corteTexto": "2025-09-30",
+       "funcionario": "JOAN IMAYINNE GALVIS MORENO",
+       "observacion": "Se recibe Informe de medición de huella de Carbono 2023. Anexo 11. y Se realiza la solicitud del servicio a Fenalco Solidario par medición de vigencia 2024. Pero hace falta la respuesta de la solicitud . Se realiza la solicitud del servicio de verificación de huella a ICONTEC. Anexo 12, se espera la respuesta emitida por ICONTEC En proceso de contratación. Concepto tecnico ICONTEC. Anexo 19, se en…",
+       "clasificacion": 1
+      },
+      {
+       "corte": "2025-12-30",
+       "corteTexto": "2025-12-30",
+       "funcionario": "JOAN IMAYINNE GALVIS MORENO",
+       "observacion": "Se envia informe de huella de carbono en la cual se detalla NVENTARIO CORPORATIVO DE EMISIONES DE GASES DE EFECTO INVERNADERO - 2024, en donde se evidencia 6 no conformidades de los cuales se evidencian los planes de mejoramiento cargados en plataforma.",
+       "clasificacion": 2
+      },
+      {
+       "corte": "2026-06-30",
+       "corteTexto": "2026-06-30",
+       "funcionario": "JOAN IMAYINNE GALVIS MORENO",
+       "observacion": "Actividad cumplida",
+       "clasificacion": 2
+      }
+     ]
     },
     {
      "id": "sga-2024-6",
      "vigencia": "2024",
      "numero": 6,
      "fechaEntrega": "2025-03-31",
-     "fechaEntregaTexto": "45747",
+     "fechaEntregaTexto": "45747 45748",
      "responsable": "SGA",
      "areas": [
       "Gestión Ambiental"
      ],
      "oportunidad": "Actualizar equipos existentes para mejorar la precisión y confiabilidad de las mediciones. (eficiencia de paneles solares, medición de aguas lluvias, medición de aguas de punto de captación).",
-     "entregable": "Evaluación de los equipos actuales y su rendimiento.",
+     "entregable": "Evaluación de los equipos actuales y su rendimiento. Identificación de mejoras tecnológicas y nuevas herramientas de medición.",
      "seguimientos": [
       {
        "corte": "2025-04-30",
@@ -5475,14 +6196,14 @@
        "corte": "2025-09-30",
        "corteTexto": "2025-09-30",
        "funcionario": "JOAN IMAYINNE GALVIS MORENO",
-       "observacion": "Se realiza en la extension Facatativa y su granja el levantamiento de los inventarios asociados a los equipos de ahorro y uso eficiente de agua y de energía. Se adjuntan inventarios, pero el entregable es la evaluacion de los equipos",
+       "observacion": "Se realiza en la extension Facatativa y su granja el levantamiento de los inventarios asociados a los equipos de ahorro y uso eficiente de agua y de energía. Se adjuntan inventarios, pero el entregable es la evaluacion de los equipos Se realiza el levantanmiento de la informacion relaiconada con infraestructura verde en cada una de las unidades regionales Anexo 20. Falta las nuevas herramientas de…",
        "clasificacion": 1
       },
       {
        "corte": "2025-12-30",
        "corteTexto": "2025-12-30",
        "funcionario": "JOAN IMAYINNE GALVIS MORENO",
-       "observacion": "Se identifica POWER BI en donde se imparte el consumo de energia, agua losaprovechables y no desde la vigencia 2022 identificando variables tanto positivas como negativas detallando que se manejan seguimientos y auditorias",
+       "observacion": "Se identifica POWER BI en donde se imparte el consumo de energia, agua losaprovechables y no desde la vigencia 2022 identificando variables tanto positivas como negativas detallando que se manejan seguimientos y auditorias Se evidencia que la Universidad cuenta con una infraestructura verde consolidada en sus sedes, seccionales y extensiones; sin embargo, se identifica una oportunidad de mejora re…",
        "clasificacion": 2
       },
       {
@@ -5499,14 +6220,14 @@
      "vigencia": "2024",
      "numero": 7,
      "fechaEntrega": "2025-03-31",
-     "fechaEntregaTexto": "45747",
+     "fechaEntregaTexto": "45747 45838 45930 46021",
      "responsable": "SGA Bienestar institucional",
      "areas": [
       "Gestión Ambiental",
       "Interacción Social y Bienestar"
      ],
      "oportunidad": "Fortalecimiento con el Proceso de Bienestar Universitario para abarcar la población estudiantil.",
-     "entregable": "Informe/matriz Revisión de los programas y actividades de bienestar existentes.",
+     "entregable": "Informe/matriz Revisión de los programas y actividades de bienestar existentes. Cronograma de articulación con Bienestar. Listas de asistencia, registro fotográfico. Informe resultados de participación.",
      "seguimientos": [
       {
        "corte": "2025-04-30",
@@ -5519,7 +6240,7 @@
        "corte": "2025-06-30",
        "corteTexto": "2025-06-30",
        "funcionario": "DANIEL EDUARDO SOTO BERNAL",
-       "observacion": "Se realiza la revisión del CAC anidado en el modulo de la plataforma de bienestar institucional. Se tiene reunión con Aula Virtual para formular el diseño del curso de bienvenida a estudiantes sobre el SGA. Se Adjunta correo electrónico con credenciales temporales de acceso y se inicia con la producción del Storyboard para realizar la solicitud de diseño. Anexo 2.",
+       "observacion": "Se realiza la revisión del CAC anidado en el modulo de la plataforma de bienestar institucional. Se tiene reunión con Aula Virtual para formular el diseño del curso de bienvenida a estudiantes sobre el SGA. Se Adjunta correo electrónico con credenciales temporales de acceso y se inicia con la producción del Storyboard para realizar la solicitud de diseño. Anexo 2. El Sistema de Gestión Ambiental a…",
        "clasificacion": 1
       },
       {
@@ -5550,13 +6271,13 @@
      "vigencia": "2024",
      "numero": 8,
      "fechaEntrega": "2025-03-31",
-     "fechaEntregaTexto": "45747",
+     "fechaEntregaTexto": "45747 45838 45930 46021",
      "responsable": "SGA.",
      "areas": [
       "Gestión Ambiental"
      ],
      "oportunidad": "Formación y talleres en Percepción ambiental y Cambio Climático.",
-     "entregable": "Informe / Matriz de id necesidades de formación.",
+     "entregable": "Informe / Matriz de id necesidades de formación. Talleres ambientales. Listas de asistencia, registro fotográfico. Informe resultados de evaluación de actividad.",
      "seguimientos": [
       {
        "corte": "2025-04-30",
@@ -5569,7 +6290,7 @@
        "corte": "2025-06-30",
        "corteTexto": "2025-06-30",
        "funcionario": "DANIEL EDUARDO SOTO BERNAL",
-       "observacion": "Se realiza a través de apoyo con pasante del programa de Ing. Ambiental de la Seccional Girardot, el desarrollo del material para la encuesta sobre necesidades de formación sobre Cambio Climático con aplicación institucional . Anexo 3. De igual forma se solicita el enlace en el micrositio del SGA de los cursos de formación gratuita de Naciones Unidas. Anexo 4.",
+       "observacion": "Se realiza a través de apoyo con pasante del programa de Ing. Ambiental de la Seccional Girardot, el desarrollo del material para la encuesta sobre necesidades de formación sobre Cambio Climático con aplicación institucional . Anexo 3. De igual forma se solicita el enlace en el micrositio del SGA de los cursos de formación gratuita de Naciones Unidas. Anexo 4. El Sistema de Gestión Ambiental anexa…",
        "clasificacion": 1
       },
       {
@@ -5583,14 +6304,14 @@
        "corte": "2025-12-30",
        "corteTexto": "2025-12-30",
        "funcionario": "JOAN IMAYINNE GALVIS MORENO",
-       "observacion": "Se sugiere realozar un informe mas detallado de lo evidenciado actualmente para tener completitud de incormaicon",
+       "observacion": "Se sugiere realozar un informe mas detallado de lo evidenciado actualmente para tener completitud de incormaicon Actividad cumplida",
        "clasificacion": 1
       },
       {
        "corte": "2026-06-30",
        "corteTexto": "2026-06-30",
        "funcionario": "JOAN IMAYINNE GALVIS MORENO",
-       "observacion": "Actividad cumplida",
+       "observacion": "Actividad cumplida Se sugiere realozar un informe mas detallado de lo evidenciado actualmente para tener completitud de incormaicon",
        "clasificacion": 2
       }
      ]
@@ -5600,14 +6321,14 @@
      "vigencia": "2024",
      "numero": 9,
      "fechaEntrega": "2025-03-31",
-     "fechaEntregaTexto": "45747",
+     "fechaEntregaTexto": "45747 45838 45930 46021",
      "responsable": "SGA Talento Humano",
      "areas": [
       "Talento Humano",
       "Gestión Ambiental"
      ],
      "oportunidad": "Fortalecimiento con el proceso de Talento Humano para mejorar la cobertura.",
-     "entregable": "Informe / Matriz de id necesidades de formación.",
+     "entregable": "Informe / Matriz de id necesidades de formación. Cronograma de formación y capacitación. Listas de asistencia, registro fotográfico. Informe resultados de eficiencia de actividad.",
      "seguimientos": [
       {
        "corte": "2025-04-30",
@@ -5620,21 +6341,21 @@
        "corte": "2025-06-30",
        "corteTexto": "2025-06-30",
        "funcionario": "DANIEL EDUARDO SOTO BERNAL",
-       "observacion": "Se realiza la programación en todas las Unidades regionales de las Inducciones sobre el SGA incluyendo todo el personal administrativo y el personal de Gestores de conocimiento. Se socializa con el Dirección de Talento Humano. Anexo 5",
+       "observacion": "Se realiza la programación en todas las Unidades regionales de las Inducciones sobre el SGA incluyendo todo el personal administrativo y el personal de Gestores de conocimiento. Se socializa con el Dirección de Talento Humano. Anexo 5 El Sistema de Gestión Ambiental anexa envío de Story Board para inclusión del contenido del SGA en el módulo de bienvenida de Bienestar Universitario. Anexo 13, no s…",
        "clasificacion": 2
       },
       {
        "corte": "2025-09-30",
        "corteTexto": "2025-09-30",
        "funcionario": "JOAN IMAYINNE GALVIS MORENO",
-       "observacion": "Actividad cumplida",
+       "observacion": "Actividad cumplida El Sistema de Gestión Ambiental anexa envío de Story Board para inclusión del contenido del SGA en el módulo de bienvenida de Bienestar Universitario. Anexo 13, no se evidencia cronograma de articulación. No se identifica listas de asistencia ni registro fotografico del fortalecimiento al proceso No se identifica resultados de eficacia de la actividad",
        "clasificacion": 2
       },
       {
        "corte": "2025-12-30",
        "corteTexto": "2025-12-30",
        "funcionario": "JOAN IMAYINNE GALVIS MORENO",
-       "observacion": "Actividad cumplida",
+       "observacion": "Actividad cumplida Se evidencia que la articulación entre el Sistema de Gestión Ambiental y la Dirección de Talento Humano fue efectiva durante la vigencia evaluada, logrando una amplia cobertura institucional y resultados satisfactorios en la apropiación de conocimientos ambientales. No obstante, se recomienda fortalecer las estrategias de formación y acompañamiento en las unidades regionales con…",
        "clasificacion": 2
       },
       {
@@ -5658,7 +6379,43 @@
      ],
      "oportunidad": "Aprobación de recursos necesarios para implementar y monitorear los lineamientos del Sistema de Gestión Ambiental según la Enmienda de Cambio Climático en la comunidad Universitaria.",
      "entregable": "Informe de ejecución de recursos de inversión.",
-     "seguimientos": []
+     "seguimientos": [
+      {
+       "corte": "2025-04-30",
+       "corteTexto": "2025-04-30",
+       "funcionario": "DANIEL EDUARDO SOTO BERNAL",
+       "observacion": "",
+       "clasificacion": 0
+      },
+      {
+       "corte": "2025-06-30",
+       "corteTexto": "2025-06-30",
+       "funcionario": "DANIEL EDUARDO SOTO BERNAL",
+       "observacion": "",
+       "clasificacion": 0
+      },
+      {
+       "corte": "2025-09-30",
+       "corteTexto": "2025-09-30",
+       "funcionario": "JOAN IMAYINNE GALVIS MORENO",
+       "observacion": "El sistema de Gestion Ambiental remite un listado de lainversion de los recursos evidenciando un 64% de implementacion. Sin embargo no se conoce la totalidad de la ejecucion hasta el momento.",
+       "clasificacion": 1
+      },
+      {
+       "corte": "2025-12-30",
+       "corteTexto": "2025-12-30",
+       "funcionario": "JOAN IMAYINNE GALVIS MORENO",
+       "observacion": "En términos generales, la ejecución presupuestal del SGA para la vigencia 2025 muestra un desempeño favorable del 99% sin embargo seria bueno detallar si se ejecuto lo planteado en la actividad",
+       "clasificacion": 1
+      },
+      {
+       "corte": "2026-06-30",
+       "corteTexto": "2026-06-30",
+       "funcionario": "JOAN IMAYINNE GALVIS MORENO",
+       "observacion": "En términos generales, la ejecución presupuestal del SGA para la vigencia 2025 muestra un desempeño favorable del 99% sin embargo seria bueno detallar si se ejecuto lo planteado en la actividad",
+       "clasificacion": 1
+      }
+     ]
     },
     {
      "id": "sga-2025-1",
@@ -5673,7 +6430,15 @@
      ],
      "oportunidad": "Incorporar los resultados del SGA en el PEI y en los planes de acción",
      "entregable": "Documento de articulación estratégica SGA–PEI y Planes de Acción",
-     "seguimientos": []
+     "seguimientos": [
+      {
+       "corte": "2026-06-30",
+       "corteTexto": "2026-06-30",
+       "funcionario": "Sin registrar",
+       "observacion": "",
+       "clasificacion": 0
+      }
+     ]
     },
     {
      "id": "sga-2025-2",
@@ -5689,7 +6454,15 @@
      ],
      "oportunidad": "Implementar tablero de control para el seguimiento digital del SGA",
      "entregable": "Tablero de control digital de indicadores del SGA",
-     "seguimientos": []
+     "seguimientos": [
+      {
+       "corte": "2026-06-30",
+       "corteTexto": "2026-06-30",
+       "funcionario": "Sin registrar",
+       "observacion": "",
+       "clasificacion": 0
+      }
+     ]
     },
     {
      "id": "sga-2025-3",
@@ -5703,7 +6476,15 @@
      ],
      "oportunidad": "Fortalecer la articulación del SGA con procesos institucionales clave",
      "entregable": "Matriz de AIA de cada uno de los proceso",
-     "seguimientos": []
+     "seguimientos": [
+      {
+       "corte": "2026-06-30",
+       "corteTexto": "2026-06-30",
+       "funcionario": "Sin registrar",
+       "observacion": "",
+       "clasificacion": 0
+      }
+     ]
     },
     {
      "id": "sga-2025-4",
@@ -5779,6 +6560,48 @@
        "funcionario": "DANIEL EDUARDO SOTO BERNAL",
        "observacion": "El día 22 de marzo se envió la política a la dirección jurídica para revisión y visto bueno, el día 2/04/2024 nos dieron respuesta de jurídica para realizar otros ajustes en donde ya se están validando para firma.",
        "clasificacion": 1
+      },
+      {
+       "corte": "2024-07-24",
+       "corteTexto": "2024-07-24",
+       "funcionario": "DANIEL EDUARDO SOTO BERNAL",
+       "observacion": "",
+       "clasificacion": 1
+      },
+      {
+       "corte": "2024-10-18",
+       "corteTexto": "2024-10-18",
+       "funcionario": "DANIEL EDUARDO SOTO BERNAL",
+       "observacion": "Los lineamientos se deben presentar en el SAC y la fecha de proyección de la reunión del comité según indicación por el área de planeación se tiene programada para la fecha tentativa día 5 de diciembre 2024 sesión ordinaria. Según el archivo adjunto los lineamientos de SG-SST ya fueron aprobados por la comision de gestión. \"De conformidad con la decisión de los miembros de la Comisión de Gestión e…",
+       "clasificacion": 1
+      },
+      {
+       "corte": "2025-04-30",
+       "corteTexto": "2025-04-30",
+       "funcionario": "DANIEL EDUARDO SOTO BERNAL",
+       "observacion": "Según lineamientos de la alta dirección la politica debe ser integrada con todos los sistemas de gestión, es por eso que se encuentra en actualización y verificacion con los sistemas. Se adjunta acta de reunión de los sistemas integrados e imagen de la presentación de la propuesta de la politica integrada.",
+       "clasificacion": 1
+      },
+      {
+       "corte": "2025-09-30",
+       "corteTexto": "2025-09-30",
+       "funcionario": "Joan Imayinne Galvis Moreno",
+       "observacion": "Como sugerencia de la alta dirección la política debe ser integrada con todos los sistemas de gestión, se adjunta el correo con las recomendaciones del señor rector donde realiza la verificación y ajustes a la polít ica de los sistemas integrados.",
+       "clasificacion": 1
+      },
+      {
+       "corte": "2026-04-30",
+       "corteTexto": "2026-04-30",
+       "funcionario": "JOAN IMAYINNE GALVIS MORENO",
+       "observacion": "No se presenta avance",
+       "clasificacion": 1
+      },
+      {
+       "corte": "2026-04-30",
+       "corteTexto": "2026-04-30",
+       "funcionario": "JOAN IMAYINNE GALVIS MORENO",
+       "observacion": "No se presenta avance",
+       "clasificacion": 1.5
       }
      ]
     },
@@ -5801,6 +6624,48 @@
        "funcionario": "DANIEL EDUARDO SOTO BERNAL",
        "observacion": "Se encuentra en priorización de proyectos de inversión por el área de recursos físicos.",
        "clasificacion": 1
+      },
+      {
+       "corte": "2024-07-24",
+       "corteTexto": "2024-07-24",
+       "funcionario": "DANIEL EDUARDO SOTO BERNAL",
+       "observacion": "",
+       "clasificacion": 1
+      },
+      {
+       "corte": "2024-10-18",
+       "corteTexto": "2024-10-18",
+       "funcionario": "DANIEL EDUARDO SOTO BERNAL",
+       "observacion": "INVITACIÓN PRIVADA N° 036 Adquirir sillas ergonomicas para los funcionarios administrativos de la sede, seccionales y extensiones de la Universidad de Cundinamarca, está publicado, en etapa de evaluación de requisitos Técnicos , juridicos y financieros. Se adjunta evidencia.",
+       "clasificacion": 1
+      },
+      {
+       "corte": "2025-04-30",
+       "corteTexto": "2025-04-30",
+       "funcionario": "DANIEL EDUARDO SOTO BERNAL",
+       "observacion": "INFORME DE LA ENTREGA DE LAS SILLAS",
+       "clasificacion": 2
+      },
+      {
+       "corte": "2025-09-30",
+       "corteTexto": "2025-09-30",
+       "funcionario": "Joan Imayinne Galvis Moreno",
+       "observacion": "ACTIVIDAD CUMPLIDA",
+       "clasificacion": 2
+      },
+      {
+       "corte": "2026-04-30",
+       "corteTexto": "2026-04-30",
+       "funcionario": "JOAN IMAYINNE GALVIS MORENO",
+       "observacion": "ACTIVIDAD CUMPLIDA",
+       "clasificacion": 2
+      },
+      {
+       "corte": "2026-04-30",
+       "corteTexto": "2026-04-30",
+       "funcionario": "JOAN IMAYINNE GALVIS MORENO",
+       "observacion": "ACTIVIDAD CUMPLIDA",
+       "clasificacion": 2
       }
      ]
     },
@@ -5825,6 +6690,48 @@
        "funcionario": "DANIEL EDUARDO SOTO BERNAL",
        "observacion": "El sistema de Gestión de Seguridad y Salud en el Trabajo adjunta PDF, solicitud a la Vicerrectoría Administrativa y Financiera , Apoyo Académico la continuidad del personal de apoyo en los laboratorio de química.",
        "clasificacion": 1
+      },
+      {
+       "corte": "2024-07-24",
+       "corteTexto": "2024-07-24",
+       "funcionario": "DANIEL EDUARDO SOTO BERNAL",
+       "observacion": "",
+       "clasificacion": 1
+      },
+      {
+       "corte": "2024-10-18",
+       "corteTexto": "2024-10-18",
+       "funcionario": "DANIEL EDUARDO SOTO BERNAL",
+       "observacion": "Se cuenta con la cotratación del personal de laboratorios, se adjuntan contratos.",
+       "clasificacion": 2
+      },
+      {
+       "corte": "2025-04-30",
+       "corteTexto": "2025-04-30",
+       "funcionario": "DANIEL EDUARDO SOTO BERNAL",
+       "observacion": "ACTIVIDAD CUMPLIDA",
+       "clasificacion": 2
+      },
+      {
+       "corte": "2025-09-30",
+       "corteTexto": "2025-09-30",
+       "funcionario": "Joan Imayinne Galvis Moreno",
+       "observacion": "ACTIVIDAD CUMPLIDA",
+       "clasificacion": 2
+      },
+      {
+       "corte": "2026-04-30",
+       "corteTexto": "2026-04-30",
+       "funcionario": "JOAN IMAYINNE GALVIS MORENO",
+       "observacion": "ACTIVIDAD CUMPLIDA",
+       "clasificacion": 2
+      },
+      {
+       "corte": "2026-04-30",
+       "corteTexto": "2026-04-30",
+       "funcionario": "JOAN IMAYINNE GALVIS MORENO",
+       "observacion": "ACTIVIDAD CUMPLIDA",
+       "clasificacion": 2
       }
      ]
     },
@@ -6990,6 +7897,41 @@
        "funcionario": "DANIEL EDUARDO SOTO BERNAL",
        "observacion": "El Sistema de Gestión de Seguridad de la Información – SGSI, realizó la contratación de la Orden Contractual de Servicios F-OCS-040 de 2025 con objeto “CONTRATAR EL SERVICIO DE AUDITORÍA INTERNA III PARA EL SISTEMA DE GESTIÓN DE SEGURIDAD DE LA INFORMACIÓN – SGSI BAJO LA NORMA ISO27001:2022, EL MODELO DE SEGURIDAD Y PRIVACIDAD DE LA INFORMACIÓN, EL CUMPLIMIENTO DE LA LEY 1581 DE 2012 Y DEMAS NORMA…",
        "clasificacion": 1
+      },
+      {
+       "corte": "2025-06-30",
+       "corteTexto": "2025-06-30",
+       "funcionario": "DANIEL EDUARDO SOTO BERNAL",
+       "observacion": "",
+       "clasificacion": 1
+      },
+      {
+       "corte": "2025-09-30",
+       "corteTexto": "2025-09-30",
+       "funcionario": "JOAN IMAYINNE GALVIS MORENO",
+       "observacion": "El Sistema de Gestión de Seguridad de la Información (SGSI) ejecutó la Orden Contractual de Servicios F-OCS-040 de 2025, cuyo objeto fue la Auditoría Interna III del SGSI bajo la Norma ISO/IEC 27001:2022, el Modelo de Seguridad y Privacidad de la Información y la Ley 1581 de 2012, aplicable a nivel institucional en sede, seccionales y extensiones. En cumplimiento de las decisiones adoptadas en la…",
+       "clasificacion": 1.5
+      },
+      {
+       "corte": "2025-12-30",
+       "corteTexto": "2025-12-30",
+       "funcionario": "JOAN IMAYINNE GALVIS MORENO",
+       "observacion": "El Sistema de Gestion de Seguridad de la Informacion, realizo el cargur del ABS F-CD-123 con objeto \" Contratar el Servicio de Auditoria de Certificación del Sistema de Gestion de Seguridad de la Informacion - SGSI de la Universidad de Cundinamarca bajo la norma ISO 27001:2022 la cual se llevara acabo en la Sede Fusagasugá incluyendo las Seccionales y Exensiones y la cual se encuentra en revisione…",
+       "clasificacion": 1.5
+      },
+      {
+       "corte": "2026-04-30",
+       "corteTexto": "2026-04-30",
+       "funcionario": "JOAN IMAYINNE GALVIS MORENO",
+       "observacion": "Aun no se cuenta con informe final.",
+       "clasificacion": 1.5
+      },
+      {
+       "corte": "2026-06-30",
+       "corteTexto": "2026-06-30",
+       "funcionario": "JOAN IMAYINNE GALVIS MORENO",
+       "observacion": "Aun no se cuenta con informe final.",
+       "clasificacion": 1.5
       }
      ]
     },
@@ -7244,6 +8186,41 @@
        "corteTexto": "2025-04-30",
        "funcionario": "DANIEL EDUARDO SOTO BERNAL",
        "observacion": "El Sistema de Gestión de Seguridad de la Información – SGSI ha solicitado en reiteradas ocasiones a la Dirección de Planeación Institucional y a la oficina de Recursos Físicos y Servicios Generales la importancia de realizar el traslado de los funcionarios del SGSI, teniendo en cuenta que la infraestructura de la oficina ubicada en el Bloque – D 201 presenta afectaciones por las filtraciones de ag…",
+       "clasificacion": 1
+      },
+      {
+       "corte": "2025-06-30",
+       "corteTexto": "2025-06-30",
+       "funcionario": "DANIEL EDUARDO SOTO BERNAL",
+       "observacion": "",
+       "clasificacion": 1
+      },
+      {
+       "corte": "2025-09-30",
+       "corteTexto": "2025-09-30",
+       "funcionario": "JOAN IMAYINNE GALVIS MORENO",
+       "observacion": "El SGSI ha solicitado reiteradamente su traslado debido a filtraciones de agua en la oficina del Bloque D–201, que han causado daños en equipos de información. Sin embargo, no se ha realizado el traslado. Se recomienda escalar la situación a las áreas competentes, ya que el SGSI no puede decidir su reubicación. Se recomienda a la Direccion de Planeacion Institucional tomar accion.",
+       "clasificacion": 1
+      },
+      {
+       "corte": "2025-12-30",
+       "corteTexto": "2025-12-30",
+       "funcionario": "JOAN IMAYINNE GALVIS MORENO",
+       "observacion": "El SGSI ha solicitado reiteradamente su traslado debido a filtraciones de agua en la oficina del Bloque D–201, que han causado daños en equipos de información. Sin embargo, no se ha realizado el traslado. Se recomienda escalar la situación a las áreas competentes, ya que el SGSI no puede decidir su reubicación. Se recomienda a la Direccion de Planeacion Institucional tomar accion.",
+       "clasificacion": 1
+      },
+      {
+       "corte": "2026-04-30",
+       "corteTexto": "2026-04-30",
+       "funcionario": "JOAN IMAYINNE GALVIS MORENO",
+       "observacion": "El SGSI ha solicitado reiteradamente su traslado debido a filtraciones de agua en la oficina del Bloque D–201, que han causado daños en equipos de información. Sin embargo, no se ha realizado el traslado. Se recomienda escalar la situación a las áreas competentes, ya que el SGSI no puede decidir su reubicación. Se recomienda a la Direccion de Planeacion Institucional tomar accion.",
+       "clasificacion": 1
+      },
+      {
+       "corte": "2026-06-30",
+       "corteTexto": "2026-06-30",
+       "funcionario": "JOAN IMAYINNE GALVIS MORENO",
+       "observacion": "El SGSI ha solicitado reiteradamente su traslado debido a filtraciones de agua en la oficina del Bloque D–201, que han causado daños en equipos de información. Sin embargo, no se ha realizado el traslado. Se recomienda escalar la situación a las áreas competentes, ya que el SGSI no puede decidir su reubicación. Se recomienda a la Direccion de Planeacion Institucional tomar accion.",
        "clasificacion": 1
       }
      ]
