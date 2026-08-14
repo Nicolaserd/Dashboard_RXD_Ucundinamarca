@@ -1,6 +1,31 @@
+# Scripts de instalación autorizados (pnpm 11 exige decidirlo explícitamente).
+# Ambos son dependencias nativas de las herramientas ya declaradas en el
+# proyecto: `sharp` es el motor de imágenes de Next.js y `unrs-resolver` el
+# resolvedor de importaciones de eslint-config-next. Sin autorizarlos, ningún
+# script de `package.json` puede ejecutarse.
 allowBuilds:
-  sharp: set this to true or false
-  unrs-resolver: set this to true or false
-ignoredBuiltDependencies:
-  - sharp
-  - unrs-resolver
+  sharp: true
+  unrs-resolver: true
+
+# Versiones forzadas de dependencias transitivas con avisos de seguridad.
+# Ninguna es dependencia directa del proyecto: llegan a través de next,
+# @tailwindcss/postcss, eslint y @playwright/test, cuyos rangos aún admiten
+# versiones vulnerables (CLAUDE.md §2: no fusionar con vulnerabilidades altas
+# o críticas).
+#
+# `brace-expansion` se acota POR VERSIÓN MAYOR, y el reemplazo va con `^` a
+# propósito: minimatch@3 espera la API de la versión 1, y tanto un override
+# global como un reemplazo abierto (`>=1.1.18`) resuelven a la 5, con lo que
+# ESLint deja de arrancar.
+#
+# Al cambiar este bloque hay que re-resolver el árbol (`pnpm update`): `pnpm
+# install` no vuelve a resolver si el lockfile ya está satisfecho. Revisar en
+# cada `pnpm outdated` si ya pueden retirarse porque el paquete padre actualizó
+# su rango.
+overrides:
+  postcss: ">=8.5.23"
+  nanoid: ">=3.3.18"
+  js-yaml: ">=4.3.1"
+  "brace-expansion@1": "^1.1.18"
+  "brace-expansion@2": "^2.0.2"
+  sharp: ">=0.35.0"

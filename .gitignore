@@ -39,3 +39,17 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# playwright: artefactos de cada ejecución, no se versionan
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+
+# Excel: archivos de bloqueo que crea al abrir un libro
+~$*.xlsx
+
+# Libros limpios: se regeneran con «pnpm datos:limpiar» desde data/,
+# que es la fuente de verdad. Versionarlos duplicaría los datos y produciría
+# conflictos binarios sin diff legible.
+/data-limpio/
