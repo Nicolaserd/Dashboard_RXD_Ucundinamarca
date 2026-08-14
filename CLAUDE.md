@@ -10,6 +10,17 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Aplicación **frontend web** de la **Universidad de Cundinamarca (UCundinamarca)** para presentar **temas/módulos** y, dentro de cada uno, **vistas tipo dashboard** (gráficas, tablas, indicadores).
 
+### Dominio: seguimiento a Oportunidades de Mejora (OM) de la RXD
+
+Cada **tema es un sistema de gestión** (SGC, SGA, SG-SST, SGSI, SGAS). Dentro de cada sistema, el dato base es la **Oportunidad de Mejora** derivada de la **Revisión por la Dirección (RXD)**:
+
+- Una OM pertenece a una **vigencia** (el año del ciclo de RXD que la originó), tiene un responsable, un entregable comprometido y una fecha de entrega.
+- Cada OM acumula **uno o más seguimientos**. Un seguimiento es una **observación** del funcionario evaluador en una **fecha de corte**, acompañada de su **calificación**.
+- La **calificación** usa la escala institucional **0 · 0.5 · 1 · 1.5 · 2**, donde **2 = 100 % completado (cumplida)**. El avance porcentual de una OM es `calificación / 2 × 100`.
+- El **estado vigente** de una OM es su **última calificación registrada**; las observaciones anteriores conservan el historial de cómo llegó hasta ahí.
+
+Fuente de verdad: los libros de [`data/`](data/), importados con `pnpm datos:importar`. Detalle del modelo, normalizaciones y métricas en [`docs/datos.md`](docs/datos.md).
+
 La app se organiza en **dos layouts** (ver [regla de layouts](.claude/reglas/REGLA_GENERAL_LAYOUTS_APLICACION.md)):
 
 1. **Portada de temas** (`/temas`) — selección de módulos creados por el usuario.
@@ -74,7 +85,8 @@ pnpm build            # build de producción
 pnpm start            # servir el build
 pnpm lint             # ESLint
 pnpm typecheck        # tsc --noEmit
-pnpm test             # tests (cuando se configuren)
+pnpm test             # pruebas de extremo a extremo (Playwright)
+pnpm datos:importar   # regenera src/data/om-rxd.json desde data/*.xlsx
 pnpm audit            # auditoría de seguridad
 pnpm outdated         # dependencias desactualizadas
 ```
@@ -92,6 +104,8 @@ La regla de layouts se implementa con **layouts anidados** de Next.js (App Route
 ```
 src/app/
 ├── layout.tsx                     # Raíz: fuente Montserrat, tokens CSS, providers globales
+├── consolidado/
+│   └── page.tsx                   # Comparación entre TODOS los sistemas (/consolidado)
 ├── temas/
 │   ├── page.tsx                   # Layout 1 — Portada de temas  (ruta /temas)
 │   └── [temaId]/
@@ -101,13 +115,17 @@ src/app/
 │       │   └── page.tsx           # Vista Resumen (/temas/:temaId/resumen)
 │       ├── indicadores/
 │       │   └── page.tsx           # Vista Indicadores (/temas/:temaId/indicadores)
-│       ├── reportes/
-│       │   └── page.tsx           # Vista Reportes (/temas/:temaId/reportes)
+│       ├── responsables/
+│       │   └── page.tsx           # Vista Responsables (/temas/:temaId/responsables)
 │       ├── datos/
 │       │   └── page.tsx           # Vista Datos (/temas/:temaId/datos)
 │       └── seguimiento/
 │           └── page.tsx           # Vista Seguimiento (/temas/:temaId/seguimiento)
 ```
+
+> La vista `reportes/` fue reemplazada por `responsables/`: los libros de origen no contienen informes descargables, y el área responsable sí es una dimensión real de los datos ([ADR-0003](docs/adr/0003-vista-responsables.md)).
+
+> **`/consolidado` es ruta de primer nivel, no una sexta vista.** El layout interno trabaja *dentro* de un sistema (menú lateral y filtros ligados a `temaId`); la vista consolidada compara **entre** sistemas, así que su dimensión de análisis es el propio sistema y no cabe bajo `[temaId]`. Se alcanza desde la portada y desde el menú lateral de cualquier tablero.
 
 **Principios de esta estructura:**
 
@@ -120,21 +138,25 @@ src/app/
 ### 5.2 Estructura de carpetas (por capas + features)
 
 ```
+data/                   # Libros de seguimiento (.xlsx) — fuente de verdad
+scripts/                # ETL sin dependencias: data/*.xlsx → src/data/om-rxd.json
 src/
-├── app/                # Rutas y layouts (App Router)
+├── app/                # Rutas, layouts y globals.css con los tokens institucionales
 ├── components/
-│   ├── ui/             # Primitivos reutilizables (Button, Card, Skeleton, EmptyState…)
+│   ├── ui/             # Primitivos reutilizables (Icon…)
 │   ├── brand/          # LogoUcundinamarca y elementos de identidad (§7)
-│   ├── layout/         # LayoutPortada, LayoutInterno, MenuLateralFijo, EncabezadoSuperior
+│   ├── layout/         # Sidebar, ViewHeader, VistaShell
+│   ├── dashboard/      # DashboardShell, KPIRow, FilterBar, EstadoVacio
 │   └── charts/         # ChartCard + estados + tipos de gráfica (Regla dashboard)
+├── data/               # Dataset generado por el ETL (versionado)
 ├── features/
-│   ├── temas/          # Portada: ListaTemas, TarjetaTema, registro (registry) de temas
-│   └── dashboard/      # Vistas, contexto de filtros, hooks de datos
-├── hooks/              # Hooks compartidos (useFilters, useTemas…)
-├── lib/                # Cliente de datos (abstracción), utilidades, config
-├── styles/             # globals.css con los tokens institucionales
+│   ├── temas/          # Portada: TarjetaTema y registro (registry) de temas
+│   └── dashboard/      # FiltrosProvider, useTableroOM, kpis
+├── lib/om/             # Acceso a datos (abstracción) y métricas de OM
 └── types/              # Contratos/tipos compartidos
 ```
+
+**Capa de datos (SOLID «D»).** La UI depende de `src/lib/om/` y de `useTableroOM`, nunca del JSON ni de un `fetch` concreto: cambiar el origen a una API o a un modelo semántico solo exige reescribir `src/lib/om/dataset.ts` ([ADR-0001](docs/adr/0001-fuente-de-datos-etl-excel-a-json.md)).
 
 **Colocación (organización por vista — obligatoria).** Regla clave: un componente vive lo más cerca posible de donde se usa. 
 
@@ -149,8 +171,13 @@ src/
 
 Toda gráfica se envuelve en un **`ChartCard`** que garantiza, de forma reutilizable: título descriptivo, etiquetas/ejes/tooltip, leyenda cuando hay varias series, comportamiento responsivo, estados **Cargando / Sin datos / Error / Filtrada / Seleccionada**, e **interacción como filtro** sincronizada con los filtros generales del dashboard. Ninguna gráfica se integra si no cumple ese contrato.
 
-- La librería de gráficas debe soportar tooltips, click-para-filtrar, teclado y estados. Recomendado: **Recharts** (React-first) o **ECharts** (`echarts-for-react`) para casos complejos. La selección **no** puede depender solo del color (Regla dashboard §8–9): añadir borde/ícono/opacidad/texto.
-- El estado de filtros vive en un **contexto compartido** (`features/dashboard`), de modo que seleccionar un elemento en una gráfica actualiza las demás (Regla dashboard §3–4).
+- La librería en uso es **Recharts**. La selección **no** puede depender solo del color (Regla dashboard §8–9): añadir borde/ícono/opacidad/texto.
+- El estado de filtros vive en un **contexto compartido** (`features/dashboard/FiltrosProvider`), montado en el layout del tema, de modo que seleccionar un elemento en una gráfica actualiza las demás y la selección se conserva al navegar entre vistas (Regla dashboard §3–4).
+- Los segmentos y barras de Recharts **no son focalizables con teclado**. Toda gráfica seleccionable se acompaña de `LeyendaInteractiva` (botones con `aria-pressed`) o del selector equivalente de la barra de filtros (Regla dashboard §11).
+- Una gráfica que filtra por una dimensión **no se filtra a sí misma** por ella: usar `omsIgnorando(campo)` de `useTableroOM`, o la gráfica quedaría reducida a la categoría seleccionada.
+- La escala de estados (color + símbolo por estado) se define **una sola vez** en `src/lib/om/avance.ts`; ninguna gráfica define su propia paleta (Regla dashboard §10).
+
+Catálogo completo en [`docs/componentes.md`](docs/componentes.md); métricas y su justificación en [`docs/datos.md`](docs/datos.md).
 
 ---
 
@@ -191,6 +218,18 @@ Estos principios son **requisito de aceptación**, no sugerencia:
 - Mantener relación de aspecto: `object-fit: contain`; nunca deformar, rotar, recolorear ni agregar efectos (§2.4).
 - Encapsular **todas** estas reglas en un único componente **`LogoUcundinamarca`** (variante `horizontal|vertical`, `tono` según fondo, `alt="Universidad de Cundinamarca"`). Nadie debe insertar `<img>` de logo suelto.
 
+**Logotipos de los sistemas de gestión.** Cada sistema tiene su propio logotipo oficial. Origen: [`imagenes/`](imagenes/); destino servido: `public/brand/sistemas/<id>.png`, donde `<id>` es el mismo del registro de temas.
+
+| Origen en `imagenes/` | Destino `public/brand/sistemas/` | Sistema |
+|---|---|---|
+| `sgc3092.png` | `sgc.png` | Sistema de Gestión de Calidad |
+| `sga3091.png` | `sga.png` | Sistema de Gestión Ambiental |
+| `sgsst3094.png` | `sgsst.png` | Seguridad y Salud en el Trabajo |
+| `sgsi-4.png` | `sgsi.png` | Seguridad de la Información |
+| `logo-anti-soborno_1.png` | `sgas.png` | Sistema de Gestión Antisoborno |
+
+Se insertan **solo** mediante el componente `LogoSistema`. Son identificadores **secundarios**: el principal de la interfaz sigue siendo el imagotipo institucional (regla visual §2.1). Como llevan el nombre del sistema dentro del arte, no se reducen por debajo de ~58 px de alto (§2.5).
+
 **Tokens de color y tipografía:** copiar **tal cual** los `:root` de la regla visual (§1.8 y §3.6) a `styles/globals.css` y exponerlos a Tailwind. Predominio de `--uc-green` (#007B3E) y `--uc-green-dark` (#00482B); amarillo/oro para énfasis; máximo un color principal + dos complementarios por vista; solo los 4 degradados oficiales.
 
 **Tipografía — atención (coherencia con Next.js):** la familia principal es **`Montserrat`** (Regla visual §3). El `create-next-app` trae Geist/Inter por defecto y la regla **prohíbe `Inter`** como principal (§3.5). Configurar `Montserrat` vía `next/font/google` en `app/layout.tsx` y exponerla como `--uc-font-digital`.
@@ -206,6 +245,8 @@ Las reglas son **complementarias** y aplican por separación de responsabilidade
 - [`REGLA_GENERAL_LAYOUTS_APLICACION.md`](.claude/reglas/REGLA_GENERAL_LAYOUTS_APLICACION.md) → **navegación** (portada + layout interno, menú lateral fijo, logo arriba a la derecha).
 - [`REGLA_DOCUMENTACION_Y_ACTUALIZACION.md`](.claude/reglas/REGLA_DOCUMENTACION_Y_ACTUALIZACION.md) → **documentación** (docs-as-code: README, CLAUDE.md, `docs/`, ADR, CHANGELOG; se actualiza en el mismo cambio que la origina).
 - [`REGLA_SCAFFOLDING_ORGANIZACION_POR_VISTAS.md`](.claude/reglas/REGLA_SCAFFOLDING_ORGANIZACION_POR_VISTAS.md) → **organización del código** (colocación por vista: específico dentro de la vista, general en `components/`; promover al reutilizar en una 2.ª vista).
+
+Documentación viva del proyecto: [`docs/arquitectura.md`](docs/arquitectura.md) · [`docs/datos.md`](docs/datos.md) · [`docs/componentes.md`](docs/componentes.md) · [`docs/adr/`](docs/adr/) · [`CHANGELOG.md`](CHANGELOG.md).
 
 Puntos reconciliados (no son contradicciones, son decisiones de implementación):
 1. **Ruta del logo:** el ejemplo de la regla visual apunta a `/brand/...svg`, pero los originales son PNG en `.claude/lmagenes/`. Resolución: copiar a `public/brand/` (PNG permitido; exportar SVG del `.ai` cuando se pueda).
