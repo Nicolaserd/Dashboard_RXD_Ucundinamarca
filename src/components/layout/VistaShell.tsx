@@ -1,6 +1,9 @@
 import type { ReactNode } from "react";
 import { notFound } from "next/navigation";
+import { Siglas } from "@/components/dashboard/Siglas";
 import { getTema } from "@/features/temas/temas";
+import { getSistema, ultimoCorte } from "@/lib/om/dataset";
+import { formatearFecha } from "@/lib/om/avance";
 import { ViewHeader } from "./ViewHeader";
 
 /** Props que Next.js entrega a toda página bajo `/temas/[temaId]/<vista>`. */
@@ -12,6 +15,8 @@ interface VistaShellProps {
   temaId: string;
   /** Nombre de la vista: encabeza la página y cierra la miga de pan. */
   titulo: string;
+  /** Siglas que aparecen en esta vista; se explican al pie. */
+  siglas?: string[];
   children: ReactNode;
 }
 
@@ -31,14 +36,25 @@ interface VistaShellProps {
  *   );
  * }
  */
-export function VistaShell({ temaId, titulo, children }: VistaShellProps) {
+export function VistaShell({ temaId, titulo, siglas, children }: VistaShellProps) {
   const tema = getTema(temaId);
   if (!tema || tema.estado !== "disponible") notFound();
 
+  const corte = ultimoCorte(getSistema(temaId)?.oms ?? []);
+
   return (
     <>
-      <ViewHeader temaName={tema.name} title={titulo} vista={titulo} />
-      <div className="canvas">{children}</div>
+      <ViewHeader
+        temaId={temaId}
+        temaName={tema.name}
+        title={titulo}
+        vista={titulo}
+        periodo={`Corte ${formatearFecha(corte)}`}
+      />
+      <div className="canvas">
+        {children}
+        {siglas && <Siglas usadas={siglas} />}
+      </div>
     </>
   );
 }

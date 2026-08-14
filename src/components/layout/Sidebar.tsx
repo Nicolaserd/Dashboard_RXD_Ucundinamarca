@@ -21,7 +21,7 @@ export function Sidebar({ temaId }: SidebarProps) {
   const vistas = [
     { id: "resumen", label: "Resumen", icon: "grid" },
     { id: "indicadores", label: "Indicadores", icon: "bars" },
-    { id: "reportes", label: "Reportes", icon: "report" },
+    { id: "responsables", label: "Responsables", icon: "users" },
     { id: "datos", label: "Datos", icon: "database" },
     { id: "seguimiento", label: "Seguimiento", icon: "activity" },
   ] as const;
@@ -51,7 +51,13 @@ export function Sidebar({ temaId }: SidebarProps) {
 
       <div className="nav-spacer" />
 
-      <Link href="/temas" className="nav-item back">
+      {/* Salto directo a la comparación entre sistemas, sin pasar por la portada. */}
+      <Link href="/consolidado" className="nav-item back">
+        <Icon name="grid" />
+        Todos los sistemas
+      </Link>
+
+      <Link href="/temas" className="nav-item back sin-borde">
         <Icon name="back" />
         Volver a temas
       </Link>

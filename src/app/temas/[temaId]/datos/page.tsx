@@ -5,7 +5,7 @@ export default async function DatosPage({ params }: VistaPageProps) {
   const { temaId } = await params;
 
   return (
-    <VistaShell temaId={temaId} titulo="Datos">
+    <VistaShell temaId={temaId} titulo="Datos" siglas={["OM", "PM"]}>
       <DatosView temaId={temaId} />
     </VistaShell>
   );

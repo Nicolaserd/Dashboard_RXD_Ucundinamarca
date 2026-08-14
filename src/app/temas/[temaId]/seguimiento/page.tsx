@@ -5,7 +5,7 @@ export default async function SeguimientoPage({ params }: VistaPageProps) {
   const { temaId } = await params;
 
   return (
-    <VistaShell temaId={temaId} titulo="Seguimiento">
+    <VistaShell temaId={temaId} titulo="Seguimiento" siglas={["OM", "PM", "pp"]}>
       <SeguimientoView temaId={temaId} />
     </VistaShell>
   );

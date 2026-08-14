@@ -5,7 +5,7 @@ export default async function IndicadoresPage({ params }: VistaPageProps) {
   const { temaId } = await params;
 
   return (
-    <VistaShell temaId={temaId} titulo="Indicadores">
+    <VistaShell temaId={temaId} titulo="Indicadores" siglas={["OM", "pp"]}>
       <IndicadoresView temaId={temaId} />
     </VistaShell>
   );

@@ -1,108 +1,235 @@
 "use client";
 
-import { useMemo, useState } from "react";
-import { getDashboardData } from "@/features/dashboard/dashboardData";
+import { useMemo } from "react";
+import Link from "next/link";
 import { DashboardShell } from "@/components/dashboard/DashboardShell";
-import { construirFiltro } from "@/components/dashboard/filtros";
+import { EstadoTag } from "@/components/dashboard/EstadoTag";
 import { ChartCard } from "@/components/charts/ChartCard";
 import { TrendLineChart } from "@/components/charts/TrendLineChart";
 import { DonutChart } from "@/components/charts/DonutChart";
+import { BarrasCategoria } from "@/components/charts/BarrasCategoria";
+import { LeyendaInteractiva } from "@/components/charts/LeyendaInteractiva";
+import { useTableroOM } from "@/features/dashboard/useTableroOM";
+import { construirKPIs } from "@/features/dashboard/kpis";
+import {
+  avanceDeOM,
+  colorEstado,
+  entregaLegible,
+  etiquetaEstado,
+  formatearFecha,
+  simboloEstado,
+} from "@/lib/om/avance";
+import {
+  avancePorVigencia,
+  distribucionPorEstado,
+  ordenarPorRezago,
+  serieAvancePorCorte,
+  ultimaObservacion,
+} from "@/lib/om/metricas";
+import { estadoDeOM } from "@/lib/om/avance";
 
+/** Cuántas OM rezagadas se listan en el panel de atención prioritaria. */
+const MAX_PRIORITARIAS = 6;
+
+/**
+ * Panorama del sistema de gestión: evolución del avance, composición por estado
+ * y por vigencia, y las OM que exigen atención.
+ *
+ * Cada gráfica filtra por su propia dimensión y responde a las selecciones de
+ * las demás a través del contexto compartido (regla dashboard §3–4).
+ */
 export function ResumenView({ temaId }: { temaId: string }) {
-  const data = getDashboardData(temaId);
-  const [periodoActivo, setPeriodoActivo] = useState("");
-  const [categoriaSeleccionada, setCategoriaSeleccionada] = useState<string | null>(null);
+  const { todas, oms, omsIgnorando, filtros, activos, controles, fijar, alternar, limpiar } =
+    useTableroOM(temaId);
 
-  // Orden cronológico ascendente: dashboardData guarda los períodos del más
-  // reciente al más antiguo (ver DatosView, que usa el mismo orden para su tabla).
-  // Memoizado: una referencia estable evita que Recharts reinicie la animación
-  // de entrada de la gráfica cada vez que cambia la selección del donut.
-  const tendencia = useMemo(
-    () => [...data.datos].reverse().map((d) => ({ periodo: d.periodo, valor: d.porcentaje })),
-    [data.datos],
+  const kpis = useMemo(() => construirKPIs(oms, todas), [oms, todas]);
+
+  const serie = useMemo(
+    () =>
+      serieAvancePorCorte(oms).map((punto) => ({
+        etiqueta: formatearFecha(punto.corte),
+        valor: punto.avance,
+        base: punto.base,
+      })),
+    [oms],
   );
 
-  // El filtro de período recorta la serie hasta el período elegido (inclusive):
-  // filtra realmente la gráfica en lugar de solo resaltar un punto.
-  const filtroPeriodo = construirFiltro("periodo", "Período", tendencia.map((t) => t.periodo));
-  const idxHasta = periodoActivo ? tendencia.findIndex((t) => t.periodo === periodoActivo) : -1;
-  const tendenciaFiltrada = idxHasta >= 0 ? tendencia.slice(0, idxHasta + 1) : tendencia;
+  // El donut filtra por estado: se calcula ignorando ese mismo filtro para no
+  // reducirse al único segmento seleccionado.
+  const porEstado = useMemo(() => distribucionPorEstado(omsIgnorando("estado")), [omsIgnorando]);
+  const porVigencia = useMemo(() => avancePorVigencia(omsIgnorando("vigencia")), [omsIgnorando]);
+
+  const prioritarias = useMemo(
+    () => ordenarPorRezago(oms.filter((om) => estadoDeOM(om) !== "cumplida")).slice(0, MAX_PRIORITARIAS),
+    [oms],
+  );
+
+  // Referencias estables: si estos arrays se recrearan en cada render, Recharts
+  // reiniciaría la animación de entrada con cada clic de selección.
+  const barrasVigencia = useMemo(
+    () =>
+      porVigencia.map((grupo) => ({
+        clave: grupo.clave,
+        etiqueta: grupo.clave,
+        valor: grupo.avance,
+        detalle: `${grupo.cumplidas} de ${grupo.total} cumplidas`,
+      })),
+    [porVigencia],
+  );
+
+  const leyendaEstados = useMemo(
+    () =>
+      porEstado.map((segmento) => ({
+        clave: segmento.clave,
+        label: segmento.name,
+        color: segmento.color,
+        valor: `${segmento.value} OM`,
+        simbolo: simboloEstado(segmento.estado),
+      })),
+    [porEstado],
+  );
+
+  const totalEstados = porEstado.reduce((suma, segmento) => suma + segmento.value, 0);
 
   return (
     <DashboardShell
-      kpis={data.kpis}
-      filtros={[filtroPeriodo]}
-      onFilterChange={(id, value) => {
-        if (id === "periodo") setPeriodoActivo(value);
-      }}
+      kpis={kpis}
+      filtros={controles}
+      valores={filtros}
+      onFilterChange={(campo, valor) => fijar(campo as never, valor)}
+      onClearAll={limpiar}
     >
       <div className="grid-2a">
         <ChartCard
-          title="Tendencia temporal"
-          sub={
-            periodoActivo
-              ? `Serie histórica · hasta ${periodoActivo}`
-              : `Serie histórica · ${tendencia[0]?.periodo} – ${tendencia[tendencia.length - 1]?.periodo}`
-          }
-          filtrada={!!periodoActivo}
+          title="Evolución del avance del portafolio"
+          sub="Avance promedio acumulado en cada corte de seguimiento · escala 0–2 expresada en %"
+          estado={serie.length === 0 ? "vacio" : "ok"}
+          filtrada={activos}
+          mensajeVacio="No existen cortes de seguimiento para los filtros seleccionados."
         >
-          <TrendLineChart data={tendenciaFiltrada} destacado={periodoActivo} />
+          <TrendLineChart
+            data={serie}
+            serie="Avance promedio"
+            ejeY="Avance (%)"
+            baseLabel="OM calificadas"
+            meta={{ valor: 100, label: "Cierre total" }}
+          />
+          <p className="chart-highlight">
+            Cada punto refleja la última calificación vigente de cada oportunidad en esa fecha, no solo lo
+            calificado ese día.
+          </p>
         </ChartCard>
 
         <ChartCard
-          title="Distribución por categoría"
-          sub="Clic en un segmento para resaltarlo"
-          filtrada={!!categoriaSeleccionada}
+          title="Composición por estado de avance"
+          sub="Clic en un segmento para filtrar todo el tablero"
+          estado={porEstado.length === 0 ? "vacio" : "ok"}
+          filtrada={Boolean(filtros.estado)}
         >
           <DonutChart
-            data={data.categories}
-            seleccionado={categoriaSeleccionada}
-            onSelect={setCategoriaSeleccionada}
+            data={porEstado}
+            seleccionado={filtros.estado || null}
+            onSelect={(clave) => alternar("estado", clave)}
+            centro={{ valor: String(totalEstados), etiqueta: "OM" }}
           />
-          {categoriaSeleccionada && (
-            <div className="filters" style={{ marginTop: 4 }}>
-              <div className="filterbar">
-                <div className="filter-chip">
-                  Categoría: <b>{categoriaSeleccionada}</b>
-                </div>
-                <button type="button" className="filter-clear" onClick={() => setCategoriaSeleccionada(null)}>
-                  Limpiar selección
-                </button>
-              </div>
-            </div>
-          )}
+          <LeyendaInteractiva
+            items={leyendaEstados}
+            seleccionado={filtros.estado || null}
+            onSelect={(clave) => alternar("estado", clave)}
+            descripcion="Filtrar por estado de avance"
+          />
         </ChartCard>
       </div>
 
       <div className="grid-2b">
-        <div className="card">
-          <div className="card-head">
-            <h3>Últimas actualizaciones</h3>
-          </div>
-          <div className="card-body">
-            {data.updates.map((upd) => (
-              <div key={upd.title} className="list-item">
-                <div className="li-title">{upd.title}</div>
-                <div className="li-meta">{upd.date}</div>
-              </div>
-            ))}
-          </div>
-        </div>
+        <ChartCard
+          title="Avance promedio por vigencia de la RXD"
+          sub="Clic en una barra para filtrar el tablero por vigencia"
+          estado={porVigencia.length === 0 ? "vacio" : "ok"}
+          filtrada={Boolean(filtros.vigencia)}
+        >
+          <BarrasCategoria
+            data={barrasVigencia}
+            seleccionado={filtros.vigencia || null}
+            onSelect={(clave) => alternar("vigencia", clave)}
+            ejeValor="Eje vertical: avance promedio (%). Eje horizontal: vigencia del ciclo de RXD."
+          />
+        </ChartCard>
 
         <div className="card">
           <div className="card-head">
-            <h3>Variación vs. periodo anterior</h3>
+            <div>
+              <h3>Oportunidades de mejora con mayor rezago</h3>
+              <div className="card-sub">Sin cerrar, ordenadas de menor a mayor avance</div>
+            </div>
+            {activos && <span className="filtered-badge">Filtrada</span>}
           </div>
-          <div className="card-body">
-            {data.variations.map((variacion) => (
-              <div key={variacion.label} className="list-item">
-                <div className="li-title">{variacion.label}</div>
-                <div className={`li-value ${variacion.type}`}>
-                  {variacion.type === "up" ? "↑" : "↓"} {variacion.value}%
-                </div>
+
+          {prioritarias.length === 0 ? (
+            <div className="estado-vacio">
+              <div className="ev-ic" aria-hidden="true">
+                ✓
               </div>
-            ))}
+              <p>
+                No hay oportunidades de mejora sin cerrar para los filtros seleccionados.
+              </p>
+            </div>
+          ) : (
+            <ul className="om-lista om-lista-compacta">
+              {prioritarias.map((om) => {
+                const estado = estadoDeOM(om);
+                const avance = avanceDeOM(om);
+                return (
+                  <li key={om.id} className="om-item">
+                    <div className="om-item-head">
+                      <span className="om-ref">
+                        {om.vigencia}
+                        {om.numero !== null ? ` · PM ${om.numero}` : ""}
+                      </span>
+                      <EstadoTag
+                        color={colorEstado(estado)}
+                        simbolo={simboloEstado(estado)}
+                        label={`${etiquetaEstado(estado)}${avance !== null ? ` · ${avance}%` : ""}`}
+                      />
+                    </div>
+                    <p className="om-titulo">{om.oportunidad}</p>
+                    <p className="om-meta">{om.areas.join(" · ")}</p>
+                  </li>
+                );
+              })}
+            </ul>
+          )}
+
+          <Link href={`/temas/${temaId}/datos`} className="card-link">
+            Ver todas las oportunidades de mejora →
+          </Link>
+        </div>
+      </div>
+
+      <div className="card">
+        <div className="card-head">
+          <div>
+            <h3>Último reporte de seguimiento</h3>
+            <div className="card-sub">
+              Observación registrada en el corte más reciente de la OM con mayor rezago
+            </div>
           </div>
+        </div>
+        <div className="card-body">
+          {prioritarias[0] ? (
+            <>
+              <p className="om-titulo">{prioritarias[0].oportunidad}</p>
+              <p className="om-meta">
+                Responsable: {prioritarias[0].responsable || "Sin registrar"} · Entrega comprometida:{" "}
+                {entregaLegible(prioritarias[0])}
+              </p>
+              <p className="om-observacion">
+                {ultimaObservacion(prioritarias[0]) || "Sin observación registrada."}
+              </p>
+            </>
+          ) : (
+            <p className="om-meta">Sin OM pendientes que reportar.</p>
+          )}
         </div>
       </div>
     </DashboardShell>

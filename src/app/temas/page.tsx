@@ -1,47 +1,72 @@
+import Link from "next/link";
 import { LogoUcundinamarca } from "@/components/brand/LogoUcundinamarca";
+import { SelloAcreditacion } from "@/components/brand/SelloAcreditacion";
+import { Icon } from "@/components/ui/Icon";
+import { PieInstitucional } from "@/components/layout/PieInstitucional";
 import { TarjetaTema } from "@/features/temas/TarjetaTema";
 import { TEMAS } from "@/features/temas/temas";
+import { getTodasLasOM, ultimoCorte } from "@/lib/om/dataset";
+import { formatearFecha } from "@/lib/om/avance";
+import { resumen } from "@/lib/om/metricas";
 
 /** Layout 1 — Portada de temas (regla layouts §3–5). */
 export default function PortadaPage() {
+  const todas = getTodasLasOM();
+  const global = resumen(todas);
+
   return (
     <>
       <header className="topbar">
         <LogoUcundinamarca variant="horizontal" tono="negro" height={80} />
         <div className="spacer" />
         <div className="top-actions">
-          <button className="icon-btn" type="button" aria-label="Ayuda">
-            ?
-          </button>
+          <SelloAcreditacion height={72} />
         </div>
       </header>
 
       <div className="hero">
-        <div className="eyebrow">Portal de análisis institucional</div>
-        <h1>Tableros de gestión de la Universidad</h1>
+        <div className="eyebrow">Revisión por la Dirección · Sistemas Integrados de Gestión</div>
+        <h1>Seguimiento a Oportunidades de Mejora</h1>
         <p>
-          Explore los tableros de indicadores por área. Cada tema reúne sus reportes, gráficas y
-          seguimiento en un espacio de trabajo dedicado, con datos actualizados por periodo académico.
+          Estado de las oportunidades de mejora derivadas de la Revisión por la Dirección en los
+          sistemas de gestión de la Universidad, con su avance por vigencia, corte de seguimiento y
+          área responsable.
         </p>
+        {/* Acción principal de la portada: la visión de conjunto va antes que
+            la elección de un sistema, así que se ofrece de entrada. */}
+        <div className="hero-acciones">
+          <Link href="/consolidado" className="btn-primario">
+            <Icon name="grid" size={17} />
+            Ver todos los sistemas
+          </Link>
+          <span className="hero-acciones-nota">
+            Compare avance, cierre y carga pendiente de los {TEMAS.length} sistemas en un solo tablero
+          </span>
+        </div>
+
         <div className="hero-meta">
           <div className="m">
+            <b>{global.total}</b>
+            <span>oportunidades de mejora</span>
+          </div>
+          <div className="m">
             <b>{TEMAS.length}</b>
-            <span>temas en el portal</span>
+            <span>sistemas de gestión</span>
           </div>
           <div className="m">
-            <b>2026-I</b>
-            <span>periodo vigente</span>
+            <b>{global.cumplidas}</b>
+            <span>cumplidas ({global.tasaCierre?.toFixed(0) ?? 0}%)</span>
           </div>
           <div className="m">
-            <b>7</b>
-            <span>sedes integradas</span>
+            <b>{formatearFecha(ultimoCorte(todas))}</b>
+            <span>último corte de seguimiento</span>
           </div>
         </div>
       </div>
 
       <div className="section-head">
-        <h2>Temas disponibles</h2>
-        <span>Seleccione un tema para abrir su espacio de trabajo</span>
+        <h2>Sistemas de gestión</h2>
+        <span>O seleccione uno para abrir su tablero de seguimiento</span>
       </div>
 
       <div className="theme-grid">
@@ -50,10 +75,7 @@ export default function PortadaPage() {
         ))}
       </div>
 
-      <footer className="portada-foot">
-        <LogoUcundinamarca variant="horizontal" tono="negro" height={80} />
-        <span>Oficina de Planeación · Datos con fines demostrativos</span>
-      </footer>
+      <PieInstitucional />
     </>
   );
 }
