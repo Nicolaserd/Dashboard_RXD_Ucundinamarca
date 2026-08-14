@@ -245,6 +245,7 @@ Las reglas son **complementarias** y aplican por separación de responsabilidade
 - [`REGLA_GENERAL_LAYOUTS_APLICACION.md`](.claude/reglas/REGLA_GENERAL_LAYOUTS_APLICACION.md) → **navegación** (portada + layout interno, menú lateral fijo, logo arriba a la derecha).
 - [`REGLA_DOCUMENTACION_Y_ACTUALIZACION.md`](.claude/reglas/REGLA_DOCUMENTACION_Y_ACTUALIZACION.md) → **documentación** (docs-as-code: README, CLAUDE.md, `docs/`, ADR, CHANGELOG; se actualiza en el mismo cambio que la origina).
 - [`REGLA_SCAFFOLDING_ORGANIZACION_POR_VISTAS.md`](.claude/reglas/REGLA_SCAFFOLDING_ORGANIZACION_POR_VISTAS.md) → **organización del código** (colocación por vista: específico dentro de la vista, general en `components/`; promover al reutilizar en una 2.ª vista).
+- [`REGLA_CONTROL_DE_VERSIONES.md`](.claude/reglas/REGLA_CONTROL_DE_VERSIONES.md) → **git** (confirmación obligatoria antes de publicar o alterar el historial, commits temáticos en español, qué se versiona y qué no).
 
 Documentación viva del proyecto: [`docs/arquitectura.md`](docs/arquitectura.md) · [`docs/datos.md`](docs/datos.md) · [`docs/componentes.md`](docs/componentes.md) · [`docs/adr/`](docs/adr/) · [`CHANGELOG.md`](CHANGELOG.md).
 
