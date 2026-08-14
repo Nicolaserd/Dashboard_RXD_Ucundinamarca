@@ -144,7 +144,7 @@ export function ResumenView({ temaId }: { temaId: string }) {
       <div className="grid-2b">
         <ChartCard
           title="Avance promedio por vigencia de la RXD"
-          sub="Clic en una barra para filtrar el tablero por vigencia"
+          sub="Ordenado de mayor a menor avance, no por año · clic en una barra para filtrar"
           estado={porVigencia.length === 0 ? "vacio" : "ok"}
           filtrada={Boolean(filtros.vigencia)}
         >

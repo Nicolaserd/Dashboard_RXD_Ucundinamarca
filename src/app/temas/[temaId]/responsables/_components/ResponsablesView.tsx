@@ -63,7 +63,7 @@ export function ResponsablesView({ temaId }: { temaId: string }) {
     >
       <ChartCard
         title={`Avance promedio por área responsable — ${MAX_AREAS_GRAFICA} áreas con mayor carga`}
-        sub="Clic en una barra para filtrar el tablero por área"
+        sub="Se eligen las de más OM y se ordenan de mayor a menor avance · clic en una barra para filtrar"
         estado={areasGrafica.length === 0 ? "vacio" : "ok"}
         filtrada={Boolean(filtros.area)}
         ancha

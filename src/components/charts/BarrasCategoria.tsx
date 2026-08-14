@@ -1,5 +1,6 @@
 "use client";
 
+import { useMemo } from "react";
 import {
   ResponsiveContainer,
   BarChart,
@@ -49,6 +50,10 @@ interface BarrasCategoriaProps {
 /**
  * Barras por categoría con clic-para-filtrar (regla dashboard §2–3, §9).
  *
+ * Las barras se ordenan **de mayor a menor valor**: es lo que permite leer el
+ * ranking sin comparar longitudes una a una. En horizontal, la mayor queda
+ * arriba; en vertical, a la izquierda.
+ *
  * La barra seleccionada se distingue por color, borde y opacidad del resto, que
  * permanece visible (§3, §8–9). Cuando hay pocas categorías se acompaña de una
  * leyenda de botones para poder filtrar con teclado (§11); con muchas, esa vía
@@ -65,9 +70,13 @@ export function BarrasCategoria({
   altura,
 }: BarrasCategoriaProps) {
   const esHorizontal = orientacion === "horizontal";
+
+  // Memoizado: recrear el array en cada render haría que Recharts reiniciara la
+  // animación de entrada con cada clic de selección.
+  const barras = useMemo(() => [...data].sort((a, b) => b.valor - a.valor), [data]);
   // Las etiquetas de categoría largas se reparten en dos líneas: la barra
   // necesita alto suficiente para no solaparlas (regla dashboard §2).
-  const alto = altura ?? (esHorizontal ? Math.max(200, data.length * 42 + 48) : 264);
+  const alto = altura ?? (esHorizontal ? Math.max(200, barras.length * 42 + 48) : 264);
 
   const ejeCategoria = esHorizontal ? (
     <YAxis
@@ -93,7 +102,7 @@ export function BarrasCategoria({
     <div className="chart-wrap">
       <ResponsiveContainer width="100%" height={alto}>
         <BarChart
-          data={data}
+          data={barras}
           layout={esHorizontal ? "vertical" : "horizontal"}
           // Margen derecho holgado en horizontal: la etiqueta «100%» se dibuja
           // al final de la barra y no debe quedar cortada (regla dashboard §2).
@@ -125,7 +134,7 @@ export function BarrasCategoria({
               if (clave) onSelect?.(clave);
             }}
           >
-            {data.map((barra) => {
+            {barras.map((barra) => {
               const activo = seleccionado === barra.clave;
               return (
                 <Cell
@@ -150,12 +159,12 @@ export function BarrasCategoria({
 
       {ejeValor && <p className="chart-eje-nota">{ejeValor}</p>}
 
-      {onSelect && data.length <= MAX_CATEGORIAS_CON_LEYENDA && (
+      {onSelect && barras.length <= MAX_CATEGORIAS_CON_LEYENDA && (
         // Sin muestra de color: todas las barras comparten un mismo tono —la
         // magnitud la da su longitud—, así que un cuadro cromático por categoría
         // insinuaría una codificación que la gráfica no hace.
         <LeyendaInteractiva
-          items={data.map((barra) => ({
+          items={barras.map((barra) => ({
             clave: barra.clave,
             label: barra.etiqueta,
             valor: `${barra.valor}${unidad}`,
