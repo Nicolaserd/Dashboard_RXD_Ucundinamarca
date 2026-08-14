@@ -1,37 +1,49 @@
 import type { ReactNode } from "react";
-import { KPIRow } from "./KPIRow";
+import { KPIRow, type KPI } from "./KPIRow";
 import { FilterBar, type FilterConfig } from "./FilterBar";
-import type { DashboardData } from "@/features/dashboard/dashboardData";
 
 interface DashboardShellProps {
-  /** Indicadores clave que abren el dashboard (regla dashboard §5). */
-  kpis: DashboardData["kpis"];
-  /** Filtros de la vista. Opcionales: no todo dashboard los necesita (§6). */
+  /** Indicadores clave que abren el tablero (regla dashboard §5). */
+  kpis: KPI[];
+  /** Controles de filtro de contexto. Opcionales: no toda vista los necesita (§6). */
   filtros?: FilterConfig[];
-  /** Sincroniza un cambio de filtro con el estado de la vista (regla dashboard §4, §6). */
+  valores?: Record<string, string>;
   onFilterChange?: (filterId: string, value: string) => void;
+  onClearAll?: () => void;
   /** Contenido propio de la vista: gráficas, tablas, listados. */
   children: ReactNode;
 }
 
 /**
- * Estructura común de todo dashboard: KPIs arriba, filtros debajo y luego el
+ * Estructura común de todo tablero: KPIs arriba, filtros debajo y luego el
  * detalle de la vista (regla dashboard §5–7).
  *
  * Evita repetir el mismo preámbulo en cada vista (DRY — CLAUDE.md §6) y
  * garantiza que el orden de lectura sea idéntico en toda la aplicación.
  *
  * @example
- * <DashboardShell kpis={data.kpis} filtros={[FILTRO_PERIODO]}>
- *   <div className="grid-2b">…</div>
+ * <DashboardShell kpis={kpis} filtros={controles} valores={filtros} onFilterChange={fijar} onClearAll={limpiar}>
+ *   <div className="grid-2a">…</div>
  * </DashboardShell>
  */
-export function DashboardShell({ kpis, filtros, onFilterChange, children }: DashboardShellProps) {
+export function DashboardShell({
+  kpis,
+  filtros,
+  valores,
+  onFilterChange,
+  onClearAll,
+  children,
+}: DashboardShellProps) {
   return (
     <>
       <KPIRow kpis={kpis} />
       {filtros && filtros.length > 0 && (
-        <FilterBar filters={filtros} onFilterChange={onFilterChange} />
+        <FilterBar
+          filters={filtros}
+          valores={valores ?? {}}
+          onChange={onFilterChange ?? (() => {})}
+          onClearAll={onClearAll ?? (() => {})}
+        />
       )}
       {children}
     </>

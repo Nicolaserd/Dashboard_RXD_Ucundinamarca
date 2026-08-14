@@ -1,52 +1,48 @@
 import type { Tema } from "@/types";
+import { SISTEMAS, ultimoCorte } from "@/lib/om/dataset";
+import { formatearFecha } from "@/lib/om/avance";
 
 /**
- * Registro (registry) de temas. Agregar un tema es añadir una entrada aquí,
- * sin modificar la arquitectura (regla scaffolding — Abierto/Cerrado).
+ * Registro (registry) de temas del portal.
+ *
+ * Cada tema es un sistema de gestión con seguimiento a sus Oportunidades de
+ * Mejora. La lista se deriva del dataset, así que incorporar un nuevo sistema
+ * es añadir su libro a `data/`, ejecutar `pnpm datos:importar` y registrar aquí
+ * su presentación — sin tocar la arquitectura (Abierto/Cerrado, CLAUDE.md §6).
  */
-export const TEMAS: Tema[] = [
-  {
-    id: "desercion-permanencia",
-    icon: "heart",
-    name: "Deserción y Permanencia",
-    desc: "Tasas de deserción, retención y factores de riesgo académico.",
-    estado: "disponible",
-    upd: "Actualizado ayer",
-  },
-  {
-    id: "bienestar-satisfaccion",
-    icon: "doc",
-    name: "Bienestar y Satisfacción",
-    desc: "Encuestas de satisfacción, servicios y cobertura de bienestar.",
-    estado: "disponible",
-    upd: "Hace 3 días",
-  },
-  {
-    id: "talento-humano",
-    icon: "briefcase",
-    name: "Talento Humano",
-    desc: "Planta docente y administrativa, dedicación y formación.",
-    estado: "disponible",
-    upd: "Hace 5 días",
-  },
-  {
-    id: "investigacion",
-    icon: "flask",
-    name: "Investigación",
-    desc: "Grupos, proyectos y productos de investigación registrados.",
-    estado: "proximamente",
-    upd: "En preparación",
-  },
-  {
-    id: "presupuesto",
-    icon: "coins",
-    name: "Presupuesto",
-    desc: "Ejecución presupuestal e indicadores financieros por vigencia.",
-    estado: "proximamente",
-    upd: "En preparación",
-  },
-];
+
+/**
+ * Alcance de cada sistema. La clave es el `id` del dataset, que es también el
+ * nombre de su logotipo en `/public/brand/sistemas/<id>.png`.
+ */
+const PRESENTACION: Record<string, string> = {
+  sgc: "Mejora continua de procesos, documentación, contratación y servicio al ciudadano.",
+  sga: "Desempeño ambiental, recursos e integración del componente ambiental en los procesos.",
+  sgsst: "Condiciones de trabajo, riesgos, personal especializado y recursos para seguridad y salud.",
+  sgsi: "Protección de la información, controles, tratamiento de datos y continuidad del servicio.",
+  sgas: "Prevención del soborno, matriz de riesgos, debida diligencia y canales de denuncia.",
+};
+
+const RESPALDO = "Seguimiento a oportunidades de mejora.";
+
+export const TEMAS: Tema[] = SISTEMAS.map((sistema) => {
+  const vigencias = [...new Set(sistema.oms.map((om) => om.vigencia))].sort();
+  const rango =
+    vigencias.length > 1
+      ? `${vigencias[0]}–${vigencias[vigencias.length - 1]}`
+      : (vigencias[0] ?? "sin vigencias");
+
+  return {
+    id: sistema.id,
+    name: sistema.nombre,
+    desc: PRESENTACION[sistema.id] ?? RESPALDO,
+    // Un sistema sin OM cargadas no tiene tablero que mostrar.
+    estado: sistema.oms.length > 0 ? "disponible" : "proximamente",
+    upd: `Último corte · ${formatearFecha(ultimoCorte(sistema.oms))}`,
+    detalle: `${sistema.sigla} · ${sistema.oms.length} OM · vigencias ${rango}`,
+  };
+});
 
 export function getTema(id: string): Tema | undefined {
-  return TEMAS.find((t) => t.id === id);
+  return TEMAS.find((tema) => tema.id === id);
 }

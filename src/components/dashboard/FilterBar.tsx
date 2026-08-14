@@ -1,88 +1,77 @@
 "use client";
 
-import { useState } from "react";
-
 export interface FilterConfig {
   id: string;
   label: string;
   options: { value: string; label: string }[];
-  defaultValue?: string;
 }
 
 interface FilterBarProps {
   filters: FilterConfig[];
-  onFilterChange?: (filterId: string, value: string) => void;
-  onClearAll?: () => void;
-}
-
-/** Estado inicial: cada filtro en su valor por defecto (o «Todos»). */
-function valoresIniciales(filters: FilterConfig[]): Record<string, string> {
-  return Object.fromEntries(filters.map((f) => [f.id, f.defaultValue ?? ""]));
+  /** Valor actual de cada filtro, indexado por `id`. Componente controlado. */
+  valores: Record<string, string>;
+  onChange: (filterId: string, value: string) => void;
+  onClearAll: () => void;
 }
 
 /**
- * Barra de filtros reutilizable para dashboards (regla dashboard §6).
+ * Barra de filtros de contexto del tablero (regla dashboard §6).
  *
- * Muestra un selector por filtro, los filtros activos como chips y la acción
- * «Limpiar filtros». Los filtros compartidos entre vistas viven en `filtros.ts`.
+ * Es un componente **controlado**: el estado vive en el contexto compartido
+ * (`FiltrosProvider`), de modo que los filtros elegidos aquí y las selecciones
+ * hechas sobre las gráficas son el mismo estado y no se duplican (§4).
+ * Muestra los filtros activos como chips y permite limpiarlos uno a uno o todos.
  */
-export function FilterBar({ filters, onFilterChange, onClearAll }: FilterBarProps) {
-  const [selectedFilters, setSelectedFilters] = useState(() => valoresIniciales(filters));
-
-  const handleChange = (filterId: string, value: string) => {
-    setSelectedFilters((prev) => ({ ...prev, [filterId]: value }));
-    onFilterChange?.(filterId, value);
-  };
-
-  const handleClear = () => {
-    const defaults = valoresIniciales(filters);
-    setSelectedFilters(defaults);
-    filters.forEach((f) => onFilterChange?.(f.id, defaults[f.id] ?? ""));
-    onClearAll?.();
-  };
-
-  const activeFilters = filters.filter((f) => selectedFilters[f.id]);
+export function FilterBar({ filters, valores, onChange, onClearAll }: FilterBarProps) {
+  const activos = filters.filter((filtro) => valores[filtro.id]);
 
   return (
     <div className="filters">
       <div className="filter-controls">
-        {filters.map((filter) => (
-          <div key={filter.id} className="filter-field">
-            <label htmlFor={`filtro-${filter.id}`}>{filter.label}</label>
+        {filters.map((filtro) => (
+          <div key={filtro.id} className="filter-field">
+            <label htmlFor={`filtro-${filtro.id}`}>{filtro.label}</label>
             <select
-              id={`filtro-${filter.id}`}
+              id={`filtro-${filtro.id}`}
               className="filter-select"
-              value={selectedFilters[filter.id] ?? ""}
-              onChange={(e) => handleChange(filter.id, e.target.value)}
+              value={valores[filtro.id] ?? ""}
+              onChange={(evento) => onChange(filtro.id, evento.target.value)}
             >
-              <option value="">Todos</option>
-              {filter.options.map((opt) => (
-                <option key={opt.value} value={opt.value}>
-                  {opt.label}
+              <option value="">Todas</option>
+              {filtro.options.map((opcion) => (
+                <option key={opcion.value} value={opcion.value}>
+                  {opcion.label}
                 </option>
               ))}
             </select>
           </div>
         ))}
 
-        {activeFilters.length > 0 && (
-          <button type="button" className="filter-clear" onClick={handleClear}>
+        {activos.length > 0 && (
+          <button type="button" className="filter-clear" onClick={onClearAll}>
             Limpiar filtros
           </button>
         )}
       </div>
 
-      {activeFilters.length > 0 && (
+      {activos.length > 0 && (
         <div>
           <div className="filter-active-label">Filtros activos:</div>
           <div className="filterbar">
-            {activeFilters.map((filter) => {
-              const value = selectedFilters[filter.id];
-              const label = filter.options.find((o) => o.value === value)?.label ?? value;
+            {activos.map((filtro) => {
+              const valor = valores[filtro.id] ?? "";
+              const etiqueta = filtro.options.find((o) => o.value === valor)?.label ?? valor;
               return (
-                <div key={filter.id} className="filter-chip">
-                  {filter.label}: <b>{label}</b>
-                </div>
+                <button
+                  key={filtro.id}
+                  type="button"
+                  className="filter-chip"
+                  onClick={() => onChange(filtro.id, "")}
+                  aria-label={`Quitar el filtro ${filtro.label}: ${etiqueta}`}
+                >
+                  {filtro.label}: <b>{etiqueta}</b>
+                  <span aria-hidden="true">✕</span>
+                </button>
               );
             })}
           </div>
