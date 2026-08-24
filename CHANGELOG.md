@@ -36,6 +36,11 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/); v
 
 - **KPI «Requieren atención»** de la cabecera de todos los tableros (`construirKPIs` y la vista
   `/consolidado`): quedan 3 indicadores en vez de 4.
+- **Columna «Lectura» de la vista Indicadores** (el semáforo ✓/!/✕ En referencia / Atención / Fuera
+  de referencia). Se quita también el cálculo que la alimentaba (`evaluarPorcentaje`,
+  `evaluarConteo`, el tipo `EstadoIndicador` y el campo `estado` de `Indicador`) y la clase CSS
+  `.estado-pill`, que quedaba sin otro uso. La tabla conserva `Valor`, `Referencia` y `Base de
+  cálculo` — el umbral de lectura sigue visible, solo no se evalúa automáticamente en un semáforo.
 
 ### Añadido
 

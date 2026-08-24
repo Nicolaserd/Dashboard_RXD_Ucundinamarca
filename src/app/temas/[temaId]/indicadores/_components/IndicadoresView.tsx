@@ -9,15 +9,7 @@ import { useTableroOM } from "@/features/dashboard/useTableroOM";
 import { construirKPIs } from "@/features/dashboard/kpis";
 import { formatearFecha } from "@/lib/om/avance";
 import { serieAvancePorCorte } from "@/lib/om/metricas";
-import { construirIndicadores, type EstadoIndicador } from "../_lib/indicadores";
-
-/** Refuerzo no cromático del estado del indicador (regla dashboard §8–9, §11). */
-const SIMBOLO: Record<EstadoIndicador, string> = { ok: "✓", caution: "!", alert: "✕" };
-const LECTURA: Record<EstadoIndicador, string> = {
-  ok: "En referencia",
-  caution: "Atención",
-  alert: "Fuera de referencia",
-};
+import { construirIndicadores } from "../_lib/indicadores";
 
 /**
  * Indicadores de gestión del seguimiento a OM, contrastados con umbrales de
@@ -91,7 +83,6 @@ export function IndicadoresView({ temaId }: { temaId: string }) {
                   <th scope="col" className="num">
                     Referencia
                   </th>
-                  <th scope="col">Lectura</th>
                   <th scope="col">Base de cálculo</th>
                 </tr>
               </thead>
@@ -103,12 +94,6 @@ export function IndicadoresView({ temaId }: { temaId: string }) {
                     </th>
                     <td className="num destacado">{indicador.valor}</td>
                     <td className="num">{indicador.referencia}</td>
-                    <td>
-                      <span className={`estado-pill ${indicador.estado}`}>
-                        <span aria-hidden="true">{SIMBOLO[indicador.estado]}</span>{" "}
-                        {LECTURA[indicador.estado]}
-                      </span>
-                    </td>
                     <td className="celda-base">{indicador.base}</td>
                   </tr>
                 ))}

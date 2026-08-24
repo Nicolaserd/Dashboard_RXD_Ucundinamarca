@@ -185,7 +185,8 @@ test.describe("Vista Indicadores", () => {
     expect(await filas.count()).toBeGreaterThan(0);
 
     await expect(tabla).toContainText("Tasa de cierre");
-    await expect(page.locator(".estado-pill").first()).toBeVisible();
+    await expect(tabla.getByRole("columnheader", { name: "Referencia" })).toBeVisible();
+    await expect(tabla.getByRole("columnheader", { name: "Base de cálculo" })).toBeVisible();
     await expect(page.locator(".nota-pie")).toContainText("umbrales de lectura");
   });
 });

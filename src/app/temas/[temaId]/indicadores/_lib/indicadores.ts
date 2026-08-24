@@ -9,8 +9,6 @@ import { resumen } from "@/lib/om/metricas";
  * §3.2). Si otra vista llegara a necesitarlo, se promueve a `src/lib/om/`.
  */
 
-export type EstadoIndicador = "ok" | "caution" | "alert";
-
 export interface Indicador {
   id: string;
   nombre: string;
@@ -18,22 +16,8 @@ export interface Indicador {
   valor: string;
   /** Umbral de lectura con el que se contrasta el valor. */
   referencia: string;
-  estado: EstadoIndicador;
   /** Población sobre la que se calcula: hace auditable el indicador. */
   base: string;
-}
-
-/** Evalúa un porcentaje contra dos umbrales descendentes. */
-function evaluarPorcentaje(valor: number | null, bueno: number, aceptable: number): EstadoIndicador {
-  if (valor === null) return "caution";
-  if (valor >= bueno) return "ok";
-  return valor >= aceptable ? "caution" : "alert";
-}
-
-/** Evalúa un conteo que idealmente debe ser cero. */
-function evaluarConteo(valor: number, tolerancia: number): EstadoIndicador {
-  if (valor === 0) return "ok";
-  return valor <= tolerancia ? "caution" : "alert";
 }
 
 /**
@@ -65,7 +49,6 @@ export function construirIndicadores(oms: OportunidadMejora[]): Indicador[] {
       nombre: "Tasa de cierre de oportunidades de mejora",
       valor: formatearPorcentaje(datos.tasaCierre, 1),
       referencia: "≥ 80 %",
-      estado: evaluarPorcentaje(datos.tasaCierre, 80, 60),
       base: `${datos.cumplidas} cumplidas de ${total}`,
     },
     {
@@ -73,7 +56,6 @@ export function construirIndicadores(oms: OportunidadMejora[]): Indicador[] {
       nombre: "Avance promedio del portafolio",
       valor: formatearPorcentaje(datos.avancePromedio, 1),
       referencia: "≥ 80 %",
-      estado: evaluarPorcentaje(datos.avancePromedio, 80, 60),
       base: `${total} OM (una OM nunca calificada promedia como 0 %)`,
     },
     {
@@ -81,7 +63,6 @@ export function construirIndicadores(oms: OportunidadMejora[]): Indicador[] {
       nombre: "Cobertura de seguimiento",
       valor: formatearPorcentaje(cobertura, 1),
       referencia: "100 %",
-      estado: evaluarPorcentaje(cobertura, 100, 90),
       base: `${conSeguimiento} de ${total} con al menos un corte calificado`,
     },
     {
@@ -89,7 +70,6 @@ export function construirIndicadores(oms: OportunidadMejora[]): Indicador[] {
       nombre: "Oportunidades sin avance registrado",
       valor: String(datos.sinAvance),
       referencia: "0",
-      estado: evaluarConteo(datos.sinAvance, 2),
       base: "Calificación vigente igual a 0 en la escala institucional (incluye las nunca calificadas)",
     },
     {
@@ -97,7 +77,6 @@ export function construirIndicadores(oms: OportunidadMejora[]): Indicador[] {
       nombre: "Entrega comprometida vencida y sin cierre",
       valor: String(datos.vencidas),
       referencia: "0",
-      estado: evaluarConteo(datos.vencidas, 2),
       base:
         conFechaEvaluable > 0
           ? `${conFechaEvaluable} OM con fecha evaluable · ${datos.sinFechaEvaluable} con compromiso en texto libre`
@@ -108,7 +87,6 @@ export function construirIndicadores(oms: OportunidadMejora[]): Indicador[] {
       nombre: "Oportunidades de vigencias anteriores aún sin cerrar",
       valor: String(heredadas),
       referencia: "0",
-      estado: evaluarConteo(heredadas, 3),
       base: vigenciaActual
         ? `Vigencias anteriores a ${vigenciaActual}`
         : "Sin vigencias registradas",
@@ -118,7 +96,6 @@ export function construirIndicadores(oms: OportunidadMejora[]): Indicador[] {
       nombre: "Cortes de seguimiento registrados",
       valor: String(datos.cortes.length),
       referencia: "Informativo",
-      estado: "ok",
       base: datos.cortes.length > 0 ? `Del ${datos.cortes[0]} al ${datos.ultimoCorte}` : "Sin cortes",
     },
   ];
