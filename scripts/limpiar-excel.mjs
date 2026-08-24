@@ -110,15 +110,22 @@ function agruparEnOM(filas) {
 
     const oportunidad = limpiar(fila[3]);
     const responsable = limpiar(fila[2]);
+    const entregable = limpiar(fila[4]);
     if (!oportunidad && !responsable) continue;
 
     const previo = grupos[grupos.length - 1];
     const oportunidadPrevia = previo ? limpiar(previo[0][3]) : "";
+    const entregablePrevio = previo ? limpiar(previo[0][4]) : "";
+    // Un mismo `PM N°` puede repartir su seguimiento entre varios entregables
+    // propios (SGA 2024): cada fila trae su propio ENTREGABLE, no un
+    // fragmento de celda combinada. Solo se consideran continuación de la
+    // misma OM cuando ni la oportunidad ni el entregable se contradicen.
     const continua =
       previo &&
       numero !== "" &&
       limpiar(previo[0][0]) === numero &&
-      (oportunidad === "" || oportunidadPrevia === "" || oportunidadPrevia === oportunidad);
+      (oportunidad === "" || oportunidadPrevia === "" || oportunidadPrevia === oportunidad) &&
+      (entregable === "" || entregablePrevio === "" || entregablePrevio === entregable);
 
     if (continua) previo.push(fila);
     else grupos.push([fila]);

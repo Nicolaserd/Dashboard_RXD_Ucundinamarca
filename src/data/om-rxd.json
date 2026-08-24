@@ -1,5 +1,5 @@
 {
- "generadoEn": "2026-08-14",
+ "generadoEn": "2026-08-24",
  "escalaClasificacion": [
   0,
   0.5,
@@ -6026,7 +6026,7 @@
       "Gestión Ambiental"
      ],
      "oportunidad": "Establecer acuerdos de colaboración con partes interesadas especializados en cambio climático.",
-     "entregable": "Actas/ evidencias de reunión. Acuerdos interinstitucionales.",
+     "entregable": "Actas/ evidencias de reunión.",
      "seguimientos": [
       {
        "corte": "2025-04-30",
@@ -6046,7 +6046,57 @@
        "corte": "2025-09-30",
        "corteTexto": "2025-09-30",
        "funcionario": "JOAN IMAYINNE GALVIS MORENO",
-       "observacion": "Se identifican correos en donde se invita a participar en las jonadas de sensibilizacion, pero no se detalla la participacion en las mismas en actas o evidencias de la reunion. Anexo 17 Se realiza participacion por parte del grupo del Sistema de Gestion Ambiental al voluntario Ambiental de la CAR, pero no se demuestra una actividad realizada en dicho voluntariado. Anexo 18",
+       "observacion": "Se identifican correos en donde se invita a participar en las jonadas de sensibilizacion, pero no se detalla la participacion en las mismas en actas o evidencias de la reunion. Anexo 17",
+       "clasificacion": 1
+      },
+      {
+       "corte": "2025-12-30",
+       "corteTexto": "2025-12-30",
+       "funcionario": "JOAN IMAYINNE GALVIS MORENO",
+       "observacion": "Se realiza participacion en actividades de cambio climatica con la Gobernacion de Cundinamarca la cual tuvo tres sesiones diferentes, ademas se realiza voluntariado con la corporacion utonoma regional CAR.",
+       "clasificacion": 2
+      },
+      {
+       "corte": "2026-06-30",
+       "corteTexto": "2026-06-30",
+       "funcionario": "JOAN IMAYINNE GALVIS MORENO",
+       "observacion": "Actividad cumplida",
+       "clasificacion": 2
+      }
+     ]
+    },
+    {
+     "id": "sga-2024-3-sn2y0blt",
+     "vigencia": "2024",
+     "numero": 3,
+     "fechaEntrega": "2025-12-30",
+     "fechaEntregaTexto": "46021",
+     "responsable": "SGA",
+     "areas": [
+      "Gestión Ambiental"
+     ],
+     "oportunidad": "Establecer acuerdos de colaboración con partes interesadas especializados en cambio climático.",
+     "entregable": "Acuerdos interinstitucionales.",
+     "seguimientos": [
+      {
+       "corte": "2025-04-30",
+       "corteTexto": "2025-04-30",
+       "funcionario": "DANIEL EDUARDO SOTO BERNAL",
+       "observacion": "",
+       "clasificacion": 0
+      },
+      {
+       "corte": "2025-06-30",
+       "corteTexto": "2025-06-30",
+       "funcionario": "DANIEL EDUARDO SOTO BERNAL",
+       "observacion": "",
+       "clasificacion": 0
+      },
+      {
+       "corte": "2025-09-30",
+       "corteTexto": "2025-09-30",
+       "funcionario": "JOAN IMAYINNE GALVIS MORENO",
+       "observacion": "Se realiza participacion por parte del grupo del Sistema de Gestion Ambiental al voluntario Ambiental de la CAR, pero no se demuestra una actividad realizada en dicho voluntariado. Anexo 18",
        "clasificacion": 1
       },
       {
@@ -6120,13 +6170,13 @@
      "vigencia": "2024",
      "numero": 5,
      "fechaEntrega": "2025-06-30",
-     "fechaEntregaTexto": "45838 46021",
-     "responsable": "SGA- SGA Proveedor externo",
+     "fechaEntregaTexto": "45838",
+     "responsable": "SGA-",
      "areas": [
       "Gestión Ambiental"
      ],
      "oportunidad": "Direccionar la medición de huella de carbono y su verificación al SGA.",
-     "entregable": "Inventario de emisiones 2024. Calculo de huella de CO2 2024. Resultados de verificación de la huella.",
+     "entregable": "Inventario de emisiones 2024.",
      "seguimientos": [
       {
        "corte": "2025-04-30",
@@ -6139,14 +6189,114 @@
        "corte": "2025-06-30",
        "corteTexto": "2025-06-30",
        "funcionario": "DANIEL EDUARDO SOTO BERNAL",
-       "observacion": "Se anexa diapositivas de medición de huella de Carbono 2023. Anexo 11. y Se realiza la solicitud del servicio a Fenalco Solidario par medición de vigencia 2024. El Sistema de Gestión Ambiental anexa solicitud del servicio de verificación de huella a ICONTEC. Anexo 12, presenta avance a esta actividad.",
+       "observacion": "Se anexa diapositivas de medición de huella de Carbono 2023. Anexo 11. y Se realiza la solicitud del servicio a Fenalco Solidario par medición de vigencia 2024.",
        "clasificacion": 1
       },
       {
        "corte": "2025-09-30",
        "corteTexto": "2025-09-30",
        "funcionario": "JOAN IMAYINNE GALVIS MORENO",
-       "observacion": "Se recibe Informe de medición de huella de Carbono 2023. Anexo 11. y Se realiza la solicitud del servicio a Fenalco Solidario par medición de vigencia 2024. Pero hace falta la respuesta de la solicitud . Se realiza la solicitud del servicio de verificación de huella a ICONTEC. Anexo 12, se espera la respuesta emitida por ICONTEC En proceso de contratación. Concepto tecnico ICONTEC. Anexo 19, se en…",
+       "observacion": "Se recibe Informe de medición de huella de Carbono 2023. Anexo 11. y Se realiza la solicitud del servicio a Fenalco Solidario par medición de vigencia 2024. Pero hace falta la respuesta de la solicitud .",
+       "clasificacion": 1
+      },
+      {
+       "corte": "2025-12-30",
+       "corteTexto": "2025-12-30",
+       "funcionario": "JOAN IMAYINNE GALVIS MORENO",
+       "observacion": "Se envia informe de huella de carbono en la cual se detalla NVENTARIO CORPORATIVO DE EMISIONES DE GASES DE EFECTO INVERNADERO - 2024, en donde se evidencia 6 no conformidades de los cuales se evidencian los planes de mejoramiento cargados en plataforma.",
+       "clasificacion": 2
+      },
+      {
+       "corte": "2026-06-30",
+       "corteTexto": "2026-06-30",
+       "funcionario": "JOAN IMAYINNE GALVIS MORENO",
+       "observacion": "Actividad cumplida",
+       "clasificacion": 2
+      }
+     ]
+    },
+    {
+     "id": "sga-2024-5-sn1ip8sv",
+     "vigencia": "2024",
+     "numero": 5,
+     "fechaEntrega": "2025-06-30",
+     "fechaEntregaTexto": "45838",
+     "responsable": "SGA Proveedor externo",
+     "areas": [
+      "Gestión Ambiental"
+     ],
+     "oportunidad": "Direccionar la medición de huella de carbono y su verificación al SGA.",
+     "entregable": "Calculo de huella de CO2 2024.",
+     "seguimientos": [
+      {
+       "corte": "2025-04-30",
+       "corteTexto": "2025-04-30",
+       "funcionario": "DANIEL EDUARDO SOTO BERNAL",
+       "observacion": "",
+       "clasificacion": 0
+      },
+      {
+       "corte": "2025-06-30",
+       "corteTexto": "2025-06-30",
+       "funcionario": "DANIEL EDUARDO SOTO BERNAL",
+       "observacion": "El Sistema de Gestión Ambiental anexa solicitud del servicio de verificación de huella a ICONTEC. Anexo 12, presenta avance a esta actividad.",
+       "clasificacion": 1
+      },
+      {
+       "corte": "2025-09-30",
+       "corteTexto": "2025-09-30",
+       "funcionario": "JOAN IMAYINNE GALVIS MORENO",
+       "observacion": "Se realiza la solicitud del servicio de verificación de huella a ICONTEC. Anexo 12, se espera la respuesta emitida por ICONTEC",
+       "clasificacion": 1
+      },
+      {
+       "corte": "2025-12-30",
+       "corteTexto": "2025-12-30",
+       "funcionario": "JOAN IMAYINNE GALVIS MORENO",
+       "observacion": "Se envia informe de huella de carbono en la cual se detalla NVENTARIO CORPORATIVO DE EMISIONES DE GASES DE EFECTO INVERNADERO - 2024, en donde se evidencia 6 no conformidades de los cuales se evidencian los planes de mejoramiento cargados en plataforma.",
+       "clasificacion": 2
+      },
+      {
+       "corte": "2026-06-30",
+       "corteTexto": "2026-06-30",
+       "funcionario": "JOAN IMAYINNE GALVIS MORENO",
+       "observacion": "Actividad cumplida",
+       "clasificacion": 2
+      }
+     ]
+    },
+    {
+     "id": "sga-2024-5-sn164bwd",
+     "vigencia": "2024",
+     "numero": 5,
+     "fechaEntrega": "2025-12-30",
+     "fechaEntregaTexto": "46021",
+     "responsable": "SGA Proveedor externo",
+     "areas": [
+      "Gestión Ambiental"
+     ],
+     "oportunidad": "Direccionar la medición de huella de carbono y su verificación al SGA.",
+     "entregable": "Resultados de verificación de la huella.",
+     "seguimientos": [
+      {
+       "corte": "2025-04-30",
+       "corteTexto": "2025-04-30",
+       "funcionario": "DANIEL EDUARDO SOTO BERNAL",
+       "observacion": "",
+       "clasificacion": 0
+      },
+      {
+       "corte": "2025-06-30",
+       "corteTexto": "2025-06-30",
+       "funcionario": "DANIEL EDUARDO SOTO BERNAL",
+       "observacion": "",
+       "clasificacion": 0
+      },
+      {
+       "corte": "2025-09-30",
+       "corteTexto": "2025-09-30",
+       "funcionario": "JOAN IMAYINNE GALVIS MORENO",
+       "observacion": "En proceso de contratación. Concepto tecnico ICONTEC. Anexo 19, se encuentran en proceso de ABS",
        "clasificacion": 1
       },
       {
@@ -6170,13 +6320,13 @@
      "vigencia": "2024",
      "numero": 6,
      "fechaEntrega": "2025-03-31",
-     "fechaEntregaTexto": "45747 45748",
+     "fechaEntregaTexto": "45747",
      "responsable": "SGA",
      "areas": [
       "Gestión Ambiental"
      ],
      "oportunidad": "Actualizar equipos existentes para mejorar la precisión y confiabilidad de las mediciones. (eficiencia de paneles solares, medición de aguas lluvias, medición de aguas de punto de captación).",
-     "entregable": "Evaluación de los equipos actuales y su rendimiento. Identificación de mejoras tecnológicas y nuevas herramientas de medición.",
+     "entregable": "Evaluación de los equipos actuales y su rendimiento.",
      "seguimientos": [
       {
        "corte": "2025-04-30",
@@ -6196,14 +6346,64 @@
        "corte": "2025-09-30",
        "corteTexto": "2025-09-30",
        "funcionario": "JOAN IMAYINNE GALVIS MORENO",
-       "observacion": "Se realiza en la extension Facatativa y su granja el levantamiento de los inventarios asociados a los equipos de ahorro y uso eficiente de agua y de energía. Se adjuntan inventarios, pero el entregable es la evaluacion de los equipos Se realiza el levantanmiento de la informacion relaiconada con infraestructura verde en cada una de las unidades regionales Anexo 20. Falta las nuevas herramientas de…",
+       "observacion": "Se realiza en la extension Facatativa y su granja el levantamiento de los inventarios asociados a los equipos de ahorro y uso eficiente de agua y de energía. Se adjuntan inventarios, pero el entregable es la evaluacion de los equipos",
        "clasificacion": 1
       },
       {
        "corte": "2025-12-30",
        "corteTexto": "2025-12-30",
        "funcionario": "JOAN IMAYINNE GALVIS MORENO",
-       "observacion": "Se identifica POWER BI en donde se imparte el consumo de energia, agua losaprovechables y no desde la vigencia 2022 identificando variables tanto positivas como negativas detallando que se manejan seguimientos y auditorias Se evidencia que la Universidad cuenta con una infraestructura verde consolidada en sus sedes, seccionales y extensiones; sin embargo, se identifica una oportunidad de mejora re…",
+       "observacion": "Se identifica POWER BI en donde se imparte el consumo de energia, agua losaprovechables y no desde la vigencia 2022 identificando variables tanto positivas como negativas detallando que se manejan seguimientos y auditorias",
+       "clasificacion": 2
+      },
+      {
+       "corte": "2026-06-30",
+       "corteTexto": "2026-06-30",
+       "funcionario": "JOAN IMAYINNE GALVIS MORENO",
+       "observacion": "Actividad cumplida",
+       "clasificacion": 2
+      }
+     ]
+    },
+    {
+     "id": "sga-2024-6-snvuu6j0",
+     "vigencia": "2024",
+     "numero": 6,
+     "fechaEntrega": "2025-04-01",
+     "fechaEntregaTexto": "45748",
+     "responsable": "SGA",
+     "areas": [
+      "Gestión Ambiental"
+     ],
+     "oportunidad": "Actualizar equipos existentes para mejorar la precisión y confiabilidad de las mediciones. (eficiencia de paneles solares, medición de aguas lluvias, medición de aguas de punto de captación).",
+     "entregable": "Identificación de mejoras tecnológicas y nuevas herramientas de medición.",
+     "seguimientos": [
+      {
+       "corte": "2025-04-30",
+       "corteTexto": "2025-04-30",
+       "funcionario": "DANIEL EDUARDO SOTO BERNAL",
+       "observacion": "",
+       "clasificacion": 0
+      },
+      {
+       "corte": "2025-06-30",
+       "corteTexto": "2025-06-30",
+       "funcionario": "DANIEL EDUARDO SOTO BERNAL",
+       "observacion": "",
+       "clasificacion": 0
+      },
+      {
+       "corte": "2025-09-30",
+       "corteTexto": "2025-09-30",
+       "funcionario": "JOAN IMAYINNE GALVIS MORENO",
+       "observacion": "Se realiza el levantanmiento de la informacion relaiconada con infraestructura verde en cada una de las unidades regionales Anexo 20. Falta las nuevas herramientas de medicion",
+       "clasificacion": 1
+      },
+      {
+       "corte": "2025-12-30",
+       "corteTexto": "2025-12-30",
+       "funcionario": "JOAN IMAYINNE GALVIS MORENO",
+       "observacion": "Se evidencia que la Universidad cuenta con una infraestructura verde consolidada en sus sedes, seccionales y extensiones; sin embargo, se identifica una oportunidad de mejora relacionada con la implementación de herramientas de monitoreo ambiental inteligente, dado que gran parte de la información se gestiona de manera descriptiva y estimativa. La incorporación de tecnologías como IoT, SIG y siste…",
        "clasificacion": 2
       },
       {
@@ -6220,14 +6420,14 @@
      "vigencia": "2024",
      "numero": 7,
      "fechaEntrega": "2025-03-31",
-     "fechaEntregaTexto": "45747 45838 45930 46021",
+     "fechaEntregaTexto": "45747",
      "responsable": "SGA Bienestar institucional",
      "areas": [
       "Gestión Ambiental",
       "Interacción Social y Bienestar"
      ],
      "oportunidad": "Fortalecimiento con el Proceso de Bienestar Universitario para abarcar la población estudiantil.",
-     "entregable": "Informe/matriz Revisión de los programas y actividades de bienestar existentes. Cronograma de articulación con Bienestar. Listas de asistencia, registro fotográfico. Informe resultados de participación.",
+     "entregable": "Informe/matriz Revisión de los programas y actividades de bienestar existentes.",
      "seguimientos": [
       {
        "corte": "2025-04-30",
@@ -6240,7 +6440,7 @@
        "corte": "2025-06-30",
        "corteTexto": "2025-06-30",
        "funcionario": "DANIEL EDUARDO SOTO BERNAL",
-       "observacion": "Se realiza la revisión del CAC anidado en el modulo de la plataforma de bienestar institucional. Se tiene reunión con Aula Virtual para formular el diseño del curso de bienvenida a estudiantes sobre el SGA. Se Adjunta correo electrónico con credenciales temporales de acceso y se inicia con la producción del Storyboard para realizar la solicitud de diseño. Anexo 2. El Sistema de Gestión Ambiental a…",
+       "observacion": "Se realiza la revisión del CAC anidado en el modulo de la plataforma de bienestar institucional. Se tiene reunión con Aula Virtual para formular el diseño del curso de bienvenida a estudiantes sobre el SGA. Se Adjunta correo electrónico con credenciales temporales de acceso y se inicia con la producción del Storyboard para realizar la solicitud de diseño. Anexo 2.",
        "clasificacion": 1
       },
       {
@@ -6267,17 +6467,170 @@
      ]
     },
     {
+     "id": "sga-2024-7-sna17bss",
+     "vigencia": "2024",
+     "numero": 7,
+     "fechaEntrega": "2025-06-30",
+     "fechaEntregaTexto": "45838",
+     "responsable": "SGA Bienestar institucional",
+     "areas": [
+      "Gestión Ambiental",
+      "Interacción Social y Bienestar"
+     ],
+     "oportunidad": "Fortalecimiento con el Proceso de Bienestar Universitario para abarcar la población estudiantil.",
+     "entregable": "Cronograma de articulación con Bienestar.",
+     "seguimientos": [
+      {
+       "corte": "2025-04-30",
+       "corteTexto": "2025-04-30",
+       "funcionario": "DANIEL EDUARDO SOTO BERNAL",
+       "observacion": "",
+       "clasificacion": 0
+      },
+      {
+       "corte": "2025-06-30",
+       "corteTexto": "2025-06-30",
+       "funcionario": "DANIEL EDUARDO SOTO BERNAL",
+       "observacion": "El Sistema de Gestión Ambiental anexa envío de Story Board para inclusión del contenido del SGA en el módulo de bienvenida de Bienestar Universitario. Anexo 13, no se evidencia cronograma de articulación.",
+       "clasificacion": 1
+      },
+      {
+       "corte": "2025-09-30",
+       "corteTexto": "2025-09-30",
+       "funcionario": "JOAN IMAYINNE GALVIS MORENO",
+       "observacion": "El Sistema de Gestión Ambiental anexa envío de Story Board para inclusión del contenido del SGA en el módulo de bienvenida de Bienestar Universitario. Anexo 13, no se evidencia cronograma de articulación.",
+       "clasificacion": 1
+      },
+      {
+       "corte": "2025-12-30",
+       "corteTexto": "2025-12-30",
+       "funcionario": "JOAN IMAYINNE GALVIS MORENO",
+       "observacion": "Se evidencia correo electonico remitido a Bienestar Universitario esperando respuesta.",
+       "clasificacion": 1
+      },
+      {
+       "corte": "2026-06-30",
+       "corteTexto": "2026-06-30",
+       "funcionario": "JOAN IMAYINNE GALVIS MORENO",
+       "observacion": "Se evidencia correo electonico remitido a Bienestar Universitario esperando respuesta.",
+       "clasificacion": 1
+      }
+     ]
+    },
+    {
+     "id": "sga-2024-7-sn18hcag",
+     "vigencia": "2024",
+     "numero": 7,
+     "fechaEntrega": "2025-09-30",
+     "fechaEntregaTexto": "45930",
+     "responsable": "SGA Bienestar institucional",
+     "areas": [
+      "Gestión Ambiental",
+      "Interacción Social y Bienestar"
+     ],
+     "oportunidad": "Fortalecimiento con el Proceso de Bienestar Universitario para abarcar la población estudiantil.",
+     "entregable": "Listas de asistencia, registro fotográfico.",
+     "seguimientos": [
+      {
+       "corte": "2025-04-30",
+       "corteTexto": "2025-04-30",
+       "funcionario": "DANIEL EDUARDO SOTO BERNAL",
+       "observacion": "",
+       "clasificacion": 0
+      },
+      {
+       "corte": "2025-06-30",
+       "corteTexto": "2025-06-30",
+       "funcionario": "DANIEL EDUARDO SOTO BERNAL",
+       "observacion": "",
+       "clasificacion": 0
+      },
+      {
+       "corte": "2025-09-30",
+       "corteTexto": "2025-09-30",
+       "funcionario": "JOAN IMAYINNE GALVIS MORENO",
+       "observacion": "De acuerdp a lo remitido por el sistema de gestion ambiental, se identifica correos para realizar el formalecimiento pero no se evidencia la accion realizada",
+       "clasificacion": 1
+      },
+      {
+       "corte": "2025-12-30",
+       "corteTexto": "2025-12-30",
+       "funcionario": "JOAN IMAYINNE GALVIS MORENO",
+       "observacion": "Se evidencia correo electonico remitido a Bienestar Universitario esperando respuesta.",
+       "clasificacion": 1
+      },
+      {
+       "corte": "2026-06-30",
+       "corteTexto": "2026-06-30",
+       "funcionario": "JOAN IMAYINNE GALVIS MORENO",
+       "observacion": "Se evidencia correo electonico remitido a Bienestar Universitario esperando respuesta.",
+       "clasificacion": 1
+      }
+     ]
+    },
+    {
+     "id": "sga-2024-7-snhug77z",
+     "vigencia": "2024",
+     "numero": 7,
+     "fechaEntrega": "2025-12-30",
+     "fechaEntregaTexto": "46021",
+     "responsable": "SGA Bienestar institucional",
+     "areas": [
+      "Gestión Ambiental",
+      "Interacción Social y Bienestar"
+     ],
+     "oportunidad": "Fortalecimiento con el Proceso de Bienestar Universitario para abarcar la población estudiantil.",
+     "entregable": "Informe resultados de participación.",
+     "seguimientos": [
+      {
+       "corte": "2025-04-30",
+       "corteTexto": "2025-04-30",
+       "funcionario": "DANIEL EDUARDO SOTO BERNAL",
+       "observacion": "",
+       "clasificacion": 0
+      },
+      {
+       "corte": "2025-06-30",
+       "corteTexto": "2025-06-30",
+       "funcionario": "DANIEL EDUARDO SOTO BERNAL",
+       "observacion": "",
+       "clasificacion": 0
+      },
+      {
+       "corte": "2025-09-30",
+       "corteTexto": "2025-09-30",
+       "funcionario": "JOAN IMAYINNE GALVIS MORENO",
+       "observacion": "",
+       "clasificacion": 0
+      },
+      {
+       "corte": "2025-12-30",
+       "corteTexto": "2025-12-30",
+       "funcionario": "JOAN IMAYINNE GALVIS MORENO",
+       "observacion": "Se evidencia correo electonico remitido a Bienestar Universitario esperando respuesta.",
+       "clasificacion": 0
+      },
+      {
+       "corte": "2026-06-30",
+       "corteTexto": "2026-06-30",
+       "funcionario": "JOAN IMAYINNE GALVIS MORENO",
+       "observacion": "Se evidencia correo electonico remitido a Bienestar Universitario esperando respuesta.",
+       "clasificacion": 0
+      }
+     ]
+    },
+    {
      "id": "sga-2024-8",
      "vigencia": "2024",
      "numero": 8,
      "fechaEntrega": "2025-03-31",
-     "fechaEntregaTexto": "45747 45838 45930 46021",
+     "fechaEntregaTexto": "45747",
      "responsable": "SGA.",
      "areas": [
       "Gestión Ambiental"
      ],
      "oportunidad": "Formación y talleres en Percepción ambiental y Cambio Climático.",
-     "entregable": "Informe / Matriz de id necesidades de formación. Talleres ambientales. Listas de asistencia, registro fotográfico. Informe resultados de evaluación de actividad.",
+     "entregable": "Informe / Matriz de id necesidades de formación.",
      "seguimientos": [
       {
        "corte": "2025-04-30",
@@ -6290,7 +6643,7 @@
        "corte": "2025-06-30",
        "corteTexto": "2025-06-30",
        "funcionario": "DANIEL EDUARDO SOTO BERNAL",
-       "observacion": "Se realiza a través de apoyo con pasante del programa de Ing. Ambiental de la Seccional Girardot, el desarrollo del material para la encuesta sobre necesidades de formación sobre Cambio Climático con aplicación institucional . Anexo 3. De igual forma se solicita el enlace en el micrositio del SGA de los cursos de formación gratuita de Naciones Unidas. Anexo 4. El Sistema de Gestión Ambiental anexa…",
+       "observacion": "Se realiza a través de apoyo con pasante del programa de Ing. Ambiental de la Seccional Girardot, el desarrollo del material para la encuesta sobre necesidades de formación sobre Cambio Climático con aplicación institucional . Anexo 3. De igual forma se solicita el enlace en el micrositio del SGA de los cursos de formación gratuita de Naciones Unidas. Anexo 4.",
        "clasificacion": 1
       },
       {
@@ -6304,15 +6657,165 @@
        "corte": "2025-12-30",
        "corteTexto": "2025-12-30",
        "funcionario": "JOAN IMAYINNE GALVIS MORENO",
-       "observacion": "Se sugiere realozar un informe mas detallado de lo evidenciado actualmente para tener completitud de incormaicon Actividad cumplida",
+       "observacion": "Se sugiere realozar un informe mas detallado de lo evidenciado actualmente para tener completitud de incormaicon",
        "clasificacion": 1
       },
       {
        "corte": "2026-06-30",
        "corteTexto": "2026-06-30",
        "funcionario": "JOAN IMAYINNE GALVIS MORENO",
-       "observacion": "Actividad cumplida Se sugiere realozar un informe mas detallado de lo evidenciado actualmente para tener completitud de incormaicon",
+       "observacion": "Actividad cumplida",
        "clasificacion": 2
+      }
+     ]
+    },
+    {
+     "id": "sga-2024-8-sn1nvofr",
+     "vigencia": "2024",
+     "numero": 8,
+     "fechaEntrega": "2025-06-30",
+     "fechaEntregaTexto": "45838",
+     "responsable": "SGA.",
+     "areas": [
+      "Gestión Ambiental"
+     ],
+     "oportunidad": "Formación y talleres en Percepción ambiental y Cambio Climático.",
+     "entregable": "Talleres ambientales.",
+     "seguimientos": [
+      {
+       "corte": "2025-04-30",
+       "corteTexto": "2025-04-30",
+       "funcionario": "DANIEL EDUARDO SOTO BERNAL",
+       "observacion": "",
+       "clasificacion": 0
+      },
+      {
+       "corte": "2025-06-30",
+       "corteTexto": "2025-06-30",
+       "funcionario": "DANIEL EDUARDO SOTO BERNAL",
+       "observacion": "El Sistema de Gestión Ambiental anexa documento PDF donde evidencia …”se realiza ajuste del contenido de las inducciones incluyendo la información relacionada con Cambio climático, y se articula a través del micrositio formación externa y gratuita sobre cambio climático. Anexo 14.",
+       "clasificacion": 2
+      },
+      {
+       "corte": "2025-09-30",
+       "corteTexto": "2025-09-30",
+       "funcionario": "JOAN IMAYINNE GALVIS MORENO",
+       "observacion": "Actividad cumplida",
+       "clasificacion": 2
+      },
+      {
+       "corte": "2025-12-30",
+       "corteTexto": "2025-12-30",
+       "funcionario": "JOAN IMAYINNE GALVIS MORENO",
+       "observacion": "Actividad cumplida",
+       "clasificacion": 2
+      },
+      {
+       "corte": "2026-06-30",
+       "corteTexto": "2026-06-30",
+       "funcionario": "JOAN IMAYINNE GALVIS MORENO",
+       "observacion": "Actividad cumplida",
+       "clasificacion": 2
+      }
+     ]
+    },
+    {
+     "id": "sga-2024-8-snf8z6x0",
+     "vigencia": "2024",
+     "numero": 8,
+     "fechaEntrega": "2025-09-30",
+     "fechaEntregaTexto": "45930",
+     "responsable": "SGA.",
+     "areas": [
+      "Gestión Ambiental"
+     ],
+     "oportunidad": "Formación y talleres en Percepción ambiental y Cambio Climático.",
+     "entregable": "Listas de asistencia, registro fotográfico.",
+     "seguimientos": [
+      {
+       "corte": "2025-04-30",
+       "corteTexto": "2025-04-30",
+       "funcionario": "DANIEL EDUARDO SOTO BERNAL",
+       "observacion": "",
+       "clasificacion": 0
+      },
+      {
+       "corte": "2025-06-30",
+       "corteTexto": "2025-06-30",
+       "funcionario": "DANIEL EDUARDO SOTO BERNAL",
+       "observacion": "",
+       "clasificacion": 0
+      },
+      {
+       "corte": "2025-09-30",
+       "corteTexto": "2025-09-30",
+       "funcionario": "JOAN IMAYINNE GALVIS MORENO",
+       "observacion": "Se identifica programacion en cronograma, sin embargo aun no se identifica gestion de la misma,Anexo 22 sin embago en el Anexo 3 se identifica lista de asistencia, se insta al proceso a complementar mejor las evidencias según las actividades.",
+       "clasificacion": 1
+      },
+      {
+       "corte": "2025-12-30",
+       "corteTexto": "2025-12-30",
+       "funcionario": "JOAN IMAYINNE GALVIS MORENO",
+       "observacion": "Se sugiere realozar un informe mas detallado de lo evidenciado actualmente para tener completitud de incormaicon",
+       "clasificacion": 1
+      },
+      {
+       "corte": "2026-06-30",
+       "corteTexto": "2026-06-30",
+       "funcionario": "JOAN IMAYINNE GALVIS MORENO",
+       "observacion": "Actividad cumplida",
+       "clasificacion": 2
+      }
+     ]
+    },
+    {
+     "id": "sga-2024-8-sniqbhat",
+     "vigencia": "2024",
+     "numero": 8,
+     "fechaEntrega": "2025-12-30",
+     "fechaEntregaTexto": "46021",
+     "responsable": "SGA.",
+     "areas": [
+      "Gestión Ambiental"
+     ],
+     "oportunidad": "Formación y talleres en Percepción ambiental y Cambio Climático.",
+     "entregable": "Informe resultados de evaluación de actividad.",
+     "seguimientos": [
+      {
+       "corte": "2025-04-30",
+       "corteTexto": "2025-04-30",
+       "funcionario": "DANIEL EDUARDO SOTO BERNAL",
+       "observacion": "",
+       "clasificacion": 0
+      },
+      {
+       "corte": "2025-06-30",
+       "corteTexto": "2025-06-30",
+       "funcionario": "DANIEL EDUARDO SOTO BERNAL",
+       "observacion": "",
+       "clasificacion": 0
+      },
+      {
+       "corte": "2025-09-30",
+       "corteTexto": "2025-09-30",
+       "funcionario": "JOAN IMAYINNE GALVIS MORENO",
+       "observacion": "Según las evidencias remitidas se recibe lista de asistencia, sin embargo el entregable de los resultados de la actividad no estan.",
+       "clasificacion": 0
+      },
+      {
+       "corte": "2025-12-30",
+       "corteTexto": "2025-12-30",
+       "funcionario": "JOAN IMAYINNE GALVIS MORENO",
+       "observacion": "Se sugiere realozar un informe mas detallado de lo evidenciado actualmente para tener completitud de incormaicon",
+       "clasificacion": 0
+      },
+      {
+       "corte": "2026-06-30",
+       "corteTexto": "2026-06-30",
+       "funcionario": "JOAN IMAYINNE GALVIS MORENO",
+       "observacion": "Se sugiere realozar un informe mas detallado de lo evidenciado actualmente para tener completitud de incormaicon",
+       "clasificacion": 0
       }
      ]
     },
@@ -6321,14 +6824,14 @@
      "vigencia": "2024",
      "numero": 9,
      "fechaEntrega": "2025-03-31",
-     "fechaEntregaTexto": "45747 45838 45930 46021",
+     "fechaEntregaTexto": "45747",
      "responsable": "SGA Talento Humano",
      "areas": [
       "Talento Humano",
       "Gestión Ambiental"
      ],
      "oportunidad": "Fortalecimiento con el proceso de Talento Humano para mejorar la cobertura.",
-     "entregable": "Informe / Matriz de id necesidades de formación. Cronograma de formación y capacitación. Listas de asistencia, registro fotográfico. Informe resultados de eficiencia de actividad.",
+     "entregable": "Informe / Matriz de id necesidades de formación.",
      "seguimientos": [
       {
        "corte": "2025-04-30",
@@ -6341,21 +6844,174 @@
        "corte": "2025-06-30",
        "corteTexto": "2025-06-30",
        "funcionario": "DANIEL EDUARDO SOTO BERNAL",
-       "observacion": "Se realiza la programación en todas las Unidades regionales de las Inducciones sobre el SGA incluyendo todo el personal administrativo y el personal de Gestores de conocimiento. Se socializa con el Dirección de Talento Humano. Anexo 5 El Sistema de Gestión Ambiental anexa envío de Story Board para inclusión del contenido del SGA en el módulo de bienvenida de Bienestar Universitario. Anexo 13, no s…",
+       "observacion": "Se realiza la programación en todas las Unidades regionales de las Inducciones sobre el SGA incluyendo todo el personal administrativo y el personal de Gestores de conocimiento. Se socializa con el Dirección de Talento Humano. Anexo 5",
        "clasificacion": 2
       },
       {
        "corte": "2025-09-30",
        "corteTexto": "2025-09-30",
        "funcionario": "JOAN IMAYINNE GALVIS MORENO",
-       "observacion": "Actividad cumplida El Sistema de Gestión Ambiental anexa envío de Story Board para inclusión del contenido del SGA en el módulo de bienvenida de Bienestar Universitario. Anexo 13, no se evidencia cronograma de articulación. No se identifica listas de asistencia ni registro fotografico del fortalecimiento al proceso No se identifica resultados de eficacia de la actividad",
+       "observacion": "Actividad cumplida",
        "clasificacion": 2
       },
       {
        "corte": "2025-12-30",
        "corteTexto": "2025-12-30",
        "funcionario": "JOAN IMAYINNE GALVIS MORENO",
-       "observacion": "Actividad cumplida Se evidencia que la articulación entre el Sistema de Gestión Ambiental y la Dirección de Talento Humano fue efectiva durante la vigencia evaluada, logrando una amplia cobertura institucional y resultados satisfactorios en la apropiación de conocimientos ambientales. No obstante, se recomienda fortalecer las estrategias de formación y acompañamiento en las unidades regionales con…",
+       "observacion": "Actividad cumplida",
+       "clasificacion": 2
+      },
+      {
+       "corte": "2026-06-30",
+       "corteTexto": "2026-06-30",
+       "funcionario": "JOAN IMAYINNE GALVIS MORENO",
+       "observacion": "Actividad cumplida",
+       "clasificacion": 2
+      }
+     ]
+    },
+    {
+     "id": "sga-2024-9-sn7dluus",
+     "vigencia": "2024",
+     "numero": 9,
+     "fechaEntrega": "2025-06-30",
+     "fechaEntregaTexto": "45838",
+     "responsable": "SGA Talento Humano",
+     "areas": [
+      "Talento Humano",
+      "Gestión Ambiental"
+     ],
+     "oportunidad": "Fortalecimiento con el proceso de Talento Humano para mejorar la cobertura.",
+     "entregable": "Cronograma de formación y capacitación.",
+     "seguimientos": [
+      {
+       "corte": "2025-04-30",
+       "corteTexto": "2025-04-30",
+       "funcionario": "DANIEL EDUARDO SOTO BERNAL",
+       "observacion": "",
+       "clasificacion": 0
+      },
+      {
+       "corte": "2025-06-30",
+       "corteTexto": "2025-06-30",
+       "funcionario": "DANIEL EDUARDO SOTO BERNAL",
+       "observacion": "El Sistema de Gestión Ambiental anexa envío de Story Board para inclusión del contenido del SGA en el módulo de bienvenida de Bienestar Universitario. Anexo 13, no se evidencia cronograma de articulación.",
+       "clasificacion": 1
+      },
+      {
+       "corte": "2025-09-30",
+       "corteTexto": "2025-09-30",
+       "funcionario": "JOAN IMAYINNE GALVIS MORENO",
+       "observacion": "El Sistema de Gestión Ambiental anexa envío de Story Board para inclusión del contenido del SGA en el módulo de bienvenida de Bienestar Universitario. Anexo 13, no se evidencia cronograma de articulación.",
+       "clasificacion": 2
+      },
+      {
+       "corte": "2025-12-30",
+       "corteTexto": "2025-12-30",
+       "funcionario": "JOAN IMAYINNE GALVIS MORENO",
+       "observacion": "Se evidencia que la articulación entre el Sistema de Gestión Ambiental y la Dirección de Talento Humano fue efectiva durante la vigencia evaluada, logrando una amplia cobertura institucional y resultados satisfactorios en la apropiación de conocimientos ambientales. No obstante, se recomienda fortalecer las estrategias de formación y acompañamiento en las unidades regionales con menor desempeño, a…",
+       "clasificacion": 2
+      },
+      {
+       "corte": "2026-06-30",
+       "corteTexto": "2026-06-30",
+       "funcionario": "JOAN IMAYINNE GALVIS MORENO",
+       "observacion": "Actividad cumplida",
+       "clasificacion": 2
+      }
+     ]
+    },
+    {
+     "id": "sga-2024-9-sn12enx0",
+     "vigencia": "2024",
+     "numero": 9,
+     "fechaEntrega": "2025-09-30",
+     "fechaEntregaTexto": "45930",
+     "responsable": "SGA Talento Humano",
+     "areas": [
+      "Talento Humano",
+      "Gestión Ambiental"
+     ],
+     "oportunidad": "Fortalecimiento con el proceso de Talento Humano para mejorar la cobertura.",
+     "entregable": "Listas de asistencia, registro fotográfico.",
+     "seguimientos": [
+      {
+       "corte": "2025-04-30",
+       "corteTexto": "2025-04-30",
+       "funcionario": "DANIEL EDUARDO SOTO BERNAL",
+       "observacion": "",
+       "clasificacion": 0
+      },
+      {
+       "corte": "2025-06-30",
+       "corteTexto": "2025-06-30",
+       "funcionario": "DANIEL EDUARDO SOTO BERNAL",
+       "observacion": "",
+       "clasificacion": 0
+      },
+      {
+       "corte": "2025-09-30",
+       "corteTexto": "2025-09-30",
+       "funcionario": "JOAN IMAYINNE GALVIS MORENO",
+       "observacion": "No se identifica listas de asistencia ni registro fotografico del fortalecimiento al proceso",
+       "clasificacion": 2
+      },
+      {
+       "corte": "2025-12-30",
+       "corteTexto": "2025-12-30",
+       "funcionario": "JOAN IMAYINNE GALVIS MORENO",
+       "observacion": "Se evidencia realizacion de capacitaciones y se evidencia registro de asistencia del mismo.",
+       "clasificacion": 2
+      },
+      {
+       "corte": "2026-06-30",
+       "corteTexto": "2026-06-30",
+       "funcionario": "JOAN IMAYINNE GALVIS MORENO",
+       "observacion": "Actividad cumplida",
+       "clasificacion": 2
+      }
+     ]
+    },
+    {
+     "id": "sga-2024-9-snym5jj",
+     "vigencia": "2024",
+     "numero": 9,
+     "fechaEntrega": "2025-12-30",
+     "fechaEntregaTexto": "46021",
+     "responsable": "SGA Talento Humano",
+     "areas": [
+      "Talento Humano",
+      "Gestión Ambiental"
+     ],
+     "oportunidad": "Fortalecimiento con el proceso de Talento Humano para mejorar la cobertura.",
+     "entregable": "Informe resultados de eficiencia de actividad.",
+     "seguimientos": [
+      {
+       "corte": "2025-04-30",
+       "corteTexto": "2025-04-30",
+       "funcionario": "DANIEL EDUARDO SOTO BERNAL",
+       "observacion": "",
+       "clasificacion": 0
+      },
+      {
+       "corte": "2025-06-30",
+       "corteTexto": "2025-06-30",
+       "funcionario": "DANIEL EDUARDO SOTO BERNAL",
+       "observacion": "",
+       "clasificacion": 0
+      },
+      {
+       "corte": "2025-09-30",
+       "corteTexto": "2025-09-30",
+       "funcionario": "JOAN IMAYINNE GALVIS MORENO",
+       "observacion": "No se identifica resultados de eficacia de la actividad",
+       "clasificacion": 0
+      },
+      {
+       "corte": "2025-12-30",
+       "corteTexto": "2025-12-30",
+       "funcionario": "JOAN IMAYINNE GALVIS MORENO",
+       "observacion": "Se evidencia que la articulación entre el Sistema de Gestión Ambiental y la Dirección de Talento Humano fue efectiva durante la vigencia evaluada, logrando una amplia cobertura institucional y resultados satisfactorios en la apropiación de conocimientos ambientales. No obstante, se recomienda fortalecer las estrategias de formación y acompañamiento en las unidades regionales con menor desempeño, a…",
        "clasificacion": 2
       },
       {

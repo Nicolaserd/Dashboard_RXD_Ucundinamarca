@@ -109,15 +109,20 @@ function procesarHoja(hoja, sistema, idsUsados, avisos) {
       .filter(Boolean);
 
     const oportunidad = limpiar(fila[COL.oportunidad]);
+    const entregable = limpiar(fila[COL.entregable]);
 
     // El identificador tiene que ser único: React lo usa como `key` y una
     // colisión hace que se rendericen filas fantasma. Un mismo `PM N°` puede
     // amparar dos oportunidades distintas cuando la celda del número está
-    // combinada pero la del texto no, así que se desambigua por el texto.
+    // combinada pero la del texto no, así que se desambigua por el texto; y
+    // puede repartirse en varios entregables propios con la misma
+    // oportunidad (SGA 2024), así que si el texto tampoco alcanza a
+    // distinguirlas se añade el del entregable.
     const base = `${sistema.id}-${vigencia ?? "sv"}-${numero ?? sufijoEstable(oportunidad)}`;
     let id = base;
     if (idsUsados.has(base)) {
       id = `${base}-${sufijoEstable(oportunidad)}`;
+      if (idsUsados.has(id)) id = `${base}-${sufijoEstable(`${oportunidad}|${entregable}`)}`;
       avisos.push(
         `${sistema.sigla} «${hoja.nombre}»: PM ${numero} ampara mas de una oportunidad; se desambigua el identificador`,
       );
@@ -133,7 +138,7 @@ function procesarHoja(hoja, sistema, idsUsados, avisos) {
       responsable,
       areas: detectarAreas(responsable),
       oportunidad,
-      entregable: limpiar(fila[COL.entregable]),
+      entregable,
       seguimientos,
     };
   });
