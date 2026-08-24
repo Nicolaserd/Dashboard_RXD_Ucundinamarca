@@ -321,7 +321,13 @@ h1, h2, h3, h4, p { margin: 0; }
 .escala-info summary:hover { background: var(--uc-tint); }
 .escala-info summary:focus-visible { outline: 2px solid var(--uc-green); outline-offset: 2px; }
 .escala-info[open] summary { background: var(--uc-tint); color: var(--uc-green-dark); }
-.escala-info-panel { position: absolute; top: calc(100% + 8px); left: 0; z-index: 30; width: max-content; max-width: min(420px, 90vw); background: var(--uc-surface); border: 1px solid var(--uc-hairline); border-top: 3px solid; border-image: var(--uc-gradient-primary) 1; border-radius: var(--r); box-shadow: var(--shadow-hover); padding: 14px; }
+/* z-index por debajo del encabezado fijo (.view-head, z-index: 5): si la
+   página está desplazada de forma que el disclosure queda bajo el
+   encabezado, el panel se tapa detrás de él en vez de dibujarse encima —
+   evita que flote sobre el logo/título cuando el disparador ya no es
+   visible (mismo motivo por el que el panel no debería competir con la
+   franja fija de arriba). */
+.escala-info-panel { position: absolute; top: calc(100% + 8px); left: 0; z-index: 4; width: max-content; max-width: min(420px, 90vw); background: var(--uc-surface); border: 1px solid var(--uc-hairline); border-top: 3px solid; border-image: var(--uc-gradient-primary) 1; border-radius: var(--r); box-shadow: var(--shadow-hover); padding: 14px; }
 .escala-info-panel .data-table th, .escala-info-panel .data-table td { padding: 7px 10px; font-size: 12.5px; }
 .escala-info-nota { font-size: 11.5px; color: var(--uc-text-muted); margin-top: 10px; line-height: 1.5; }
 
