@@ -29,7 +29,6 @@ export function construirKPIs(oms: OportunidadMejora[], todas: OportunidadMejora
   const datos = resumen(oms);
   const serie = serieAvancePorCorte(oms);
   const filtrado = oms.length !== todas.length;
-  const requierenAtencion = datos.sinAvance + datos.sinSeguimiento;
 
   return [
     {
@@ -38,23 +37,22 @@ export function construirKPIs(oms: OportunidadMejora[], todas: OportunidadMejora
       nota: filtrado
         ? `de ${todas.length} en el sistema`
         : `vigencias ${datos.vigencias.join(", ") || "sin registro"}`,
+      formula: "Conteo de OM en el filtro aplicado (o del sistema completo, sin filtros).",
     },
     {
       label: "Tasa de cierre",
       value: formatearPorcentaje(datos.tasaCierre, 0),
       delta: delta(variacionUltimoCorte(serie, "tasaCierre")),
       nota: `${datos.cumplidas} de ${datos.total} cumplidas`,
+      formula: "OM cumplidas (calificación = 2) ÷ total de OM × 100.",
     },
     {
       label: "Avance promedio",
       value: formatearPorcentaje(datos.avancePromedio, 0),
       delta: delta(variacionUltimoCorte(serie, "avance")),
       nota: "Escala institucional 0–2 en %",
-    },
-    {
-      label: "Requieren atención",
-      value: requierenAtencion.toLocaleString("es-CO"),
-      nota: `${datos.sinAvance} sin avance · ${datos.sinSeguimiento} sin seguimiento`,
+      formula:
+        "Promedio de (última calificación ÷ 2 × 100) de cada OM; una OM nunca calificada promedia como 0 %.",
     },
   ];
 }

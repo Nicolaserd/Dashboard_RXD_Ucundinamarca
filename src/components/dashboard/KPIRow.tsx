@@ -7,6 +7,8 @@ export interface KPI {
   delta?: { label: string; direccion: "sube" | "baja" | "neutro" };
   /** Meta, base de cálculo o aclaración de lectura. */
   nota?: string;
+  /** Fórmula con la que se calcula el indicador, mostrada en el propio KPI. */
+  formula?: string;
 }
 
 const FLECHA = { sube: "↑", baja: "↓", neutro: "→" } as const;
@@ -32,6 +34,7 @@ export function KPIRow({ kpis }: { kpis: KPI[] }) {
             </div>
           )}
           {kpi.nota && <div className="k-nota">{kpi.nota}</div>}
+          {kpi.formula && <div className="k-formula">{kpi.formula}</div>}
         </div>
       ))}
     </div>

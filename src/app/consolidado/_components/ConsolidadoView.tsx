@@ -99,21 +99,20 @@ export function ConsolidadoView() {
       label: "Oportunidades de mejora",
       value: globales.total.toLocaleString("es-CO"),
       nota: `en ${globales.sistemas} sistemas de gestión`,
+      formula: "Conteo de OM de todos los sistemas, sumadas (o filtradas por vigencia).",
     },
     {
       label: "Tasa de cierre global",
       value: formatearPorcentaje(globales.tasaCierre, 0),
       nota: `${globales.cumplidas} de ${globales.total} OM cumplidas`,
+      formula: "OM cumplidas (calificación = 2) ÷ total de OM del portafolio × 100.",
     },
     {
       label: "Avance promedio global",
       value: formatearPorcentaje(globales.avance, 0),
       nota: "Escala institucional 0–2 en %",
-    },
-    {
-      label: "Requieren atención",
-      value: globales.requierenAtencion.toLocaleString("es-CO"),
-      nota: "Sin avance o sin seguimiento registrado",
+      formula:
+        "Promedio de (última calificación ÷ 2 × 100) de cada OM del portafolio; una OM nunca calificada promedia como 0 %.",
     },
   ];
 

@@ -19,8 +19,8 @@ export interface ResumenOM {
   total: number;
   cumplidas: number;
   enGestion: number;
+  /** Calificación vigente en 0, incluyendo las OM que nunca fueron calificadas. */
   sinAvance: number;
-  sinSeguimiento: number;
   /** Porcentaje de OM cumplidas sobre el total. */
   tasaCierre: number | null;
   /** Avance promedio (0–100) de las OM calificadas. */
@@ -60,7 +60,6 @@ export function resumen(oms: OportunidadMejora[]): ResumenOM {
       estado === "avance-minimo" || estado === "avance-parcial" || estado === "avance-significativo",
     ),
     sinAvance: cuenta((estado) => estado === "sin-avance"),
-    sinSeguimiento: cuenta((estado) => estado === "sin-seguimiento"),
     tasaCierre: oms.length === 0 ? null : (cumplidas / oms.length) * 100,
     avancePromedio: avancePromedio(oms),
     vencidas: oms.filter((om) => estaVencida(om, referencia)).length,
@@ -193,7 +192,7 @@ function agrupar(
       const grupo = grupos.get(clave) ?? { total: 0, cumplidas: 0, avances: [] };
       grupo.total += 1;
       if (cumplida) grupo.cumplidas += 1;
-      if (avance !== null) grupo.avances.push(avance);
+      grupo.avances.push(avance);
       grupos.set(clave, grupo);
     }
   }
@@ -216,15 +215,16 @@ export function avancePorVigencia(oms: OportunidadMejora[]): AgrupacionAvance[] 
 }
 
 /**
- * Avance por área responsable. Una OM con varias áreas cuenta en todas, por lo
- * que la suma de `total` supera el número de OM: mide carga por área, no una
- * partición del total.
+ * Avance por responsable, agrupando por el **texto literal** tal como se
+ * registró — no por las áreas canónicas que el ETL reconoce en él (`om.areas`,
+ * usadas solo para el filtro global). Cada OM cuenta en un solo grupo, así que
+ * la suma de `total` es una partición completa del conjunto.
  */
-export function avancePorArea(oms: OportunidadMejora[], limite?: number): AgrupacionAvance[] {
-  const areas = agrupar(oms, (om) => om.areas).sort(
+export function avancePorResponsable(oms: OportunidadMejora[], limite?: number): AgrupacionAvance[] {
+  const responsables = agrupar(oms, (om) => [om.responsable || "Sin registrar"]).sort(
     (a, b) => b.total - a.total || a.clave.localeCompare(b.clave, "es"),
   );
-  return limite ? areas.slice(0, limite) : areas;
+  return limite ? responsables.slice(0, limite) : responsables;
 }
 
 export interface HitoCorte extends PuntoAvance {
@@ -269,8 +269,8 @@ export function hitosPorCorte(oms: OportunidadMejora[]): HitoCorte[] {
  */
 export function ordenarPorRezago(oms: OportunidadMejora[]): OportunidadMejora[] {
   return [...oms].sort((a, b) => {
-    const avanceA = avanceDeOM(a) ?? -1;
-    const avanceB = avanceDeOM(b) ?? -1;
+    const avanceA = avanceDeOM(a);
+    const avanceB = avanceDeOM(b);
     if (avanceA !== avanceB) return avanceA - avanceB;
     return a.vigencia.localeCompare(b.vigencia);
   });

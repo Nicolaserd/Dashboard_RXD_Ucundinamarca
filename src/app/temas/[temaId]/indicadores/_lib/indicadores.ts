@@ -74,7 +74,7 @@ export function construirIndicadores(oms: OportunidadMejora[]): Indicador[] {
       valor: formatearPorcentaje(datos.avancePromedio, 1),
       referencia: "≥ 80 %",
       estado: evaluarPorcentaje(datos.avancePromedio, 80, 60),
-      base: `${total - datos.sinSeguimiento} con calificación`,
+      base: `${total} OM (una OM nunca calificada promedia como 0 %)`,
     },
     {
       id: "cobertura-seguimiento",
@@ -90,15 +90,7 @@ export function construirIndicadores(oms: OportunidadMejora[]): Indicador[] {
       valor: String(datos.sinAvance),
       referencia: "0",
       estado: evaluarConteo(datos.sinAvance, 2),
-      base: "Calificación vigente igual a 0 en la escala institucional",
-    },
-    {
-      id: "sin-seguimiento",
-      nombre: "Oportunidades sin ningún seguimiento",
-      valor: String(datos.sinSeguimiento),
-      referencia: "0",
-      estado: evaluarConteo(datos.sinSeguimiento, 0),
-      base: "Sin ninguna calificación registrada en los cortes de seguimiento",
+      base: "Calificación vigente igual a 0 en la escala institucional (incluye las nunca calificadas)",
     },
     {
       id: "vencidas",

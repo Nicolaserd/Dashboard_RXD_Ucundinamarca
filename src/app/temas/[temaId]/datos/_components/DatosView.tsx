@@ -44,7 +44,7 @@ function valorDe(om: OportunidadMejora, columna: Columna): string | number {
     case "entrega":
       return om.fechaEntrega ?? "9999-99-99";
     case "avance":
-      return avanceDeOM(om) ?? -1;
+      return avanceDeOM(om);
   }
 }
 
@@ -168,7 +168,7 @@ export function DatosView({ temaId }: { temaId: string }) {
                             </span>
                             <span>
                               <span className="om-titulo-tabla">{om.oportunidad}</span>
-                              <span className="om-meta">{om.areas.join(" · ")}</span>
+                              <span className="om-meta">{om.responsable || "Sin registrar"}</span>
                             </span>
                           </button>
                         </td>
@@ -180,7 +180,7 @@ export function DatosView({ temaId }: { temaId: string }) {
                             </span>
                           )}
                         </td>
-                        <td className="pct">{avance !== null ? `${avance}%` : "—"}</td>
+                        <td className="pct">{avance}%</td>
                         <td>
                           <EstadoTag
                             color={colorEstado(estado)}

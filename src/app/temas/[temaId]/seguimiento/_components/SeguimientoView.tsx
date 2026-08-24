@@ -159,7 +159,7 @@ export function SeguimientoView({ temaId }: { temaId: string }) {
                 <div className="historial">
                   <p className="om-titulo">{detalle.oportunidad}</p>
                   <p className="om-meta">
-                    {detalle.areas.join(" · ")} · Entrega comprometida: {entregaLegible(detalle)}
+                    {detalle.responsable || "Sin registrar"} · Entrega comprometida: {entregaLegible(detalle)}
                   </p>
                   <p className="om-meta">
                     Estado vigente:{" "}

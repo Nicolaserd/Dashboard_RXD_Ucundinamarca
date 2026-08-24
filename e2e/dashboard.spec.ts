@@ -100,10 +100,10 @@ test.describe("Portada de temas", () => {
 });
 
 test.describe("Vista Resumen", () => {
-  test("muestra cuatro KPIs con valor", async ({ page }) => {
+  test("muestra los KPIs con valor", async ({ page }) => {
     await irA(page, "resumen");
 
-    await expect(page.locator(".kpi")).toHaveCount(4);
+    await expect(page.locator(".kpi")).toHaveCount(3);
     await expect(page.locator(".kpi .k-val").first()).not.toBeEmpty();
     await expect(page.locator(".kpi").first()).toContainText("Oportunidades de mejora");
   });
@@ -177,27 +177,34 @@ test.describe("Vista Indicadores", () => {
   test("tabula los indicadores con valor, referencia y base", async ({ page }) => {
     await irA(page, "indicadores");
 
-    const filas = page.locator(".data-table tbody tr");
+    // Locator por rol, no `.data-table`: esa clase también la usa la tabla de
+    // la escala de avance (disclosure junto al filtro «Estado»), presente en
+    // todas las vistas.
+    const tabla = page.getByRole("table", { name: /Indicadores de gestión/ });
+    const filas = tabla.locator("tbody tr");
     expect(await filas.count()).toBeGreaterThan(0);
 
-    await expect(page.locator(".data-table")).toContainText("Tasa de cierre");
+    await expect(tabla).toContainText("Tasa de cierre");
     await expect(page.locator(".estado-pill").first()).toBeVisible();
     await expect(page.locator(".nota-pie")).toContainText("umbrales de lectura");
   });
 });
 
 test.describe("Vista Responsables", () => {
-  test("muestra el avance por área y permite filtrar desde la tabla", async ({ page }) => {
+  test("muestra el avance por responsable y su detalle al seleccionar en la tabla", async ({ page }) => {
     await irA(page, "responsables");
 
-    await expect(page.getByRole("heading", { name: /Avance promedio por área/ })).toBeVisible();
+    await expect(page.getByRole("heading", { name: /Avance promedio por responsable/ })).toBeVisible();
 
-    const primeraArea = page.locator(".celda-filtro").first();
-    const nombreArea = (await primeraArea.textContent())?.trim() ?? "";
-    await primeraArea.click();
+    // Agrupa por el texto literal del campo «Responsable», no por área
+    // canónica: la selección es local a la vista, no un filtro global.
+    const primeraFila = page.locator(".celda-filtro").first();
+    const nombreResponsable = (await primeraFila.textContent())?.trim() ?? "";
+    await primeraFila.click();
 
-    await expect(page.locator(".filter-chip")).toContainText(nombreArea);
-    await expect(page.locator("#filtro-area")).toHaveValue(nombreArea);
+    await expect(primeraFila).toHaveAttribute("aria-pressed", "true");
+    await expect(page.getByRole("heading", { name: /Oportunidades de mejora del responsable/ })).toBeVisible();
+    await expect(page.locator(".card-sub", { hasText: nombreResponsable })).toBeVisible();
   });
 });
 
@@ -278,7 +285,7 @@ test.describe("Vista consolidada", () => {
     await page.goto("/consolidado");
 
     await expect(page.locator("h1")).toContainText("Todos los sistemas de gestión");
-    await expect(page.locator(".kpi")).toHaveCount(4);
+    await expect(page.locator(".kpi")).toHaveCount(3);
     // Las cifras son las del portafolio completo, no las de un sistema.
     await expect(page.locator(".kpi").first()).toContainText(String(TOTAL_OM));
 

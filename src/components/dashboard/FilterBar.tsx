@@ -1,9 +1,13 @@
 "use client";
 
+import type { ReactNode } from "react";
+
 export interface FilterConfig {
   id: string;
   label: string;
   options: { value: string; label: string }[];
+  /** Contenido informativo opcional junto a la etiqueta (p. ej. la escala de estados). */
+  ayuda?: ReactNode;
 }
 
 interface FilterBarProps {
@@ -31,6 +35,7 @@ export function FilterBar({ filters, valores, onChange, onClearAll }: FilterBarP
         {filters.map((filtro) => (
           <div key={filtro.id} className="filter-field">
             <label htmlFor={`filtro-${filtro.id}`}>{filtro.label}</label>
+            {filtro.ayuda}
             <select
               id={`filtro-${filtro.id}`}
               className="filter-select"

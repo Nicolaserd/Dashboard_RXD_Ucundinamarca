@@ -28,9 +28,12 @@ export interface Tema {
  */
 export type Clasificacion = 0 | 0.5 | 1 | 1.5 | 2;
 
-/** Estado derivado de la última clasificación registrada para una OM. */
+/**
+ * Estado derivado de la última clasificación registrada para una OM. Una OM
+ * nunca calificada cuenta como `sin-avance` (clasificación 0): no hay un
+ * estado aparte para «sin seguimiento» (decisión del tablero).
+ */
 export type EstadoAvance =
-  | "sin-seguimiento"
   | "sin-avance"
   | "avance-minimo"
   | "avance-parcial"

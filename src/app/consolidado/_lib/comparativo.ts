@@ -33,7 +33,7 @@ export interface FilaSistema {
   tasaCierre: number | null;
   /** Variación del avance frente al corte anterior, en puntos porcentuales. */
   variacion: number | null;
-  /** OM sin avance o sin ningún seguimiento registrado. */
+  /** OM con calificación vigente en 0 (incluye las nunca calificadas). */
   requierenAtencion: number;
   distribucion: SegmentoEstado[];
   vigencias: string[];
@@ -62,7 +62,7 @@ export function compararSistemas(vigencia = ""): FilaSistema[] {
       avance: datos.avancePromedio,
       tasaCierre: datos.tasaCierre,
       variacion: variacionUltimoCorte(serie, "avance"),
-      requierenAtencion: datos.sinAvance + datos.sinSeguimiento,
+      requierenAtencion: datos.sinAvance,
       distribucion: distribucionPorEstado(oms),
       vigencias: datos.vigencias,
     };
@@ -77,7 +77,6 @@ export interface TotalesGlobales {
   cumplidas: number;
   tasaCierre: number | null;
   avance: number | null;
-  requierenAtencion: number;
   /** Corte más reciente de todo el portafolio. */
   ultimoCorte: string | null;
 }
@@ -93,7 +92,6 @@ export function totalesGlobales(vigencia = ""): TotalesGlobales {
     cumplidas: datos.cumplidas,
     tasaCierre: datos.tasaCierre,
     avance: avancePromedio(todas),
-    requierenAtencion: datos.sinAvance + datos.sinSeguimiento,
     ultimoCorte: datos.ultimoCorte,
   };
 }

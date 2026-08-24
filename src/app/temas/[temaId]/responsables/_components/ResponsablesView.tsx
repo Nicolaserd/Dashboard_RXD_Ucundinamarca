@@ -1,57 +1,59 @@
 "use client";
 
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import { DashboardShell } from "@/components/dashboard/DashboardShell";
 import { ChartCard } from "@/components/charts/ChartCard";
 import { BarrasCategoria } from "@/components/charts/BarrasCategoria";
+import { EstadoTag } from "@/components/dashboard/EstadoTag";
 import { EstadoVacio } from "@/components/dashboard/EstadoVacio";
 import { useTableroOM } from "@/features/dashboard/useTableroOM";
 import { construirKPIs } from "@/features/dashboard/kpis";
-import { avancePorArea } from "@/lib/om/metricas";
+import { avanceDeOM, colorEstado, entregaLegible, etiquetaEstado, simboloEstado } from "@/lib/om/avance";
+import { avancePorResponsable } from "@/lib/om/metricas";
+import { estadoDeOM } from "@/lib/om/avance";
 
-/** Áreas mostradas en la gráfica; el resto queda disponible en la tabla. */
-const MAX_AREAS_GRAFICA = 12;
+/** Responsables mostrados en la gráfica; el resto queda disponible en la tabla. */
+const MAX_RESPONSABLES_GRAFICA = 12;
 
 /**
- * Desempeño del seguimiento por área institucional responsable.
+ * Desempeño del seguimiento por responsable, agrupado por el **texto literal**
+ * del campo «Responsable» tal como se registró — no por las áreas canónicas que
+ * el ETL reconoce en él. Cada OM cuenta en un solo grupo, así que la tabla es
+ * una partición completa del conjunto (a diferencia de una agrupación por área,
+ * donde una OM con varios responsables contaría en más de una fila).
  *
- * El campo «Responsable» de los libros es texto libre —95 variantes distintas—,
- * así que el ETL etiqueta cada OM con las áreas canónicas que menciona. Una OM
- * compartida cuenta en todas sus áreas: la tabla mide carga por área, no una
- * partición del total, y la vista lo declara.
+ * La selección de un responsable es **local a esta vista**: no forma parte del
+ * filtro global (`FiltrosOM`) porque el texto libre tiene demasiadas variantes
+ * para servir como dimensión compartida con el resto del tablero.
  */
 export function ResponsablesView({ temaId }: { temaId: string }) {
-  const { todas, oms, omsIgnorando, filtros, activos, controles, fijar, alternar, limpiar } =
-    useTableroOM(temaId);
+  const { todas, oms, filtros, activos, controles, fijar, limpiar } = useTableroOM(temaId);
 
   const kpis = useMemo(() => construirKPIs(oms, todas), [oms, todas]);
 
-  // La gráfica filtra por área: se calcula ignorando ese filtro para conservar
-  // el contexto sobre el que se hizo la selección.
-  const areas = useMemo(() => avancePorArea(omsIgnorando("area")), [omsIgnorando]);
+  const responsables = useMemo(() => avancePorResponsable(oms), [oms]);
+
+  const [seleccionado, setSeleccionado] = useState<string | null>(null);
+  const alternarSeleccion = (clave: string) =>
+    setSeleccionado((actual) => (actual === clave ? null : clave));
+
   // Referencia estable: si el array se recreara en cada render, Recharts
   // reiniciaría la animación de entrada con cada clic de selección.
-  const areasGrafica = useMemo(
+  const responsablesGrafica = useMemo(
     () =>
-      areas.slice(0, MAX_AREAS_GRAFICA).map((area) => ({
-        clave: area.clave,
-        etiqueta: area.clave,
-        valor: area.avance,
-        detalle: `${area.cumplidas} de ${area.total} cumplidas`,
+      responsables.slice(0, MAX_RESPONSABLES_GRAFICA).map((responsable) => ({
+        clave: responsable.clave,
+        etiqueta: responsable.clave,
+        valor: responsable.avance,
+        detalle: `${responsable.cumplidas} de ${responsable.total} cumplidas`,
       })),
-    [areas],
+    [responsables],
   );
 
-  // Redacciones literales del campo «Responsable» de las OM seleccionadas:
-  // conserva la trazabilidad hacia el libro de origen.
-  const responsablesLiterales = useMemo(() => {
-    const conteo = new Map<string, number>();
-    for (const om of oms) {
-      const texto = om.responsable || "Sin registrar";
-      conteo.set(texto, (conteo.get(texto) ?? 0) + 1);
-    }
-    return [...conteo.entries()].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0], "es"));
-  }, [oms]);
+  const omsDelSeleccionado = useMemo(
+    () => (seleccionado ? oms.filter((om) => (om.responsable || "Sin registrar") === seleccionado) : []),
+    [oms, seleccionado],
+  );
 
   return (
     <DashboardShell
@@ -62,18 +64,18 @@ export function ResponsablesView({ temaId }: { temaId: string }) {
       onClearAll={limpiar}
     >
       <ChartCard
-        title={`Avance promedio por área responsable — ${MAX_AREAS_GRAFICA} áreas con mayor carga`}
-        sub="Se eligen las de más OM y se ordenan de mayor a menor avance · clic en una barra para filtrar"
-        estado={areasGrafica.length === 0 ? "vacio" : "ok"}
-        filtrada={Boolean(filtros.area)}
+        title={`Avance promedio por responsable — ${MAX_RESPONSABLES_GRAFICA} con mayor carga`}
+        sub="Texto tal como se registró, sin dividir · se eligen los de más OM y se ordenan de mayor a menor avance · clic en una barra para ver su detalle"
+        estado={responsablesGrafica.length === 0 ? "vacio" : "ok"}
+        filtrada={Boolean(seleccionado)}
         ancha
       >
         <BarrasCategoria
-          data={areasGrafica}
+          data={responsablesGrafica}
           orientacion="horizontal"
-          seleccionado={filtros.area || null}
-          onSelect={(clave) => alternar("area", clave)}
-          ejeValor="Eje horizontal: avance promedio (%). Eje vertical: área institucional responsable."
+          seleccionado={seleccionado}
+          onSelect={alternarSeleccion}
+          ejeValor="Eje horizontal: avance promedio (%). Eje vertical: responsable, tal como se registró."
         />
       </ChartCard>
 
@@ -81,25 +83,25 @@ export function ResponsablesView({ temaId }: { temaId: string }) {
         <div className="card">
           <div className="card-head">
             <div>
-              <h3>Carga y avance por área</h3>
+              <h3>Carga y avance por responsable</h3>
               <div className="card-sub">
-                Una OM con varias áreas cuenta en todas; la suma supera el total de OM
+                Una fila por cada redacción distinta de «Responsable»; cada OM cuenta en una sola fila
               </div>
             </div>
             {activos && <span className="filtered-badge">Filtrada</span>}
           </div>
 
-          {areas.length === 0 ? (
+          {responsables.length === 0 ? (
             <EstadoVacio />
           ) : (
             <div className="table-wrap">
               <table className="data-table">
                 <caption className="sr-only">
-                  Áreas responsables con su número de OM, cumplidas, pendientes y avance promedio
+                  Responsables con su número de OM, cumplidas, pendientes y avance promedio
                 </caption>
                 <thead>
                   <tr>
-                    <th scope="col">Área responsable</th>
+                    <th scope="col">Responsable</th>
                     <th scope="col" className="num">
                       OM
                     </th>
@@ -115,25 +117,25 @@ export function ResponsablesView({ temaId }: { temaId: string }) {
                   </tr>
                 </thead>
                 <tbody>
-                  {areas.map((area) => {
-                    const activa = filtros.area === area.clave;
+                  {responsables.map((responsable) => {
+                    const activa = seleccionado === responsable.clave;
                     return (
-                      <tr key={area.clave} className={activa ? "fila-activa" : undefined}>
+                      <tr key={responsable.clave} className={activa ? "fila-activa" : undefined}>
                         <th scope="row" className="celda-nombre">
                           <button
                             type="button"
                             className="celda-filtro"
                             aria-pressed={activa}
-                            onClick={() => alternar("area", area.clave)}
+                            onClick={() => alternarSeleccion(responsable.clave)}
                           >
                             {activa && <span aria-hidden="true">✓ </span>}
-                            {area.clave}
+                            {responsable.clave}
                           </button>
                         </th>
-                        <td className="num">{area.total}</td>
-                        <td className="num">{area.cumplidas}</td>
-                        <td className="num">{area.sinCerrar}</td>
-                        <td className="pct pct-green">{area.avance}%</td>
+                        <td className="num">{responsable.total}</td>
+                        <td className="num">{responsable.cumplidas}</td>
+                        <td className="num">{responsable.sinCerrar}</td>
+                        <td className="pct pct-green">{responsable.avance}%</td>
                       </tr>
                     );
                   })}
@@ -146,27 +148,42 @@ export function ResponsablesView({ temaId }: { temaId: string }) {
         <div className="card">
           <div className="card-head">
             <div>
-              <h3>Responsables tal como se registraron</h3>
+              <h3>Oportunidades de mejora del responsable seleccionado</h3>
               <div className="card-sub">
-                Redacción original para las {oms.length} oportunidades de mejora seleccionadas
+                {seleccionado
+                  ? `${omsDelSeleccionado.length} OM a cargo de «${seleccionado}»`
+                  : "Selecciona un responsable en la gráfica o la tabla"}
               </div>
             </div>
           </div>
 
-          {responsablesLiterales.length === 0 ? (
+          {!seleccionado ? (
+            <EstadoVacio mensaje="Ningún responsable seleccionado todavía." />
+          ) : omsDelSeleccionado.length === 0 ? (
             <EstadoVacio />
           ) : (
             <ul className="om-lista om-lista-compacta">
-              {responsablesLiterales.map(([texto, cantidad]) => (
-                <li key={texto} className="om-item">
-                  <div className="om-item-head">
-                    <span className="om-ref">
-                      {cantidad} {cantidad === 1 ? "OM" : "OM"}
-                    </span>
-                  </div>
-                  <p className="om-meta">{texto}</p>
-                </li>
-              ))}
+              {omsDelSeleccionado.map((om) => {
+                const estado = estadoDeOM(om);
+                const avance = avanceDeOM(om);
+                return (
+                  <li key={om.id} className="om-item">
+                    <div className="om-item-head">
+                      <span className="om-ref">
+                        {om.vigencia}
+                        {om.numero !== null ? ` · PM ${om.numero}` : ""}
+                      </span>
+                      <EstadoTag
+                        color={colorEstado(estado)}
+                        simbolo={simboloEstado(estado)}
+                        label={`${etiquetaEstado(estado)} · ${avance}%`}
+                      />
+                    </div>
+                    <p className="om-titulo">{om.oportunidad}</p>
+                    <p className="om-meta">Entrega comprometida: {entregaLegible(om)}</p>
+                  </li>
+                );
+              })}
             </ul>
           )}
         </div>

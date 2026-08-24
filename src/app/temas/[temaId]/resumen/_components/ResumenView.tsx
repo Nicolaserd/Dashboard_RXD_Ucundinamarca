@@ -189,11 +189,11 @@ export function ResumenView({ temaId }: { temaId: string }) {
                       <EstadoTag
                         color={colorEstado(estado)}
                         simbolo={simboloEstado(estado)}
-                        label={`${etiquetaEstado(estado)}${avance !== null ? ` · ${avance}%` : ""}`}
+                        label={`${etiquetaEstado(estado)} · ${avance}%`}
                       />
                     </div>
                     <p className="om-titulo">{om.oportunidad}</p>
-                    <p className="om-meta">{om.areas.join(" · ")}</p>
+                    <p className="om-meta">{om.responsable || "Sin registrar"}</p>
                   </li>
                 );
               })}

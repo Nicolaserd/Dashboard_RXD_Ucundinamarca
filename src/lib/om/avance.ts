@@ -11,8 +11,8 @@ export const CLASIFICACION_MAXIMA = 2;
 
 interface DefinicionEstado {
   id: EstadoAvance;
-  /** Clasificación exacta que produce el estado; `null` = sin seguimiento. */
-  clasificacion: Clasificacion | null;
+  /** Clasificación exacta que produce el estado. */
+  clasificacion: Clasificacion;
   label: string;
   /**
    * Paso de la rampa ordinal de avance (tokens en `globals.css`).
@@ -22,8 +22,6 @@ interface DefinicionEstado {
    * con luminosidad monótona, y no una paleta de colores distintos. Una paleta
    * categórica aquí sería incorrecta —y de hecho medía ΔE 5.8 entre dos de sus
    * verdes, indistinguibles incluso con visión de color completa—.
-   * «Sin seguimiento» queda fuera de la rampa, en gris neutro: no es un valor
-   * bajo de la escala, es la ausencia de medición.
    */
   color: string;
   /**
@@ -34,21 +32,25 @@ interface DefinicionEstado {
   simbolo: string;
 }
 
-/** Escala completa, de mayor a menor avance. */
+/**
+ * Escala completa, de mayor a menor avance. Una OM que nunca fue calificada
+ * cuenta como «Sin avance» (clasificación 0): no hay un estado aparte para
+ * «sin seguimiento», por decisión explícita — ver `clasificacionFinal`.
+ */
 export const ESTADOS: DefinicionEstado[] = [
   { id: "cumplida", clasificacion: 2, label: "Cumplida", color: "var(--uc-avance-4)", simbolo: "●" },
   { id: "avance-significativo", clasificacion: 1.5, label: "Avance significativo", color: "var(--uc-avance-3)", simbolo: "◕" },
   { id: "avance-parcial", clasificacion: 1, label: "Avance parcial", color: "var(--uc-avance-2)", simbolo: "◑" },
   { id: "avance-minimo", clasificacion: 0.5, label: "Avance mínimo", color: "var(--uc-avance-1)", simbolo: "◔" },
   { id: "sin-avance", clasificacion: 0, label: "Sin avance", color: "var(--uc-avance-0)", simbolo: "○" },
-  { id: "sin-seguimiento", clasificacion: null, label: "Sin seguimiento", color: "var(--uc-avance-nd)", simbolo: "–" },
 ];
 
 const POR_ID = new Map(ESTADOS.map((estado) => [estado.id, estado]));
+const SIN_AVANCE = ESTADOS[ESTADOS.length - 1] as DefinicionEstado;
 
 export function estadoPorId(id: EstadoAvance): DefinicionEstado {
   // La escala cubre todos los valores posibles; el fallback solo satisface al tipo.
-  return POR_ID.get(id) ?? ESTADOS[ESTADOS.length - 1];
+  return POR_ID.get(id) ?? SIN_AVANCE;
 }
 
 export const etiquetaEstado = (id: EstadoAvance): string => estadoPorId(id).label;
@@ -56,14 +58,16 @@ export const colorEstado = (id: EstadoAvance): string => estadoPorId(id).color;
 export const simboloEstado = (id: EstadoAvance): string => estadoPorId(id).simbolo;
 
 /**
- * Lectura de una **calificación puntual de un corte**, no del estado vigente de
- * la OM. La usan las vistas que muestran el historial corte a corte, donde cada
- * observación lleva su propia calificación.
+ * Gris neutro para una **observación puntual de un corte** sin calificación
+ * numérica (columna `CLASIFICACION` vacía en ese corte). Es un concepto
+ * distinto del estado de la OM: una OM puede tener su calificación vigente en
+ * «Sin avance» y aun así traer observaciones sin calificar en cortes previos.
  */
-const SIN_CALIFICAR = ESTADOS[ESTADOS.length - 1] as DefinicionEstado;
+const SIN_CALIFICAR = { color: "var(--uc-avance-nd)", simbolo: "–" };
 
-function porClasificacion(clasificacion: number | null): DefinicionEstado {
-  return ESTADOS.find((estado) => estado.clasificacion === clasificacion) ?? SIN_CALIFICAR;
+function porClasificacion(clasificacion: number | null): { color: string; simbolo: string } {
+  if (clasificacion === null) return SIN_CALIFICAR;
+  return ESTADOS.find((estado) => estado.clasificacion === clasificacion) ?? SIN_AVANCE;
 }
 
 export const colorClasificacion = (clasificacion: number | null): string =>
@@ -81,33 +85,30 @@ export function ultimoSeguimientoCalificado(om: OportunidadMejora): SeguimientoO
   return null;
 }
 
-/** Clasificación vigente de una OM, o `null` si nunca se le calificó avance. */
-export function clasificacionFinal(om: OportunidadMejora): Clasificacion | null {
-  return ultimoSeguimientoCalificado(om)?.clasificacion ?? null;
+/**
+ * Clasificación vigente de una OM. Una OM que nunca fue calificada cuenta
+ * como **0** (Sin avance): no se distingue de una calificada explícitamente
+ * con 0, por decisión del tablero (antes eran «Sin seguimiento» aparte).
+ */
+export function clasificacionFinal(om: OportunidadMejora): Clasificacion {
+  return ultimoSeguimientoCalificado(om)?.clasificacion ?? 0;
 }
 
-/** Estado vigente de una OM según su última clasificación. */
+/** Estado vigente de una OM según su última clasificación (0 si nunca se calificó). */
 export function estadoDeOM(om: OportunidadMejora): EstadoAvance {
   const clasificacion = clasificacionFinal(om);
-  if (clasificacion === null) return "sin-seguimiento";
   return ESTADOS.find((estado) => estado.clasificacion === clasificacion)?.id ?? "sin-avance";
 }
 
-/** Avance porcentual de una OM (0–100), o `null` si no tiene calificación. */
-export function avanceDeOM(om: OportunidadMejora): number | null {
-  const clasificacion = clasificacionFinal(om);
-  return clasificacion === null ? null : (clasificacion / CLASIFICACION_MAXIMA) * 100;
+/** Avance porcentual de una OM (0–100). 0 si nunca fue calificada. */
+export function avanceDeOM(om: OportunidadMejora): number {
+  return (clasificacionFinal(om) / CLASIFICACION_MAXIMA) * 100;
 }
 
-/**
- * Avance promedio (0–100) de un conjunto de OM. Solo promedia las OM con
- * calificación: incluir las no calificadas como 0 castigaría el indicador por
- * una ausencia de registro, no por una falta de gestión.
- */
+/** Avance promedio (0–100) de un conjunto de OM; `null` solo si el conjunto está vacío. */
 export function avancePromedio(oms: OportunidadMejora[]): number | null {
-  const avances = oms.map(avanceDeOM).filter((avance): avance is number => avance !== null);
-  if (avances.length === 0) return null;
-  return avances.reduce((suma, avance) => suma + avance, 0) / avances.length;
+  if (oms.length === 0) return null;
+  return oms.reduce((suma, om) => suma + avanceDeOM(om), 0) / oms.length;
 }
 
 /** Formatea un porcentaje con el símbolo `%` (regla dashboard §2). */

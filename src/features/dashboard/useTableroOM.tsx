@@ -7,6 +7,7 @@ import { ESTADOS } from "@/lib/om/avance";
 import { aplicarFiltros, areasDe, vigenciasDe, type CampoFiltro, type FiltrosOM } from "@/lib/om/filtros";
 import { estadoDeOM } from "@/lib/om/avance";
 import type { FilterConfig } from "@/components/dashboard/FilterBar";
+import { EscalaAvanceInfo } from "@/components/dashboard/EscalaAvanceInfo";
 import { useFiltros } from "./FiltrosProvider";
 
 export interface TableroOM {
@@ -68,6 +69,7 @@ export function useTableroOM(temaId: string): TableroOM {
           value: estado.id,
           label: estado.label,
         })),
+        ayuda: <EscalaAvanceInfo />,
       },
       {
         id: "area",

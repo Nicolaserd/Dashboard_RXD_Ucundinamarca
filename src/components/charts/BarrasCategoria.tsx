@@ -32,6 +32,42 @@ export interface BarraCategoria {
  */
 const MAX_CATEGORIAS_CON_LEYENDA = 8;
 
+/** Caracteres visibles antes de recortar la etiqueta del eje de categorías. */
+const MAX_CARACTERES_ETIQUETA_EJE = 34;
+
+/**
+ * Marca del eje de categorías en horizontal, en una sola línea.
+ *
+ * El texto completo no cabe en el ancho disponible cuando hay muchas
+ * categorías con nombres largos (p. ej. el texto literal de «Responsable»):
+ * dejar que Recharts lo reparta en varias líneas automáticamente desborda la
+ * franja de cada barra y las etiquetas se solapan entre sí. Se recorta a una
+ * línea con «…» — el dato completo sigue disponible en el `title` nativo (al
+ * pasar el cursor), en el tooltip de la barra y en la tabla debajo de la
+ * gráfica (regla dashboard §2: «etiquetas extensas… mediante tooltip»).
+ */
+function MarcaCategoria({
+  x = 0,
+  y = 0,
+  payload = { value: "" },
+}: {
+  x?: number;
+  y?: number;
+  payload?: { value: string };
+}) {
+  const texto = payload.value;
+  const corto =
+    texto.length > MAX_CARACTERES_ETIQUETA_EJE
+      ? `${texto.slice(0, MAX_CARACTERES_ETIQUETA_EJE).trimEnd()}…`
+      : texto;
+  return (
+    <text x={x} y={y} dy={4} textAnchor="end" fontSize={EJE.tick.fontSize} fill={EJE.tick.fill}>
+      {corto !== texto && <title>{texto}</title>}
+      {corto}
+    </text>
+  );
+}
+
 interface BarrasCategoriaProps {
   data: BarraCategoria[];
   /** `horizontal`: barras hacia la derecha, adecuado para etiquetas largas (§8). */
@@ -74,18 +110,16 @@ export function BarrasCategoria({
   // Memoizado: recrear el array en cada render haría que Recharts reiniciara la
   // animación de entrada con cada clic de selección.
   const barras = useMemo(() => [...data].sort((a, b) => b.valor - a.valor), [data]);
-  // Las etiquetas de categoría largas se reparten en dos líneas: la barra
-  // necesita alto suficiente para no solaparlas (regla dashboard §2).
   const alto = altura ?? (esHorizontal ? Math.max(200, barras.length * 42 + 48) : 264);
 
   const ejeCategoria = esHorizontal ? (
     <YAxis
       type="category"
       dataKey="etiqueta"
-      tick={{ ...EJE.tick, width: 150 }}
+      tick={<MarcaCategoria />}
       axisLine={false}
       tickLine={false}
-      width={165}
+      width={225}
       interval={0}
     />
   ) : (
