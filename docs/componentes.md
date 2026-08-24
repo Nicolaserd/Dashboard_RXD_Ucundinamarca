@@ -24,6 +24,7 @@ Cada componente lleva su TSDoc con props y ejemplo de uso; aquí se documenta el
 | `ViewHeader` | Encabezado del layout interno: miga de pan, título y corte de seguimiento vigente. |
 | `VistaShell` | Envoltura de toda página del layout interno: valida el tema, arma encabezado y lienzo. Exporta `VistaPageProps`. |
 | `PieInstitucional` | Pie común a la portada y a la vista consolidada. Declara la procedencia del tablero —elaborado por Gobierno de Datos, fuente Control Interno— y la fecha de la última importación de los libros. |
+| `PantallaCarga` | Pantalla de carga: el imagotipo (vertical, monocromático) en el centro con un anillo que gira alrededor. La usan `src/app/loading.tsx` (raíz) y `src/app/temas/[temaId]/loading.tsx` — Next.js la muestra solo mientras se resuelve la ruta, sin invocarla a mano. La de `[temaId]` envuelve únicamente `children`, así que el menú lateral y el encabezado no desaparecen al cambiar de vista (regla layouts §11). Con `prefers-reduced-motion` el anillo queda estático, no oculto. |
 
 ## Tablero — `src/components/dashboard/`
 

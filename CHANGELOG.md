@@ -5,6 +5,15 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/); v
 
 ## [Sin publicar] — 2026-08-24
 
+### Añadido
+
+- **Pantalla de carga institucional (`PantallaCarga`)**: el imagotipo vertical en el centro con un
+  anillo giratorio alrededor. Se conecta a través de `src/app/loading.tsx` (raíz) y
+  `src/app/temas/[temaId]/loading.tsx`, así que Next.js la muestra automáticamente en las
+  transiciones de ruta sin invocarla a mano. La de `[temaId]` solo envuelve `children`: el menú
+  lateral y el encabezado no parpadean al cambiar de vista. Respeta `prefers-reduced-motion`
+  (el anillo queda como un arco estático, no oculto).
+
 ### Cambiado
 
 - **«Sin seguimiento» se fusionó con «Sin avance».** Decisión de negocio: una OM que nunca fue
