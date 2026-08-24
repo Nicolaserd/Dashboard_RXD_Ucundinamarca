@@ -1,6 +1,14 @@
+import { dirname } from "node:path";
+import { fileURLToPath } from "node:url";
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // Fija la raíz del workspace: hay un package-lock.json huérfano en el
+  // directorio padre (D:\ninchaustegui\Desktop\RXD) que Next.js confunde con
+  // otro workspace, ver aviso "multiple lockfiles" en consola.
+  turbopack: {
+    root: dirname(fileURLToPath(import.meta.url)),
+  },
   /**
    * Oculta el indicador de desarrollo de Next.js: el círculo oscuro que se
    * superponía sobre el menú lateral en la esquina inferior izquierda.
