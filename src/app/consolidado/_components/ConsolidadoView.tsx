@@ -6,6 +6,7 @@ import { KPIRow, type KPI } from "@/components/dashboard/KPIRow";
 import { FilterBar } from "@/components/dashboard/FilterBar";
 import { EstadoVacio } from "@/components/dashboard/EstadoVacio";
 import { EstadoTag } from "@/components/dashboard/EstadoTag";
+import { ColumnasComparativoInfo } from "@/components/dashboard/ColumnasComparativoInfo";
 import { ChartCard } from "@/components/charts/ChartCard";
 import { BarrasCategoria } from "@/components/charts/BarrasCategoria";
 import { LeyendaInteractiva } from "@/components/charts/LeyendaInteractiva";
@@ -168,6 +169,7 @@ export function ConsolidadoView() {
                 <div className="card-sub">
                   Clic en un sistema para ver su composición; el enlace abre su tablero completo
                 </div>
+                <ColumnasComparativoInfo />
               </div>
               {vigencia && <span className="filtered-badge">Vigencia {vigencia}</span>}
             </div>

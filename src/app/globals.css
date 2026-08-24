@@ -309,9 +309,13 @@ h1, h2, h3, h4, p { margin: 0; }
 .filter-clear:hover { background: var(--uc-tint); color: var(--uc-green-dark); }
 .filter-active-label { font-size: 12px; color: var(--uc-text-secondary); margin-bottom: 6px; }
 
-/* ---- Escala de avance: disclosure informativo junto al filtro Estado ----
+/* ---- InfoDisclosure: disclosure informativo genérico (escala de avance,
+   columnas del comparativo…) ----
    `<details>` nativo: se abre/cierra con teclado sin JS propio y su contenido
-   es accesible sin depender de hover (regla dashboard §12). */
+   es accesible sin depender de hover (regla dashboard §12). `position:
+   relative` en el propio `<details>` para que el panel se posicione respecto
+   a él sin depender de que el contenedor donde se use ya sea positioned. */
+.escala-info { position: relative; display: inline-block; }
 .escala-info summary { list-style: none; display: inline-flex; align-items: center; gap: 4px; font-size: 12px; font-weight: 600; color: var(--uc-green); cursor: pointer; padding: 3px 8px; border-radius: 999px; user-select: none; transition: background 0.15s; }
 .escala-info summary::-webkit-details-marker { display: none; }
 .escala-info summary:hover { background: var(--uc-tint); }

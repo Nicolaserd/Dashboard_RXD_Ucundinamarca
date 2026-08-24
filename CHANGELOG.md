@@ -7,6 +7,10 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/); v
 
 ### Añadido
 
+- **Disclosure para las columnas del comparativo (`ColumnasComparativoInfo`)**: explica qué cuenta
+  cada una de Cumplidas / Sin cerrar / Atención en la tabla de `/consolidado`, y que Atención es un
+  subconjunto de Sin cerrar (lo que está en cero, no solo lo que va lento). `EscalaAvanceInfo` se
+  refactorizó para compartir la base con un nuevo componente genérico `InfoDisclosure` (DRY).
 - **Pantalla de carga institucional (`PantallaCarga`)**: el imagotipo vertical en el centro con un
   anillo giratorio alrededor. Se conecta a través de `src/app/loading.tsx` (raíz) y
   `src/app/temas/[temaId]/loading.tsx`, así que Next.js la muestra automáticamente en las
