@@ -14,7 +14,7 @@ originó las OM).
 | Libro | Sistema | `id` |
 |---|---|---|
 | `SEG OM RXD_SGC JUNIO 2026.xlsx` | Sistema de Gestión de Calidad | `sgc` |
-| `SEG OM RXD_SGA JUNIO  2026 - copia.xlsx` | Sistema de Gestión Ambiental | `sga` |
+| `SEG OM RXD_SGA JUNIO  2026.xlsx` | Sistema de Gestión Ambiental | `sga` |
 | `SEG OM RXD_SG SST JUNIO 2026.xlsx` | Seguridad y Salud en el Trabajo | `sgsst` |
 | `SEG OM RXD_SG SI JUNIO 2026.xlsx` | Seguridad de la Información | `sgsi` |
 | `SEG OM RXD_SGAS JUNIO 2026.xlsx` | Sistema de Gestión Antisoborno | `sgas` |
@@ -45,8 +45,7 @@ Escala institucional de avance, de 0 a 2:
 | `1.5` | Avance significativo | 75 % |
 | `1` | Avance parcial | 50 % |
 | `0.5` | Avance mínimo | 25 % |
-| `0` | Sin avance | 0 % |
-| *(vacío)* | Sin seguimiento | — |
+| `0` o *(vacío, nunca calificada)* | Sin avance | 0 % |
 
 ---
 
@@ -90,7 +89,7 @@ pasos —sistemas, áreas, normalización de fechas— viven en
 
 | Situación en el origen | Tratamiento |
 |---|---|
-| **Celdas combinadas** (una OM ocupa varias filas) | Se «descombinan»: el valor de la esquina superior-izquierda se replica en todo su rango, y luego las filas se **agrupan por `PM N°`** en un solo registro |
+| **Celdas combinadas** (una OM ocupa varias filas) | Se «descombinan»: el valor de la esquina superior-izquierda se replica en todo su rango, y luego las filas se **agrupan por `PM N°`** en un solo registro, salvo que declaren un `ENTREGABLE` propio distinto (ver más abajo) |
 | Hojas duplicadas de una misma vigencia (`SGA 2022` y `2022`) | Se conserva la primera con datos; se avisa por consola |
 | Fila de cierre `TOTAL AVANCES` | Se descarta: no es una OM |
 | `PM N°` vacío | La OM se conserva con `numero: null` |
@@ -103,7 +102,7 @@ pasos —sistemas, áreas, normalización de fechas— viven en
 ### Celdas combinadas
 
 Tres hojas usan combinaciones verticales para dar altura al texto de la oportunidad:
-**SGA 2024** (16 rangos), **SGSI 2025** (9) y **SGC 2022** (3).
+**SGSI 2025** (9 rangos) y **SGC 2022** (3).
 
 En un `.xlsx` una celda combinada guarda el valor **solo** en su esquina superior-izquierda, así
 que las filas restantes del rango llegan vacías. El lector las rellena antes de interpretar nada
@@ -112,14 +111,26 @@ las filas consecutivas que comparten `PM N°`.
 
 Los libros no combinan las mismas columnas en todas las hojas: SGC 2022 combina `A`, `B` y `C` pero
 no `D`, de modo que una fila de continuación trae número y responsable con la oportunidad vacía. Por
-eso dos filas se consideran la misma OM cuando comparten `PM N°` y **no se contradicen** en la
-oportunidad —coinciden, o una está vacía—, y solo se separan si ambas declaran oportunidades
-distintas.
+eso dos filas se consideran la misma OM cuando comparten `PM N°` y **no se contradicen** ni en la
+oportunidad ni en el entregable —coinciden, o uno está vacío—, y solo se separan si alguno de los
+dos declara un valor distinto.
 
-Hoy ninguna fila de continuación aporta datos propios: descombinar **no cambia el dataset** (148 OM
-y 794 seguimientos, antes y después). La lógica está para que un archivo futuro con seguimiento
-repartido entre filas se consolide en lugar de duplicarse o perderse; si ocurre, el importador lo
-avisa por consola.
+En estas dos hojas ninguna fila de continuación aporta datos propios: descombinar no cambia el
+número de OM que producen.
+
+### Un `PM N°` con varios entregables propios (sin celdas combinadas)
+
+**SGA 2024** ya no llega con celdas combinadas: cada `PM N°` que reparte su seguimiento entre varios
+entregables trae **una fila completa por entregable**, cada una con su propio `ENTREGABLE` y sus
+propias observaciones/clasificaciones por corte — no son repeticiones de una celda combinada, son
+registros distintos que comparten número y texto de oportunidad.
+
+Como la condición de agrupación exige que ni la oportunidad **ni el entregable** se contradigan,
+estas filas **no se fusionan**: cada entregable queda como su propia OM en el dataset, con el mismo
+`numero` pero un `id` desambiguado (el importador avisa «PM N ampara mas de una oportunidad» aunque
+la oportunidad sea idéntica, porque lo que distingue las filas es el entregable). Fusionarlas —como
+ocurría antes de este ajuste— concatenaba los entregables en un solo texto y solo conservaba la
+clasificación de la primera fila del grupo, perdiendo el seguimiento propio de cada entregable.
 
 ### Áreas responsables
 
@@ -133,8 +144,13 @@ coincidencia de patrones (26 áreas + `Otras áreas` como respaldo). Consecuenci
 - Una OM puede pertenecer a **varias** áreas.
 - La suma de OM por área **supera** el número de OM: mide **carga por área**, no una partición del
   total. La vista Responsables lo declara explícitamente.
-- El texto literal se conserva en `responsable` y la vista Responsables lo muestra, de modo que la
-  trazabilidad hacia el libro de origen no se pierde.
+- El texto literal se conserva íntegro en `responsable` y **es lo que muestran todas las vistas**
+  junto a cada OM — no las áreas derivadas, que pueden omitir un fragmento del texto si no coincide
+  con ningún patrón conocido.
+- La vista **Responsables** también agrupa por el texto literal (`avancePorResponsable`), no por
+  área: cada OM cuenta en una sola fila, así que la tabla es una partición completa del conjunto. Las
+  áreas (`om.areas`) quedan solo como una de las tres dimensiones del **filtro global** del tablero
+  (junto a vigencia y estado), disponible desde cualquier vista.
 
 ---
 
@@ -157,7 +173,7 @@ OportunidadMejora {
 SeguimientoOM { corte, corteTexto, funcionario, observacion, clasificacion }
 ```
 
-Cifras del dataset vigente: **148 OM** y **794 registros de seguimiento** en 5 sistemas.
+Cifras del dataset vigente: **162 OM** y **995 registros de seguimiento** en 5 sistemas.
 
 ---
 
@@ -168,13 +184,15 @@ Implementadas en [`src/lib/om/`](../src/lib/om/) como funciones puras.
 ### Estado vigente de una OM
 
 Es su **última clasificación registrada** (`clasificacionFinal`). Una OM sin ninguna calificación
-queda como *Sin seguimiento*, no como *Sin avance*: son situaciones distintas y el tablero las
-cuenta por separado.
+cuenta como **0 (Sin avance)** — decisión explícita del tablero: no hay un estado aparte para «sin
+seguimiento». (Versión anterior de esta métrica sí los distinguía, para no castigar el promedio por
+ausencia de registro; se dejó de distinguir a pedido de negocio — el detalle de cada corte sigue
+disponible en Datos/Seguimiento con su propia marca «Sin calificar» por observación.)
 
 ### Avance promedio
 
-Promedia solo las OM **calificadas**. Contar como 0 las que nunca se calificaron castigaría el
-indicador por una ausencia de registro y no por una falta de gestión.
+Promedia **todas** las OM del conjunto: una OM nunca calificada suma 0 al promedio, igual que una
+calificada explícitamente con 0.
 
 ### Serie temporal — lectura acumulada
 
@@ -208,4 +226,3 @@ propia vista lo declara al pie.
   esta escala; si crece, el camino es mover la agregación a componentes de servidor o a una API.
 - La detección de áreas es por patrones sobre texto libre: una redacción nueva y muy distinta caería
   en `Otras áreas` hasta añadir su patrón en `scripts/importar-om-rxd.mjs`.
-- Nueve OM (todas de SGA) no registran ningún corte de seguimiento en los libros de origen.

@@ -3,6 +3,68 @@
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/); versionado según
 [SemVer](https://semver.org/lang/es/).
 
+## [Sin publicar] — 2026-08-24
+
+### Cambiado
+
+- **«Sin seguimiento» se fusionó con «Sin avance».** Decisión de negocio: una OM que nunca fue
+  calificada ahora cuenta como **Sin avance** (0 %) en todo el tablero — estado, filtro, leyenda,
+  KPIs, indicadores y gráficas — en vez de un estado aparte. Afecta el cálculo, no solo la
+  visualización: el **Avance promedio** ahora incluye a todas las OM (antes excluía las nunca
+  calificadas). El campo `EstadoAvance` pierde el valor `"sin-seguimiento"`; `avanceDeOM` y
+  `clasificacionFinal` ya no devuelven `null` — ver [`src/lib/om/avance.ts`](src/lib/om/avance.ts)
+  y la actualización en [ADR-0004](docs/adr/0004-rampa-ordinal-de-avance.md). El concepto de
+  «observación de un corte sin calificar» (por seguimiento individual, no por OM) no cambia — sigue
+  visible en Datos/Seguimiento con su propia marca «Sin calificar».
+  - Vista Indicadores: el indicador «Oportunidades sin ningún seguimiento» se fusionó dentro de
+    «Oportunidades sin avance registrado».
+
+### Quitado
+
+- **KPI «Requieren atención»** de la cabecera de todos los tableros (`construirKPIs` y la vista
+  `/consolidado`): quedan 3 indicadores en vez de 4.
+
+### Añadido
+
+- **`EscalaAvanceInfo`**: disclosure junto al filtro «Estado» con la tabla calificación → estado →
+  % de avance (0 · 0.5 · 1 · 1.5 · 2 → Sin avance … Cumplida), y la aclaración de que el estado de
+  una OM es su última calificación, no un promedio. `FilterConfig` gana un campo `ayuda` opcional
+  para enganchar contenido así junto a cualquier filtro; `useTableroOM` lo usa para «Estado», lo que
+  lo propaga a las 5 vistas del layout interno sin repetir el componente en cada una.
+
+### Cambiado
+
+- **`KPIRow` explica su propio cálculo.** Cada `KPI` admite ahora un campo `formula`, que se
+  muestra siempre visible al pie de la tarjeta (no en tooltip) — trazabilidad del número sin salir
+  del tablero.
+
+### Corregido
+
+- **Vista Responsables agrupaba por área canónica, no por responsable literal.** Su tabla y su
+  gráfica contaban OM por área institucional reconocida (`avancePorArea`), así que un texto como
+  «SG-SST/ALTA DIRECCIÓN» aparecía repartido en dos filas distintas en vez de una sola. Ahora agrupan
+  por el **texto literal** del campo `Responsable` (`avancePorResponsable`, nueva función en
+  `src/lib/om/metricas.ts`): una fila por redacción, cada OM cuenta una sola vez. La selección de un
+  responsable es local a la vista — muestra sus OM en una card lateral — y ya no reutiliza el filtro
+  global `area`, que sigue disponible como filtro cruzado en el resto del tablero (`ADR-0003`,
+  actualizado).
+- **Responsable mostrado como áreas derivadas en vez de texto literal.** Resumen (lista de rezago),
+  Datos (fila de la tabla) y Seguimiento (detalle de la OM seleccionada) mostraban `om.areas.join(" · ")`
+  junto a cada OM — las etiquetas de área que el ETL reconoce por patrones sobre el texto libre de
+  `Responsable`, no el texto en sí. Si alguna parte del texto no coincidía con ninguno de los 26
+  patrones, esa parte desaparecía de lo que se veía, dando la impresión de que el responsable estaba
+  incompleto o «dividido». Las tres vistas ahora muestran `om.responsable` completo, tal como se
+  registró. La vista Responsables no cambia: agrupar/contar por área sigue siendo su razón de ser
+  (ADR-0003), y ya mostraba el texto literal en su card «tal como se registraron».
+- **ETL — entregables propios bajo un mismo `PM N°` (SGA 2024).** El libro de SGA ya no combina
+  celdas: reparte el seguimiento de una OM entre varias filas, cada una con su propio `ENTREGABLE`.
+  El agrupador de `scripts/limpiar-excel.mjs` las fusionaba como si fueran continuación de una celda
+  combinada, concatenando los entregables en un solo texto y conservando solo la clasificación de la
+  primera fila del grupo. Ahora la agrupación exige que **ni la oportunidad ni el entregable** se
+  contradigan; `scripts/importar-om-rxd.mjs` desambigua el `id` cuando ambos coinciden entre filas.
+  Dataset regenerado: 149 → **162 OM**, 930 → **995 registros de seguimiento**
+  ([`docs/datos.md`](docs/datos.md#un-pm-n-con-varios-entregables-propios-sin-celdas-combinadas)).
+
 ## [0.2.0] — 2026-08-13
 
 Primer tablero con datos institucionales reales. Reemplaza los datos de demostración por el

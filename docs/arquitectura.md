@@ -130,7 +130,11 @@ entre dos de sus verdes, indistinguibles incluso con visión de color completa
 | 1 | Avance parcial | `--uc-avance-2` |
 | 1.5 | Avance significativo | `--uc-avance-3` *(= `--uc-green`)* |
 | 2 | Cumplida | `--uc-avance-4` *(= `--uc-green-dark`)* |
-| — | Sin seguimiento | `--uc-avance-nd` *(neutro, fuera de la rampa)* |
+
+`--uc-avance-nd` (neutro, fuera de la rampa) ya no marca un estado de OM: queda solo para la
+observación de un corte puntual sin calificación numérica (`colorClasificacion`/`simboloClasificacion`
+en [Datos](../src/app/temas/[temaId]/datos) y [Seguimiento](../src/app/temas/[temaId]/seguimiento)).
+Una OM sin ninguna calificación cuenta como **Sin avance** (ver [datos.md §4](datos.md#estado-vigente-de-una-om)).
 
 Reglas que se derivan de esa elección y que toda gráfica nueva debe respetar:
 

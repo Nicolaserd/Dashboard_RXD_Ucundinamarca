@@ -39,3 +39,10 @@ origen.
 - El campo `Responsable` es texto libre con 95 redacciones distintas, así que la vista se apoya en
   las áreas canónicas que deriva el ETL. Sus límites están documentados en
   [datos.md §2](../datos.md#áreas-responsables).
+
+> **Actualización — 2026-08-24.** La tabla y la gráfica principales de la vista dejaron de agrupar
+> por área canónica: agrupan por el **texto literal** del campo `Responsable` (cada OM cuenta en una
+> sola fila). Las áreas canónicas seguían omitiendo silenciosamente cualquier fragmento del texto que
+> no calzara con uno de los 26 patrones reconocidos, lo que hacía ver el responsable «incompleto» o
+> dividido. Las áreas (`om.areas`) se conservan solo como una de las tres dimensiones del filtro
+> global del tablero, no como agrupación de esta vista.

@@ -67,3 +67,10 @@ la rampa no alcanzan contraste de texto legible, así que el distintivo de estad
 - Se añaden seis tokens a `globals.css`. **No son colores de marca** y así están
   documentados: son pasos de una rampa de visualización derivada del verde oficial.
 - Cambiar la escala obliga a re-validar con el script antes de fusionar.
+
+> **Actualización — 2026-08-24.** «Sin seguimiento» dejó de ser un estado de OM: una OM sin
+> ninguna calificación cuenta ahora como **Sin avance** (ver [datos.md §4](../datos.md#estado-vigente-de-una-om)).
+> El token `--uc-avance-nd` no queda huérfano — sigue en uso para un concepto más acotado: la
+> observación de un corte puntual sin calificación numérica (`colorClasificacion`/`simboloClasificacion`
+> en `src/lib/om/avance.ts`), que es distinto del estado vigente de la OM. La rampa de 5 pasos de
+> esta ADR no cambia; solo se retira el paso «fuera de la rampa» de la escala de **estados**.

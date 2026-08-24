@@ -30,8 +30,9 @@ Cada componente lleva su TSDoc con props y ejemplo de uso; aquí se documenta el
 | Componente | Uso |
 |---|---|
 | `DashboardShell` | Impone el orden de lectura de todo tablero: KPIs → filtros → detalle (regla dashboard §5–7). |
-| `KPIRow` | Fila de indicadores clave. La variación se señala con flecha **y** color. Tipo `KPI` exportado. |
-| `FilterBar` | Barra de filtros **controlada**: el estado vive en `FiltrosProvider`. Chips de filtros activos, cada uno removible, y «Limpiar filtros». |
+| `KPIRow` | Fila de indicadores clave (3 por tablero). La variación se señala con flecha **y** color. Cada `KPI` trae su `formula` (cómo se calculó) siempre visible en la tarjeta, no en tooltip. Tipo `KPI` exportado. |
+| `FilterBar` | Barra de filtros **controlada**: el estado vive en `FiltrosProvider`. Chips de filtros activos, cada uno removible, y «Limpiar filtros». Cada `FilterConfig` admite `ayuda` (nodo opcional junto a la etiqueta). |
+| `EscalaAvanceInfo` | Disclosure (`<details>`) con la tabla calificación → estado → % de avance. Se engancha como `ayuda` del filtro «Estado» en `useTableroOM`, así que aparece en las 5 vistas del layout interno sin repetirse. |
 | `EstadoTag` | Distintivo del estado de avance: punto de color, símbolo que crece con el avance y etiqueta **en tinta**. El color viste la marca, nunca el texto. |
 | `EstadoVacio` | Estado «Sin datos» cuando un filtro no deja registros (regla dashboard §4). |
 
