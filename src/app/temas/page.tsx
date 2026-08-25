@@ -29,8 +29,8 @@ export default function PortadaPage() {
         <h1>Seguimiento a Oportunidades de Mejora</h1>
         <p>
           Estado de las oportunidades de mejora derivadas de la Revisión por la Dirección en los
-          sistemas de gestión de la Universidad, con su avance por vigencia, corte de seguimiento y
-          área responsable.
+          sistemas integrados de gestión de la Universidad, con su avance por vigencia, corte de
+          seguimiento y área responsable.
         </p>
         {/* Acción principal de la portada: la visión de conjunto va antes que
             la elección de un sistema, así que se ofrece de entrada. */}
@@ -51,7 +51,7 @@ export default function PortadaPage() {
           </div>
           <div className="m">
             <b>{TEMAS.length}</b>
-            <span>sistemas de gestión</span>
+            <span>sistemas integrados de gestión</span>
           </div>
           <div className="m">
             <b>{global.cumplidas}</b>
@@ -65,7 +65,7 @@ export default function PortadaPage() {
       </div>
 
       <div className="section-head">
-        <h2>Sistemas de gestión</h2>
+        <h2>Sistemas integrados de gestión</h2>
         <span>O seleccione uno para abrir su tablero de seguimiento</span>
       </div>
 

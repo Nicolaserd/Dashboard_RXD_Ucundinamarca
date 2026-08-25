@@ -7,9 +7,9 @@ import { Icon } from "@/components/ui/Icon";
 import { ConsolidadoView } from "./_components/ConsolidadoView";
 
 export const metadata = {
-  title: "Todos los sistemas de gestión",
+  title: "Todos los sistemas integrados de gestión",
   description:
-    "Estado vigente de las oportunidades de mejora en todos los sistemas de gestión de la Universidad de Cundinamarca.",
+    "Estado vigente de las oportunidades de mejora en todos los sistemas integrados de gestión de la Universidad de Cundinamarca.",
 };
 
 /**
@@ -37,7 +37,7 @@ export default function ConsolidadoPage() {
 
       <div className="consolidado-head">
         <div className="eyebrow">Revisión por la Dirección · Visión consolidada</div>
-        <h1>Todos los sistemas de gestión</h1>
+        <h1>Todos los sistemas integrados de gestión</h1>
         <p>
           Estado vigente de las oportunidades de mejora en cada sistema, con su corte de seguimiento
           más reciente. Permite comparar avance, cierre y carga pendiente entre sistemas antes de

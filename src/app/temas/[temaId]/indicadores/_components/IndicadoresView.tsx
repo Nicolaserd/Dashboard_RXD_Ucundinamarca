@@ -104,7 +104,8 @@ export function IndicadoresView({ temaId }: { temaId: string }) {
 
         <p className="nota-pie">
           Las referencias son umbrales de lectura definidos para este tablero con el fin de priorizar
-          la atención; no sustituyen las metas institucionales aprobadas para cada sistema de gestión.
+          la atención; no sustituyen las metas institucionales aprobadas para cada sistema integrado
+          de gestión.
         </p>
       </div>
     </DashboardShell>

@@ -285,7 +285,7 @@ test.describe("Vista consolidada", () => {
   test("compara el estado vigente de todos los sistemas", async ({ page }) => {
     await page.goto("/consolidado");
 
-    await expect(page.locator("h1")).toContainText("Todos los sistemas de gestión");
+    await expect(page.locator("h1")).toContainText("Todos los sistemas integrados de gestión");
     await expect(page.locator(".kpi")).toHaveCount(3);
     // Las cifras son las del portafolio completo, no las de un sistema.
     await expect(page.locator(".kpi").first()).toContainText(String(TOTAL_OM));
@@ -336,7 +336,7 @@ test.describe("Vista consolidada", () => {
     await page.goto("/temas/sgc/resumen");
     await page.locator(".nav-item", { hasText: "Todos los sistemas" }).click();
     await page.waitForURL(/\/consolidado/);
-    await expect(page.locator("h1")).toContainText("Todos los sistemas de gestión");
+    await expect(page.locator("h1")).toContainText("Todos los sistemas integrados de gestión");
   });
 });
 

@@ -99,7 +99,7 @@ export function ConsolidadoView() {
     {
       label: "Oportunidades de mejora",
       value: globales.total.toLocaleString("es-CO"),
-      nota: `en ${globales.sistemas} sistemas de gestión`,
+      nota: `en ${globales.sistemas} sistemas integrados de gestión`,
       formula: "Conteo de OM de todos los sistemas, sumadas (o filtradas por vigencia).",
     },
     {
@@ -136,7 +136,7 @@ export function ConsolidadoView() {
         <>
           <div className="grid-2a">
             <ChartCard
-              title="Avance promedio por sistema de gestión"
+              title="Avance promedio por sistema integrado de gestión"
               sub="Última calificación vigente de cada OM · escala 0–2 expresada en %"
               filtrada={Boolean(vigencia)}
             >
@@ -145,7 +145,7 @@ export function ConsolidadoView() {
                 orientacion="horizontal"
                 seleccionado={sistemaActivo}
                 onSelect={(clave) => setSistemaActivo(sistemaActivo === clave ? null : clave)}
-                ejeValor="Eje horizontal: avance promedio (%). Eje vertical: sistema de gestión."
+                ejeValor="Eje horizontal: avance promedio (%). Eje vertical: sistema integrado de gestión."
               />
             </ChartCard>
 
@@ -177,8 +177,8 @@ export function ConsolidadoView() {
             <div className="table-wrap">
               <table className="data-table">
                 <caption className="sr-only">
-                  Sistemas de gestión con su último corte, número de OM, cumplidas, pendientes,
-                  avance promedio y variación
+                  Sistemas integrados de gestión con su último corte, número de OM, cumplidas,
+                  pendientes, avance promedio y variación
                 </caption>
                 <thead>
                   <tr>
