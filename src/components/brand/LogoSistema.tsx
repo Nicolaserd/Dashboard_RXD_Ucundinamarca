@@ -12,7 +12,7 @@
  * misma proporción, así que basta con fijar la altura.
  *
  * @example
- * <LogoSistema id="sgc" nombre="Sistema de Gestión de Calidad" height={56} />
+ * <LogoSistema id="sgc" nombre="Sistema Integrado de Gestión de Calidad" height={56} />
  */
 export function LogoSistema({
   id,

@@ -13,11 +13,11 @@ originó las OM).
 
 | Libro | Sistema | `id` |
 |---|---|---|
-| `SEG OM RXD_SGC JUNIO 2026.xlsx` | Sistema de Gestión de Calidad | `sgc` |
-| `SEG OM RXD_SGA JUNIO  2026.xlsx` | Sistema de Gestión Ambiental | `sga` |
+| `SEG OM RXD_SGC JUNIO 2026.xlsx` | Sistema Integrado de Gestión de Calidad | `sgc` |
+| `SEG OM RXD_SGA JUNIO  2026.xlsx` | Sistema Integrado de Gestión Ambiental | `sga` |
 | `SEG OM RXD_SG SST JUNIO 2026.xlsx` | Seguridad y Salud en el Trabajo | `sgsst` |
 | `SEG OM RXD_SG SI JUNIO 2026.xlsx` | Seguridad de la Información | `sgsi` |
-| `SEG OM RXD_SGAS JUNIO 2026.xlsx` | Sistema de Gestión Antisoborno | `sgas` |
+| `SEG OM RXD_SGAS JUNIO 2026.xlsx` | Sistema Integrado de Gestión Antisoborno | `sgas` |
 
 ### Estructura de cada hoja
 

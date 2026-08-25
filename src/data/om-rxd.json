@@ -11,7 +11,7 @@
   {
    "id": "sgc",
    "sigla": "SGC",
-   "nombre": "Sistema de Gestión de Calidad",
+   "nombre": "Sistema Integrado de Gestión de Calidad",
    "archivo": "sgc.xlsx",
    "oms": [
     {
@@ -5234,7 +5234,7 @@
   {
    "id": "sga",
    "sigla": "SGA",
-   "nombre": "Sistema de Gestión Ambiental",
+   "nombre": "Sistema Integrado de Gestión Ambiental",
    "archivo": "sga.xlsx",
    "oms": [
     {
@@ -9120,7 +9120,7 @@
   {
    "id": "sgas",
    "sigla": "SGAS",
-   "nombre": "Sistema de Gestión Antisoborno",
+   "nombre": "Sistema Integrado de Gestión Antisoborno",
    "archivo": "sgas.xlsx",
    "oms": [
     {
