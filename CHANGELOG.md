@@ -7,6 +7,13 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/); v
 
 ### Corregido
 
+- **"Integrado" se queda solo en las menciones plurales/colectivas** ("sistemas integrados de
+  gestión de la Universidad", "Todos los sistemas integrados de gestión"), no en el nombre propio de
+  cada sistema individual. Revierte el nombre de SGC/SGA/SGAS a "Sistema de Gestión de..." (sin
+  "Integrado") en `scripts/lib/dominio.mjs`, `Siglas.tsx` y donde ese nombre individual aparecía
+  singular (título de la gráfica comparativa por sistema, su eje, y la nota al pie de Indicadores
+  "cada sistema de gestión"). Dataset regenerado (mismos conteos).
+
 - **`BarrasCategoria` (eje de categorías horizontal): las etiquetas largas ya no pierden nombres
   enteros.** El recorte a una sola línea (con «…») que arreglaba el solape de etiquetas cortaba, en
   responsables compuestos por varios nombres, uno o más nombres completos sin dejarlo evidente —

@@ -7,11 +7,11 @@ export const SIGLAS: Record<string, string> = {
   RXD: "Revisión por la Dirección",
   PM: "Plan de Mejoramiento",
   pp: "puntos porcentuales",
-  SGC: "Sistema Integrado de Gestión de Calidad",
-  SGA: "Sistema Integrado de Gestión Ambiental",
-  "SG-SST": "Sistema Integrado de Gestión de Seguridad y Salud en el Trabajo",
-  SGSI: "Sistema Integrado de Gestión de Seguridad de la Información",
-  SGAS: "Sistema Integrado de Gestión Antisoborno",
+  SGC: "Sistema de Gestión de Calidad",
+  SGA: "Sistema de Gestión Ambiental",
+  "SG-SST": "Sistema de Gestión de Seguridad y Salud en el Trabajo",
+  SGSI: "Sistema de Gestión de Seguridad de la Información",
+  SGAS: "Sistema de Gestión Antisoborno",
 };
 
 /**

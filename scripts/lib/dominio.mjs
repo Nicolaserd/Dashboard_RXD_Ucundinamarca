@@ -20,11 +20,11 @@ export const MAX_OBSERVACION = 400;
  * El orden define el orden de aparición en la portada de temas.
  */
 export const SISTEMAS = [
-  { id: "sgc", sigla: "SGC", nombre: "Sistema Integrado de Gestión de Calidad", patron: /_SGC/i },
-  { id: "sga", sigla: "SGA", nombre: "Sistema Integrado de Gestión Ambiental", patron: /_SGA[\s_]/i },
+  { id: "sgc", sigla: "SGC", nombre: "Sistema de Gestión de Calidad", patron: /_SGC/i },
+  { id: "sga", sigla: "SGA", nombre: "Sistema de Gestión Ambiental", patron: /_SGA[\s_]/i },
   { id: "sgsst", sigla: "SG-SST", nombre: "Seguridad y Salud en el Trabajo", patron: /SG[\s-]*SST/i },
   { id: "sgsi", sigla: "SGSI", nombre: "Seguridad de la Información", patron: /SG\s*SI\b/i },
-  { id: "sgas", sigla: "SGAS", nombre: "Sistema Integrado de Gestión Antisoborno", patron: /_SGAS/i },
+  { id: "sgas", sigla: "SGAS", nombre: "Sistema de Gestión Antisoborno", patron: /_SGAS/i },
 ];
 
 /**

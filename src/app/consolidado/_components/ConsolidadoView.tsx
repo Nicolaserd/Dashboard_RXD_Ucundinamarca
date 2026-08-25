@@ -136,7 +136,7 @@ export function ConsolidadoView() {
         <>
           <div className="grid-2a">
             <ChartCard
-              title="Avance promedio por sistema integrado de gestión"
+              title="Avance promedio por sistema de gestión"
               sub="Última calificación vigente de cada OM · escala 0–2 expresada en %"
               filtrada={Boolean(vigencia)}
             >
@@ -145,7 +145,7 @@ export function ConsolidadoView() {
                 orientacion="horizontal"
                 seleccionado={sistemaActivo}
                 onSelect={(clave) => setSistemaActivo(sistemaActivo === clave ? null : clave)}
-                ejeValor="Eje horizontal: avance promedio (%). Eje vertical: sistema integrado de gestión."
+                ejeValor="Eje horizontal: avance promedio (%). Eje vertical: sistema de gestión."
               />
             </ChartCard>
 
