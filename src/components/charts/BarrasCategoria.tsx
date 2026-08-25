@@ -32,19 +32,52 @@ export interface BarraCategoria {
  */
 const MAX_CATEGORIAS_CON_LEYENDA = 8;
 
-/** Caracteres visibles antes de recortar la etiqueta del eje de categorías. */
-const MAX_CARACTERES_ETIQUETA_EJE = 34;
+/** Caracteres por línea antes de pasar a la siguiente, en la etiqueta del eje de categorías. */
+const MAX_CARACTERES_POR_LINEA = 30;
+/** Líneas antes de recortar el resto con «…» (evita filas absurdamente altas). */
+const MAX_LINEAS_ETIQUETA = 4;
+/** Alto de línea, en píxeles, para el bloque de texto de la marca del eje. */
+const ALTO_LINEA_ETIQUETA = 13;
 
 /**
- * Marca del eje de categorías en horizontal, en una sola línea.
+ * Reparte un texto en como mucho `MAX_LINEAS_ETIQUETA` líneas de hasta
+ * `MAX_CARACTERES_POR_LINEA` caracteres. Si el texto no alcanza a caber
+ * incluso así (un responsable compuesto por varios nombres largos), la
+ * última línea se recorta con «…» — el texto íntegro sigue disponible en la
+ * tabla debajo de la gráfica y en el tooltip de la barra.
+ */
+function envolverEtiqueta(texto: string): string[] {
+  const palabras = texto.split(/\s+/);
+  const lineas: string[] = [];
+  let actual = "";
+
+  for (const palabra of palabras) {
+    const candidata = actual ? `${actual} ${palabra}` : palabra;
+    if (candidata.length <= MAX_CARACTERES_POR_LINEA || !actual) {
+      actual = candidata;
+    } else {
+      lineas.push(actual);
+      actual = palabra;
+    }
+  }
+  if (actual) lineas.push(actual);
+
+  if (lineas.length <= MAX_LINEAS_ETIQUETA) return lineas;
+
+  const visibles = lineas.slice(0, MAX_LINEAS_ETIQUETA);
+  visibles[MAX_LINEAS_ETIQUETA - 1] = `${visibles[MAX_LINEAS_ETIQUETA - 1]}…`;
+  return visibles;
+}
+
+/**
+ * Marca del eje de categorías en horizontal, repartida en varias líneas.
  *
- * El texto completo no cabe en el ancho disponible cuando hay muchas
- * categorías con nombres largos (p. ej. el texto literal de «Responsable»):
- * dejar que Recharts lo reparta en varias líneas automáticamente desborda la
- * franja de cada barra y las etiquetas se solapan entre sí. Se recorta a una
- * línea con «…» — el dato completo sigue disponible en el `title` nativo (al
- * pasar el cursor), en el tooltip de la barra y en la tabla debajo de la
- * gráfica (regla dashboard §2: «etiquetas extensas… mediante tooltip»).
+ * El texto completo no cabe en una sola línea cuando hay categorías largas
+ * (p. ej. el texto literal de «Responsable», que puede juntar varios nombres
+ * separados por coma): en vez de recortarlo a una línea —que llegó a perder
+ * nombres enteros de un responsable compuesto sin dejarlo notorio—, se
+ * reparte en hasta tres líneas. `BarrasCategoria` usa la misma función para
+ * darle a cada fila el alto que su etiqueta necesita.
  */
 function MarcaCategoria({
   x = 0,
@@ -55,15 +88,16 @@ function MarcaCategoria({
   y?: number;
   payload?: { value: string };
 }) {
-  const texto = payload.value;
-  const corto =
-    texto.length > MAX_CARACTERES_ETIQUETA_EJE
-      ? `${texto.slice(0, MAX_CARACTERES_ETIQUETA_EJE).trimEnd()}…`
-      : texto;
+  const lineas = envolverEtiqueta(payload.value);
+  // Centra el bloque de N líneas respecto al centro vertical de la fila (`y`).
+  const primeraLinea = -((lineas.length - 1) * ALTO_LINEA_ETIQUETA) / 2 + 4;
   return (
-    <text x={x} y={y} dy={4} textAnchor="end" fontSize={EJE.tick.fontSize} fill={EJE.tick.fill}>
-      {corto !== texto && <title>{texto}</title>}
-      {corto}
+    <text x={x} y={y} textAnchor="end" fontSize={EJE.tick.fontSize} fill={EJE.tick.fill}>
+      {lineas.map((linea, i) => (
+        <tspan key={i} x={x} dy={i === 0 ? primeraLinea : ALTO_LINEA_ETIQUETA}>
+          {linea}
+        </tspan>
+      ))}
     </text>
   );
 }
@@ -110,7 +144,13 @@ export function BarrasCategoria({
   // Memoizado: recrear el array en cada render haría que Recharts reiniciara la
   // animación de entrada con cada clic de selección.
   const barras = useMemo(() => [...data].sort((a, b) => b.valor - a.valor), [data]);
-  const alto = altura ?? (esHorizontal ? Math.max(200, barras.length * 42 + 48) : 264);
+
+  // Todas las filas comparten el alto de la etiqueta más exigente: Recharts
+  // reparte el alto total en partes iguales por categoría, así que no hay
+  // forma de darle a una sola fila más espacio que a las demás.
+  const maxLineas = Math.max(1, ...barras.map((barra) => envolverEtiqueta(barra.etiqueta).length));
+  const altoFila = 42 + (maxLineas - 1) * ALTO_LINEA_ETIQUETA;
+  const alto = altura ?? (esHorizontal ? Math.max(200, barras.length * altoFila + 48) : 264);
 
   const ejeCategoria = esHorizontal ? (
     <YAxis

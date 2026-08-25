@@ -5,6 +5,16 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/); v
 
 ## [Sin publicar] — 2026-08-24
 
+### Corregido
+
+- **`BarrasCategoria` (eje de categorías horizontal): las etiquetas largas ya no pierden nombres
+  enteros.** El recorte a una sola línea (con «…») que arreglaba el solape de etiquetas cortaba, en
+  responsables compuestos por varios nombres, uno o más nombres completos sin dejarlo evidente —
+  solo aparecían al pasar el cursor. Ahora la etiqueta se reparte en hasta 4 líneas
+  (`envolverEtiqueta`); cada fila de la gráfica crece al alto que exige su etiqueta más larga. Solo
+  se recorta con «…» el puñado de redacciones que ni así caben (una, de 153 caracteres, sigue
+  truncada — el texto íntegro está en la tabla debajo de la gráfica).
+
 ### Añadido
 
 - **Estandarización de redacciones del campo `Responsable`** (`estandarizarResponsables`, nueva en
