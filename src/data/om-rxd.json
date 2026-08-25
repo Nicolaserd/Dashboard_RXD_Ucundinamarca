@@ -1,5 +1,5 @@
 {
- "generadoEn": "2026-08-24",
+ "generadoEn": "2026-08-25",
  "escalaClasificacion": [
   0,
   0.5,
@@ -6171,7 +6171,7 @@
      "numero": 5,
      "fechaEntrega": "2025-06-30",
      "fechaEntregaTexto": "45838",
-     "responsable": "SGA-",
+     "responsable": "SGA",
      "areas": [
       "Gestión Ambiental"
      ],
@@ -6625,7 +6625,7 @@
      "numero": 8,
      "fechaEntrega": "2025-03-31",
      "fechaEntregaTexto": "45747",
-     "responsable": "SGA.",
+     "responsable": "SGA",
      "areas": [
       "Gestión Ambiental"
      ],
@@ -6675,7 +6675,7 @@
      "numero": 8,
      "fechaEntrega": "2025-06-30",
      "fechaEntregaTexto": "45838",
-     "responsable": "SGA.",
+     "responsable": "SGA",
      "areas": [
       "Gestión Ambiental"
      ],
@@ -6725,7 +6725,7 @@
      "numero": 8,
      "fechaEntrega": "2025-09-30",
      "fechaEntregaTexto": "45930",
-     "responsable": "SGA.",
+     "responsable": "SGA",
      "areas": [
       "Gestión Ambiental"
      ],
@@ -6775,7 +6775,7 @@
      "numero": 8,
      "fechaEntrega": "2025-12-30",
      "fechaEntregaTexto": "46021",
-     "responsable": "SGA.",
+     "responsable": "SGA",
      "areas": [
       "Gestión Ambiental"
      ],
@@ -8266,7 +8266,7 @@
      "numero": 7,
      "fechaEntrega": "2026-10-30",
      "fechaEntregaTexto": "30/10/2026",
-     "responsable": "DIRECCIÓN DE SISTEMAS Y TECNOLOGÍA",
+     "responsable": "Dirección de Sistemas y Tecnología",
      "areas": [
       "Sistemas y Tecnología"
      ],
@@ -9129,7 +9129,7 @@
      "numero": 1,
      "fechaEntrega": "2025-07-31",
      "fechaEntregaTexto": "31 de Julio 2025.",
-     "responsable": "Sistema de Gestión Antisoborno.",
+     "responsable": "Sistema de Gestión Antisoborno",
      "areas": [
       "Antisoborno"
      ],
@@ -9179,7 +9179,7 @@
      "numero": 2,
      "fechaEntrega": "2025-09-30",
      "fechaEntregaTexto": "30 de Septiembre 2025.",
-     "responsable": "Sistema de Gestión Antisoborno.",
+     "responsable": "Sistema de Gestión Antisoborno",
      "areas": [
       "Antisoborno"
      ],
@@ -9229,7 +9229,7 @@
      "numero": 3,
      "fechaEntrega": "2025-10-31",
      "fechaEntregaTexto": "31 de Octubre 2025.",
-     "responsable": "Sistema de Gestión Antisoborno.",
+     "responsable": "Sistema de Gestión Antisoborno",
      "areas": [
       "Antisoborno"
      ],
@@ -9279,7 +9279,7 @@
      "numero": 4,
      "fechaEntrega": "2025-09-30",
      "fechaEntregaTexto": "30 de Septiembre 2025.",
-     "responsable": "Sistema de Gestión Antisoborno.",
+     "responsable": "Sistema de Gestión Antisoborno",
      "areas": [
       "Antisoborno"
      ],
@@ -9329,7 +9329,7 @@
      "numero": 5,
      "fechaEntrega": "2025-09-30",
      "fechaEntregaTexto": "30 de Septiembre 2025.",
-     "responsable": "Sistema de Gestión Antisoborno.",
+     "responsable": "Sistema de Gestión Antisoborno",
      "areas": [
       "Antisoborno"
      ],
@@ -9379,7 +9379,7 @@
      "numero": 6,
      "fechaEntrega": "2025-10-31",
      "fechaEntregaTexto": "31 de Octubre 2025.",
-     "responsable": "Sistema de Gestión Antisoborno.",
+     "responsable": "Sistema de Gestión Antisoborno",
      "areas": [
       "Antisoborno"
      ],

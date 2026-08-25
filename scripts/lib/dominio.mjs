@@ -116,5 +116,88 @@ export function detectarAreas(responsable) {
 export const recortar = (texto) =>
   texto.length > MAX_OBSERVACION ? `${texto.slice(0, MAX_OBSERVACION).trimEnd()}…` : texto;
 
+/**
+ * Clave de agrupación para redacciones equivalentes del campo «Responsable»:
+ * ignora mayúsculas, tildes, y puntuación/espacios de cierre. No colapsa
+ * diferencias de palabras (dos redacciones con texto distinto siguen siendo
+ * dos claves distintas) — eso seguiría siendo texto libre genuinamente
+ * distinto, no una variante de escritura de lo mismo.
+ */
+export function claveResponsable(texto) {
+  return texto
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "") // tildes/diacríticos
+    .toLowerCase()
+    .replace(/[.\-–—\s]+$/g, "") // puntuación y espacios de cierre («SGA.», «SGA-»)
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+/**
+ * Elige, entre variantes de escritura equivalentes, la más «correctamente
+ * redactada» para mostrar: penaliza mayúsculas sostenidas (salvo siglas
+ * cortas, donde son correctas) y puntuación de cierre sobrante; a igualdad,
+ * la redacción más frecuente y, si persiste el empate, orden alfabético
+ * (para que el resultado sea determinista).
+ */
+function elegirRepresentante(variantes) {
+  const esSigla = (texto) => texto.length <= 6 && texto === texto.toUpperCase();
+  const terminaEnPuntuacion = /[.\-–—]\s*$/;
+
+  const puntaje = (texto) => {
+    let p = 0;
+    if (texto === texto.toUpperCase() && !esSigla(texto)) p -= 2;
+    if (terminaEnPuntuacion.test(texto)) p -= 1;
+    return p;
+  };
+
+  return [...variantes.entries()]
+    .sort(
+      ([textoA, vecesA], [textoB, vecesB]) =>
+        puntaje(textoB) - puntaje(textoA) || vecesB - vecesA || textoA.localeCompare(textoB, "es"),
+    )[0][0];
+}
+
+/**
+ * Estandariza el campo «Responsable» a través de todas las OM: agrupa las
+ * redacciones que solo difieren en mayúsculas, tildes o puntuación de cierre
+ * y reescribe cada una con la variante elegida como representante. Devuelve
+ * cuántas redacciones distintas había antes y después, para que el llamador
+ * lo reporte.
+ *
+ * No toca redacciones genuinamente distintas (palabras distintas, un
+ * responsable compuesto vs. otro): esas siguen siendo texto libre real, no
+ * una variante de escritura de lo mismo.
+ */
+export function estandarizarResponsables(oms) {
+  const variantesPorClave = new Map();
+  for (const om of oms) {
+    const texto = om.responsable;
+    if (!texto) continue;
+    const clave = claveResponsable(texto);
+    const variantes = variantesPorClave.get(clave) ?? new Map();
+    variantes.set(texto, (variantes.get(texto) ?? 0) + 1);
+    variantesPorClave.set(clave, variantes);
+  }
+
+  const representantePorClave = new Map();
+  let fusionadas = 0;
+  for (const [clave, variantes] of variantesPorClave) {
+    representantePorClave.set(clave, elegirRepresentante(variantes));
+    if (variantes.size > 1) fusionadas += variantes.size;
+  }
+
+  for (const om of oms) {
+    if (!om.responsable) continue;
+    om.responsable = representantePorClave.get(claveResponsable(om.responsable));
+  }
+
+  return {
+    antes: variantesPorClave.size > 0 ? [...variantesPorClave.values()].reduce((n, v) => n + v.size, 0) : 0,
+    despues: variantesPorClave.size,
+    fusionadas,
+  };
+}
+
 /** Vigencia (año del ciclo RXD) a partir del nombre de la hoja. */
 export const vigenciaDeHoja = (nombre) => nombre.match(/(20\d{2})/)?.[1] ?? null;

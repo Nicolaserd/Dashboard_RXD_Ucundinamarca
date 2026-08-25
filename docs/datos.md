@@ -72,7 +72,9 @@ quedan como `Observación AAAA-MM-DD · <funcionario>` y `Clasificación AAAA-MM
 
 **Paso 2 — [`scripts/importar-om-rxd.mjs`](../scripts/importar-om-rxd.mjs).** Traduce columnas a
 campos. Al recibir la tabla ya normalizada no necesita saber nada de formato, lo que lo deja corto y
-fácil de auditar.
+fácil de auditar. Al final, estandariza las redacciones equivalentes del campo `Responsable` a
+través de todas las OM — ver [«Estandarización de redacciones
+equivalentes»](#estandarización-de-redacciones-equivalentes) más abajo.
 
 Ninguno de los dos usa dependencias externas: [`scripts/lib/xlsx.mjs`](../scripts/lib/xlsx.mjs)
 descomprime el ZIP del `.xlsx` con `node:zlib` y lee el XML; su gemelo
@@ -134,11 +136,31 @@ clasificación de la primera fila del grupo, perdiendo el seguimiento propio de 
 
 ### Áreas responsables
 
-El campo `Responsable` es texto libre con **95 redacciones distintas** en los cinco libros
-(«SGA», «SGA.», «Equipo SGA», «Directora de Planeación Institucional. Coordinadora SGA.»…), por lo
-que no sirve como dimensión de análisis tal cual.
+El campo `Responsable` es texto libre con **92 redacciones distintas** en los cinco libros («SGA»,
+«Equipo SGA», «Directora de Planeación Institucional. Coordinadora SGA.»…), por lo que no sirve
+como dimensión de análisis tal cual.
 
-El ETL etiqueta cada OM con las **áreas institucionales canónicas** que su texto menciona, mediante
+#### Estandarización de redacciones equivalentes
+
+Antes de las 92, el texto crudo traía 96 redacciones: algunas no son responsables distintos, son la
+misma redacción con mayúsculas, tildes o puntuación de cierre inconsistentes («SGA» / «SGA.» /
+«SGA-», o «DIRECCIÓN DE SISTEMAS Y TECNOLOGÍA» en mayúsculas sostenidas frente a «Dirección de
+Sistemas y Tecnología»). `estandarizarResponsables` (en
+[`scripts/lib/dominio.mjs`](../scripts/lib/dominio.mjs)), al final de `importar-om-rxd.mjs`:
+
+1. Agrupa todas las OM (de los cinco sistemas) por una clave que ignora mayúsculas, tildes y
+   puntuación/espacios de cierre (`claveResponsable`).
+2. Dentro de cada grupo con más de una variante, elige la más «correctamente redactada» como
+   representante: penaliza mayúsculas sostenidas (salvo siglas cortas, donde son correctas) y
+   puntuación de cierre sobrante; a igualdad, la variante más frecuente.
+3. Reescribe `responsable` de cada OM del grupo con esa variante.
+
+**No** colapsa redacciones con palabras distintas (dos responsables compuestos con integrantes
+distintos, o nombres genuinamente distintos siguen siendo texto libre real, no una variante de
+escritura de lo mismo) — solo diferencias de formato de la misma redacción. El pipeline reporta por
+consola cuántas redacciones había antes y después de estandarizar.
+
+El ETL etiqueta además cada OM con las **áreas institucionales canónicas** que su texto menciona, mediante
 coincidencia de patrones (26 áreas + `Otras áreas` como respaldo). Consecuencias:
 
 - Una OM puede pertenecer a **varias** áreas.

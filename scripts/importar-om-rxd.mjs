@@ -23,7 +23,7 @@ import { readdirSync, writeFileSync, mkdirSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import { leerLibro } from "./lib/xlsx.mjs";
-import { SISTEMAS, detectarAreas, limpiar, recortar } from "./lib/dominio.mjs";
+import { SISTEMAS, detectarAreas, estandarizarResponsables, limpiar, recortar } from "./lib/dominio.mjs";
 
 const RAIZ = join(dirname(fileURLToPath(import.meta.url)), "..");
 const ORIGEN = join(RAIZ, "data-limpio");
@@ -170,6 +170,17 @@ function main() {
     });
   }
 
+  // El campo Responsable es texto libre con decenas de redacciones para el
+  // mismo área o persona («SGA», «SGA.», «SGA-»…). Se estandariza a través de
+  // todas las OM (no por sistema): dos redacciones que solo difieren en
+  // mayúsculas, tildes o puntuación de cierre se reescriben con la misma
+  // variante — la de aspecto más «correcto» — para que el texto literal
+  // agrupe bien en la vista Responsables sin perder trazabilidad hacia lo que
+  // dice cada libro (sigue siendo el mismo texto, solo sin la inconsistencia
+  // de formato).
+  const todasLasOm = sistemas.flatMap((sistema) => sistema.oms);
+  const resultadoEstandarizacion = estandarizarResponsables(todasLasOm);
+
   const dataset = {
     generadoEn: new Date().toISOString().slice(0, 10),
     escalaClasificacion: [0, 0.5, 1, 1.5, 2],
@@ -186,6 +197,10 @@ function main() {
   );
   console.log(`✓ ${DESTINO}`);
   console.log(`  ${sistemas.length} sistemas · ${totalOm} OM · ${totalSeg} registros de seguimiento`);
+  console.log(
+    `  Responsable: ${resultadoEstandarizacion.antes} redacciones → ${resultadoEstandarizacion.despues} ` +
+      `estandarizadas (${resultadoEstandarizacion.fusionadas} registros reescritos a una variante común)`,
+  );
   for (const sistema of sistemas) {
     const vigencias = [...new Set(sistema.oms.map((o) => o.vigencia))].filter(Boolean).sort();
     console.log(

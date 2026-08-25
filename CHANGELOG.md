@@ -7,6 +7,16 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/); v
 
 ### Añadido
 
+- **Estandarización de redacciones del campo `Responsable`** (`estandarizarResponsables`, nueva en
+  `scripts/lib/dominio.mjs`, corre al final de `importar-om-rxd.mjs`). El texto libre tenía
+  redacciones que solo diferían en mayúsculas, tildes o puntuación de cierre («SGA» / «SGA.» /
+  «SGA-», «DIRECCIÓN DE SISTEMAS Y TECNOLOGÍA» vs «Dirección de Sistemas y Tecnología») — no
+  responsables distintos, la misma redacción mal formateada. Se agrupan por una clave que ignora
+  esas diferencias y se reescriben con la variante más «correctamente redactada» del grupo. No toca
+  redacciones con palabras distintas (compuestos con integrantes distintos siguen siendo texto
+  libre real). Dataset: 96 → **92 redacciones distintas** (7 registros reescritos). Documentado en
+  [`docs/datos.md`](docs/datos.md#estandarización-de-redacciones-equivalentes).
+
 - **Disclosure para las columnas del comparativo (`ColumnasComparativoInfo`)**: explica qué cuenta
   cada una de Cumplidas / Sin cerrar / Atención en la tabla de `/consolidado`, y que Atención es un
   subconjunto de Sin cerrar (lo que está en cero, no solo lo que va lento). `EscalaAvanceInfo` se
